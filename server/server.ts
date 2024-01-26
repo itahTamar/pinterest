@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4000
 app.use(express.json())
 
 // app.use(express.static('public'))
-import categoriesRoutes from "./API/Category/routers"
+import categoriesRoutes from "./API/Category/categoryRouters"
 app.use("/api/v1/category", categoriesRoutes)
 
 app.listen(PORT, () => {

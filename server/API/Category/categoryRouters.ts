@@ -1,5 +1,5 @@
 import express from "express"
-import { addCategory, deleteCategory } from "./categoeyCtrl"
+import { addCategory, deleteCategory } from "./categoryCtrl"
 
 const router = express.Router()
 
