@@ -1,3 +1,0 @@
-enum Categories {
-    TITLE = "title"
-}
