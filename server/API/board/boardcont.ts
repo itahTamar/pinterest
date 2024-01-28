@@ -18,14 +18,14 @@ export async function getAllBoards(req: express.Request, res: express.Response) 
         console.log(error)
         res.status(500).send({ ok: false, error })  //closer - without it the error could stack in loop
     }
-} //
+} //work ok
 
 export async function addOneBoard(req: express.Request, res: express.Response) {
     try {
         const { userId } = req.params;
         if (!userId) throw new Error("no Id")
 
-        const query = `INSERT INTO boards IF NOT EXISTS (user_id) VALUES ('${userId}');`;
+        const query = `INSERT INTO boards (user_id) VALUES ('${userId}');`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -40,7 +40,7 @@ export async function addOneBoard(req: express.Request, res: express.Response) {
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-}  //
+}  // work ok
 
 export async function getOneBoard(req: express.Request, res: express.Response) {
     const { boardId } = req.params;
@@ -61,7 +61,7 @@ export async function getOneBoard(req: express.Request, res: express.Response) {
         console.log(error)
         res.status(500).send({ ok: false, error })  //closer - without it the error could stack in loop
     }
-} //
+} //work ok
 
 export async function deleteBoard(req: express.Request, res: express.Response) {
     try {
@@ -87,4 +87,4 @@ export async function deleteBoard(req: express.Request, res: express.Response) {
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-} //
+} //work ok

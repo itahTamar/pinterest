@@ -4,8 +4,8 @@ const router = express.Router()
 
 router
 .get("/getAllBoards", getAllBoards)
-.get("/:BoardId", getOneBoard) //<-- to get a specific Board by its id
-.post("/addBoard", addOneBoard)
-.delete("/:BoardId", deleteBoard)
+.get("/getOneBoard/:boardId", getOneBoard) //<-- to get a specific Board by its id
+.post("/addBoard/:userId", addOneBoard)
+.delete("/:boardId", deleteBoard)
 
 export default router
