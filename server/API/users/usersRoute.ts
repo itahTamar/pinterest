@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/register", register)
       .post("/login", login)
-      .patch("/update-user", updateUser)
-      .delete("/delete-user", deleteUser)
+      .patch("/update-user/:userId", updateUser)
+      .delete("/delete-user/:userId", deleteUser)
 
 export default router;

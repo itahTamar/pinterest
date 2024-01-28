@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import connection from '../../DB/database';
 import jwt from 'jwt-simple';
-import { User, Results } from '../interfaces/interfaces';
+import { Results } from '../interfaces/interfaces';
 import { Request, Response } from 'express';
 
 const saltRounds = 10;
@@ -16,13 +16,13 @@ export async function register(req: Request, res: Response) {
 
         const hash = await bcrypt.hash(password, saltRounds)
 
-        const query = `INSERT INTO users (username, email, password) VALUES ('${username}' ,'${email}', '${hash}');`;
+        const query = `INSERT INTO users ( email, password, username) VALUES ('${email}', '${hash}', '${username}');`;
 
         connection.query(query, (err, resultsAdd: Results) => {
             try {
                 if (err) throw err;
                 if (resultsAdd.affectedRows) {
-                    const queryUser = `SELECT * FROM my_books.users WHERE user_id = ${resultsAdd.insertId}`
+                    const queryUser = `SELECT * FROM users WHERE user_id = ${resultsAdd.insertId}`
                     connection.query(queryUser, (err2, results) => {
                         if (err2) throw err2;
                         const resultUserId = results[0].user_id
@@ -30,13 +30,13 @@ export async function register(req: Request, res: Response) {
                     })
                 }
             } catch (error) {
-                res.status(500).send({ ok: false, error })
+                res.status(500).send({ ok: false, error: "at register 2nd try-catch"  })
             }
         })
     } catch (error) {
-        res.status(500).send({ ok: false, error })
+        res.status(500).send({ ok: false, error: "at register 1st try-catch" })
     }
-} //
+} // work ok
 
 export async function login(req: Request, res: Response) {
     try {
@@ -83,15 +83,18 @@ export async function login(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ ok: false, error })
     }
-} //
+} //work ok
 
 export async function updateUser(req: Request, res: Response) {
     try {
         const { userId } = req.params;
         if (!userId) throw new Error("No Id provided on updateUser");
+
         const { field, update } = req.body;
         if (!field || !update) throw new Error("No field or update provided on updateUser");
+
         const query = `UPDATE users SET ${field} = '${update}' WHERE (user_id = ${userId});`;
+        
         connection.query(query, (err, results: Results) => {
             try {
                 if (err) throw err;
@@ -111,13 +114,13 @@ export async function updateUser(req: Request, res: Response) {
                 }
             } catch (error) {
                 console.log(error)
-                res.status(500).send({ ok: false, error })
+                res.status(500).send({ ok: false, error: "at register 2nd try-catch" })
             }
         })
     } catch (error) {
-        res.status(500).send({ ok: false, error })
+        res.status(500).send({ ok: false, error: "at register 1st try-catch" })
     }
-}
+} //work ok
 
 export async function deleteUser(req: Request, res: Response) {
     try {
@@ -143,5 +146,5 @@ export async function deleteUser(req: Request, res: Response) {
         console.log(error)
         res.status(500).send({ ok: false, error }) 
     }
-}
+} //work ok
 

@@ -1,11 +1,15 @@
-import connection from './DB/database';
 import express from 'express';
+import cookieParser from 'cookie-parser';
+
+require('dotenv').config();
 
 const app = express()
-
 const PORT = process.env.PORT || 4000
 
-app.use(express.json())
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+import connection from './DB/database';
 
 // app.use(express.static('public'))
 import categoriesRoutes from "./API/Category/categoryRouters"
