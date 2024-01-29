@@ -19,7 +19,7 @@ const Login = () => {
             console.log(data)
 
             if (!data) throw new Error("login failed, please register first");
-            navigate("/homePage")
+            navigate(`/homePage/${username}`)
 
         } catch (error) {
             console.error(error)
