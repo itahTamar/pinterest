@@ -1,5 +1,7 @@
-import React from 'react'
+// import React from 'react'
 // import { Navbar2 } from '../components/Navbar/Navbar'
+
+import Register from "../components/user/Register"
 
 const RLhomepage = () => {
   return (
@@ -18,7 +20,7 @@ const RLhomepage = () => {
         </div>
         <div id='third'>
             <h1>register to get your idea</h1>
-            
+            <Register/>
             </div>
     </div>
   )
