@@ -10,7 +10,7 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitLogin = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault()
             console.log("At handleSubmit login the email, password, username are:", email, password)
@@ -30,7 +30,7 @@ const Login = () => {
     return (
         <>
             <div className='login-container'>
-                <form className="login-form" onSubmit={handleSubmit}>
+                <form className="login-form" onSubmit={handleSubmitLogin}>
                     <label>Email</label>
                     <input type='email' name='email' autoComplete='given-name' placeholder='Email' value={email} onInput={(ev) => setEmail((ev.target as HTMLInputElement).value)}></input>
                     <label>Password</label>

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const register = async (email: string, password: string, firstName:string, lastName: string, about: string, pronouns: string, website: string, username: string) => {
+export const register = async (email: string, password: string, username: string, first_name:string, last_name: string, about: string, pronouns: string, website: string) => {
     try {
-        if (!email || !password || !firstName || !lastName || !username) throw new Error("Necessary information is missing at register");
+        if (!email || !password || !first_name || !last_name || !username) throw new Error("Necessary information is missing at register.ts");
 
-        return await axios.post("/api/users/register", {email, password, firstName, lastName, about, pronouns, website, username})
+        return await axios.post("/api/users/register", {email, password, username, first_name, last_name, about, pronouns, website})
         
     } catch (error) {
         console.error(error)

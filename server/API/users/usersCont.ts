@@ -7,16 +7,22 @@ import { Request, Response } from 'express';
 const saltRounds = 10;
 
 export async function register(req: Request, res: Response) {
+    console.log("10")
     try {
-        const { email, password, firstName, lastName, about, pronouns, website, username } = req.body;
-        if (!email || !password || !firstName || !lastName || !username) throw new Error("Necessary information is missing at register user server");
+    console.log("12")
+
+        const { email, password, username, first_name, last_name, about, pronouns, website } = req.body;
+        if (!email || !password || !first_name || !last_name || !username) throw new Error("Necessary information is missing at register user server");
+            console.log("16")
 
         const secret = process.env.SECRET
         if (!secret) throw new Error("no secret")
+            console.log("20")
 
         const hash = await bcrypt.hash(password, saltRounds)
+            console.log("23")
 
-        const query = `INSERT INTO users ( email, password, first_name, last_name, about, pronouns, website, username) VALUES ('${email}', '${hash}','${firstName}','${lastName}','${about}','${pronouns}','${website}','${username}');`;
+        const query = `INSERT INTO users ( email, password, username, first_name, last_name, about, pronouns, website) VALUES ('${email}', '${hash}','${username}','${first_name}','${last_name}','${about}','${pronouns}','${website}');`;
 
         connection.query(query, (err, resultsAdd: Results) => {
             try {

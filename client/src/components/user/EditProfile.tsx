@@ -18,16 +18,16 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
 
   console.log("At EditProfile the email&password are:", email, password)
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitEditProfile = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
         ev.preventDefault()
-        console.log("At handleSubmit login the data to send DB:", email, password, firstName, lastName, about, pronouns, website, username)
+        console.log("At handleSubmitEditProfile the data to send DB:", email, password, firstName, lastName, about, pronouns, website, username)
         if(!email || !password || !firstName || !lastName || !username) throw new Error("At EditProfile Necessary information is missing");
         
-        const data = await register(email, password, firstName, lastName, about, pronouns, website, username)
-        console.log("At login.tsd data is:" , data)
+        const data = await register(email, password, username, firstName, lastName, about, pronouns, website)
+        console.log("At handleSubmitEditProfile data is:" , data)
 
-        if (!data) throw new Error("login failed, please register first");
+        if (!data) throw new Error("register failed, please register first");
         navigate("/login")
 
     } catch (error) {
@@ -45,7 +45,7 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
         <button>Change</button>
       </div>
 
-      <form className='editProfileForm' onSubmit={handleSubmit}>
+      <form className='editProfileForm' onSubmit={handleSubmitEditProfile}>
 
         <div className='fullName'>
           <label>First name</label>

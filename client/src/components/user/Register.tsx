@@ -9,7 +9,7 @@ const Register = () => {
     const [password, setPassword] = useState<string>("")
     const [show, setShow] = useState(false)
 
-    const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitRegister = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault()
             const data = { email, password }
@@ -23,7 +23,7 @@ const Register = () => {
 
     return (
         <>
-            <form className="register-form" onSubmit={handleSubmit}>
+            <form className="register-form" onSubmit={handleSubmitRegister}>
                 <input type='email' name='email' autoComplete='given-name' placeholder='Email' value={email} onInput={(ev) => setEmail((ev.target as HTMLInputElement).value)}></input>
                 <input type='password' name='password' autoComplete='off' placeholder='Password' value={password} onInput={(ev) => setPassword((ev.target as HTMLInputElement).value)}></input>
                 <button type='submit'>Register</button>
