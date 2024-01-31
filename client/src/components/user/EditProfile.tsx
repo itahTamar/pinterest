@@ -16,7 +16,7 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
   const [username, setUsername] = useState("")
   const navigate = useNavigate()
 
-  console.log("At EditProfile the email&password are:", email, password)
+  console.log("At EditProfile the email & password are:", email, password)
 
   const handleSubmitEditProfile = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -25,9 +25,9 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
         if(!email || !password || !firstName || !lastName || !username) throw new Error("At EditProfile Necessary information is missing");
         
         const data = await register(email, password, username, firstName, lastName, about, pronouns, website)
-        console.log("At handleSubmitEditProfile data is:" , data)
+        console.log("At handleSubmitEditProfile data is:" , data) //undefine
 
-        if (!data) throw new Error("register failed, please register first");
+        if (!data) throw new Error("register failed");
         navigate("/login")
 
     } catch (error) {
@@ -48,10 +48,10 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
       <form className='editProfileForm' onSubmit={handleSubmitEditProfile}>
 
         <div className='fullName'>
-          <label>First name</label>
+          <label>*First name</label>
           <input type="text" name="firstName" autoComplete='given-name' value={firstName} onInput={(ev) => setFirstName((ev.target as HTMLInputElement).value)}></input>
 
-          <label>Last name</label>
+          <label>*Last name</label>
           <input type="text" name="lastName" autoComplete='given-name' value={lastName} onInput={(ev) => setLastName((ev.target as HTMLInputElement).value)}></input>
         </div>
 
@@ -64,7 +64,7 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
           <label>Website</label>
           <input type="text" name="website" autoComplete='given-name' value={website} onInput={(ev) => setWebsite((ev.target as HTMLInputElement).value)}></input>
 
-          <label>Username</label>
+          <label>*Username</label>
           <input type="text" name="username" autoComplete='given-name' value={username} onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}></input>
 
           <button type="reset">Reset</button>
