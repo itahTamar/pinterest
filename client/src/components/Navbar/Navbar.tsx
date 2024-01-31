@@ -2,24 +2,37 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
-import './Navbar.scss'
+import "./Navbar.scss";
 
 export const Navbar = () => {
   return (
-    <div>
-      <button>
-      <FontAwesomeIcon className="icon" icon={faCaretDown} />
-      </button>
-      <button>
-      <FontAwesomeIcon className="icon" icon={faUser} />
-      </button>
-      <input className="search" type="text" placeholder="search " />
-      <button className="AddButton"> Add</button>
-      <button className="HomePageButton">Home page</button>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgyyIKl5PAu0J0fSGntKciPTG6aD1Ep4s9bosLM2X-g&s"
-        alt="logo"
-      />
+    <div className="navbar">
+      <div>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgyyIKl5PAu0J0fSGntKciPTG6aD1Ep4s9bosLM2X-g&s"
+          alt="logo"
+        />
+      </div>
+      <div>
+        <button className="HomePageButton">Home</button>
+      </div>
+      <div>
+        <button className="CreateButton"> Create</button>
+      </div>
+      <div>
+        <input className="search" type="text" placeholder="Search" />
+      </div>
+
+      <div>
+        <button className="icon" id="user" >
+          <FontAwesomeIcon icon={faUser} />
+        </button>
+      </div>
+      <div>
+        <button className="icon">
+          <FontAwesomeIcon icon={faCaretDown} />
+        </button>
+      </div>
     </div>
   );
 };

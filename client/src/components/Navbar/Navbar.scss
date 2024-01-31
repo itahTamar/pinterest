@@ -1,13 +1,48 @@
-img{
-   height: 50px;
-}
-
-.HomePageButton{
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1000;
+  img {
+    height: 30px;
+  }
+  .search {
+    width: 83vw;
+    height: 2vw;
+    border-radius: 50px;
+    border-color: rgb(227, 228, 229);
+    background-color: rgb(227, 228, 229);
+    
+    &::placeholder {
+      font-size: 18px;
+    }
+  }
+  
+  .HomePageButton {
     background-color: black;
     color: white;
-    border-radius: 20px;
-}
+    border-radius: 60px;
+    height: 2.5vw;
+    font-size: 18px;
+  }
+  .CreateButton {
+    background-color: white;
+    font-size: 18px;
+  }
 
-.search{
-    width: 40vw;
+  .icon {
+    font-size: 18px;
+
+    background-color: white;
+  }
+  #user {
+    background-color: rgb(227, 228, 229);
+    padding: 10px;
+    border-radius: 60px;
+  }
 }
