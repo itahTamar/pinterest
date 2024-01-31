@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../../style/register.css'
 import EditProfile from './EditProfile'
 
-//
+//work ok
 
 const Register = () => {
     const [email, setEmail] = useState<string>("")

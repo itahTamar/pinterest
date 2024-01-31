@@ -4,6 +4,7 @@ import Login from "../components/user/Login";
 import Register from "../components/user/Register";
 import UserPage from "../view/UserPage";
 import UserBoardPage from "../view/UserBoardPage";
+import { HomePage } from "../components/HomePage/HomePage";
 
 export const router = createBrowserRouter([
     {path: "", element: <RLhomepage/>},
@@ -11,6 +12,6 @@ export const router = createBrowserRouter([
     {path: "/register", element: <Register/> },
     {path: "/userPage", element: <UserPage/> },
     {path: "/userBoardPage", element: <UserBoardPage/>},
-    // {path: "/main", element: <Main/>},
+    {path: "/homePage", element: <HomePage/>},
     // {path: "/pinPage", element: <PinPage/>}
 ])

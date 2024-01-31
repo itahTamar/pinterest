@@ -5,6 +5,7 @@ export const HomePage = () => {
   return (
     <div>
         <Navbar />
+        welcome to home page
     </div>
   )
 }

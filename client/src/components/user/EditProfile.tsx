@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import { register } from '../../api/users/userApi'
 import { useNavigate } from 'react-router-dom'
 
+//work ok
 interface userDataProp {
   email: string,
   password: string
