@@ -7,16 +7,22 @@ import { Request, Response } from 'express';
 const saltRounds = 10;
 
 export async function register(req: Request, res: Response) {
+    console.log("10")
     try {
-        const { username, email, password } = req.body;
-        if (!username || !email || !password) throw new Error("no data at register user");
+    console.log("12")
+
+        const { email, password, username, first_name, last_name, about, pronouns, website } = req.body;
+        if (!email || !password || !first_name || !last_name || !username) throw new Error("Necessary information is missing at register user server");
+            console.log("16")
 
         const secret = process.env.SECRET
         if (!secret) throw new Error("no secret")
+            console.log("20")
 
         const hash = await bcrypt.hash(password, saltRounds)
+            console.log("23")
 
-        const query = `INSERT INTO users ( email, password, username) VALUES ('${email}', '${hash}', '${username}');`;
+        const query = `INSERT INTO users ( email, password, username, first_name, last_name, about, pronouns, website) VALUES ('${email}', '${hash}','${username}','${first_name}','${last_name}','${about}','${pronouns}','${website}');`;
 
         connection.query(query, (err, resultsAdd: Results) => {
             try {
@@ -41,9 +47,9 @@ export async function register(req: Request, res: Response) {
 export async function login(req: Request, res: Response) {
     try {
         console.log("hallow from server-login")
-        const { username, email, password } = req.body;
+        const {email, password } = req.body;
         console.log("email & password:", email, password)
-        if (!username || !email || !password) throw new Error("no data at login user");
+        if (!email || !password) throw new Error("no data at login user");
 
         const query = `SELECT * FROM users WHERE email = "${email}"`;
         if (!query) throw new Error("at login, No query provided for user login");
@@ -62,6 +68,9 @@ export async function login(req: Request, res: Response) {
 
                     const resultUserId = results[0].user_id
                     const resultUserName = results[0].user_name
+                    const resultUserFirstName = results[0].first_name
+                    const resultUserLastName = results[0].last_name
+
 
                     const cookie = {
                         uid: resultUserId,
@@ -70,7 +79,7 @@ export async function login(req: Request, res: Response) {
                     const token = jwt.encode(cookie, secret)
 
                     res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-                    res.send({ ok: true, message: "user login!", resultUserName })
+                    res.send({ ok: true, message: "user login!", resultUserName, resultUserFirstName, resultUserLastName})
                 } else {
                     throw new Error("user not found");
                 }

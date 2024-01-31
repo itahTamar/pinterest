@@ -1,16 +1,17 @@
-import BooksPage from "";
-import SpecificBookPage from "";
 import { createBrowserRouter } from "react-router-dom";
-import Register from "";
-import Login from "";
-import AddBook from "";
+import RLhomepage from "../view/RLhomepage";
+import Login from "../components/user/Login";
+import Register from "../components/user/Register";
+import UserPage from "../view/UserPage";
+import UserBoardPage from "../view/UserBoardPage";
+import { HomePage } from "../components/HomePage/HomePage";
 
 export const router = createBrowserRouter([
-    {path: "", element: <Login/>},
+    {path: "", element: <RLhomepage/>},
     {path: "/login", element: <Login/>},
     {path: "/register", element: <Register/> },
-    {path: "/booksPage", element: <BooksPage/> },
-    {path: "/book/:title/:book_id", element: <SpecificBookPage/>},
-    {path: "/add-book", element: <AddBook/>}
-    
+    {path: "/userPage", element: <UserPage/> },
+    {path: "/userBoardPage", element: <UserBoardPage/>},
+    {path: "/homePage", element: <HomePage/>},
+    // {path: "/pinPage", element: <PinPage/>}
 ])
