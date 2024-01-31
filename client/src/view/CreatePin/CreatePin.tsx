@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { AddPin } from "../../components/AddPin/AddPin";
 import { Navbar } from "../../components/Navbar/Navbar";
 import "./CreatePin.scss";
