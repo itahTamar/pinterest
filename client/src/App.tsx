@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { Navbar } from './components/Navbar/Navbar'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import { CreatePin } from "./view/CreatePin/CreatePin";
 // import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-    <Navbar />
+      <CreatePin />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
