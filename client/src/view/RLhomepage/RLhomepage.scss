@@ -1,6 +1,88 @@
-.bigdiv {
+.div1 {
   height: 20vw;
+
+}
+
+.div2 {
+  height: 43vw;
   border: black solid 2px;
+  background-color: rgb(253, 253, 136);
+  color: rgb(199, 76, 76);
+  display: flex;
+  .divText{
+    width: 50%;
+  h2{
+    font-size: 5vw;
+  }
+  p{
+    font-size: 2.5vw;
+  }
+  button{
+    background-color: red;
+    color: white;
+    border-radius: 5vw;
+  }
+}
+.divImg{
+width: 50%;
+
+  img{
+    border-radius: 2vw;
+  }
+  button{
+    position: absolute;
+    right: 70%;
+    top: 40vw;
+    z-index: 2000;
+    width: 20vw;
+    height: 5vw;
+    border-radius: 2vw;
+
+  }
+
+  .img1{
+    position: absolute;
+    width: 20vw;
+    right: 65%;
+    top: 28vw;
+    z-index: 1000;
+  
+  }
+  .img2{
+    width: 12vw;
+    position: absolute;
+    right: 58vw;
+    top: 26vw;
+  
+  }
+  .img3{
+    width: 10vw;
+    position: absolute;
+    right: 58vw;
+    top: 48vw;
+  
+  }
+  .img4{
+    width: 15vw;
+    position: absolute;
+    top: 50vw;
+    right: 78vw;
+  
+  }
+
+}
+}
+
+.div3 {
+  height: 20vw;
+}
+
+.div4 {
+  height: 20vw;
+}
+
+.div5 {
+  height: 20vw;
 }
 
 .main {
