@@ -7,7 +7,6 @@ export const CreatePin = () => {
   return (
     <div>
       <Navbar />
-      <hr />
       <h1>Create Pin</h1>
       <div>
         <AddPin />
