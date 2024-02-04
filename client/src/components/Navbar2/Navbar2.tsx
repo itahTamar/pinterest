@@ -24,8 +24,8 @@ export const Navbar2 = () => {
         <span>About</span>
         <span>Business</span>
         <span>Blog</span>
-        <button className="register">Log in</button>
-        <button className="login">Sigh up</button>
+        <button className="login" onClick={() => { navigate("/login") }}>Log in</button>
+        <button className="register" onClick={() => { navigate("/register") }}>Sigh up</button>
       </div>
     </div>
   );

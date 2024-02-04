@@ -42,7 +42,7 @@ const RLhomepage = () => {
           <div className="divText1">
             <h2>Search for an idea</h2>
             <p>
-              What do you want to try next? Think of something youwre into like
+              What do you want to try next? Think of something like
               "easy chicken dinner" and see what you find.
             </p>
             <button>Explore</button>

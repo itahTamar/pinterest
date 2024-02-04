@@ -1,15 +1,17 @@
 import express from 'express';
 import connection from '../../DB/database';
 
-
-
 export async function addPin(req: express.Request, res: express.Response) {
     try {
 
-        const { title, image, discription, link } = req.body
-        if (!title || !image || !discription || !link) throw new Error("no data in FUNCTION addPin in FILE pinCtrl.ts")
+        const { title, image, description, link } = req.body
+        if (!title || !image || !description || !link) throw new Error("no data in FUNCTION addPin in FILE pinCtrl.ts")
 
-        const query = `INSERT INTO pins (image, title, discription, link) VALUES ("${title}", "${image}", "${discription}", "${link}");`;
+        const {user_id} = req.params
+        if (!user_id) throw new Error("at addPin no user_id in params");
+        
+
+        const query = `INSERT INTO pins (image, title, description, link, user_id) VALUES ("${title}", "${image}", "${description}", "${link}", ${user_id});`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -22,7 +24,6 @@ export async function addPin(req: express.Request, res: express.Response) {
         res.status(500).send({ ok: false, error })
     }
 }
-
 
 export async function deletePin(req, res) {
     try {
@@ -50,8 +51,6 @@ export async function deletePin(req, res) {
         res.status(500).send({ ok: false, error }) 
     }
 }
-
-
 
 export async function updatePin(req, res) {
     try {
@@ -90,8 +89,6 @@ export async function updatePin(req, res) {
     }
 }
 
-
-
 export async function getAllPins(req: express.Request, res: express.Response) {
     try {
         const query = "SELECT * FROM pins"
@@ -110,12 +107,33 @@ export async function getAllPins(req: express.Request, res: express.Response) {
     }
 }
 
-export async function findPinByName(req, res) {
+export async function getAllOtherUsersPins(req: express.Request, res: express.Response) {
     try {
-        const {title} = req.query;
-        if (!title) throw new Error("no title");
+        const userId = req.params
+        if (!userId) throw new Error("at getAllOtherUsersPins no user id in params");
+        
+        const query = `SELECT * FROM pins WHERE user_id != ${userId}`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+}
 
-        const query = `SELECT * FROM pins WHERE title LIKE "${title}%"`
+export async function getPinById(req, res) {
+    try {
+        const {pinId} = req.params;
+        if (!pinId) throw new Error("no title");
+
+        const query = `SELECT * FROM pins WHERE pin_id=${pinId}`
 
         connection.query(query, (err, results) => {
             try {

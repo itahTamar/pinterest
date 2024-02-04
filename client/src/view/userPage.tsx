@@ -33,7 +33,7 @@ const UserPage = () => {
             </div>
 
             <div className=''>
-                {show ? <SavedPins /> : <CreatedPins />}
+                {show ? <CreatedPins /> : <SavedPins />}
             </div>
 
 

@@ -1,15 +1,16 @@
 import express from "express"
-import { addPin, deletePin,updatePin,getAllPins,findPinByName } from "./pinCtrl"
+import { addPin, deletePin,updatePin,getAllPins,getPinById, getAllOtherUsersPins } from "./pinCtrl"
 
 const router = express.Router()
 
 
 router
-    .post("", addPin)
-    .delete("/:pin_id",deletePin)
-    .put("/:pin_id", updatePin) 
+    .post("/:user_id", addPin)   
     .get("", getAllPins) //ALL
-    .get("/filter", findPinByName) 
+    .get("/:user_id", getAllOtherUsersPins)
+    .get("/:pin_id", getPinById)
+    .put("/:pin_id", updatePin)  
+    .delete("/:pin_id",deletePin)
 
 
 export default router
