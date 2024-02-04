@@ -15,7 +15,7 @@ const Login = () => {
             ev.preventDefault()
             console.log("At handleSubmit login the email, password, username are:", email, password)
             const data = await login(email, password)
-            console.log(data)
+            console.log("at handleSubmitLogin the data:", data)
             if(!data) throw new Error("login failed, please register first");
             
             // const username = 

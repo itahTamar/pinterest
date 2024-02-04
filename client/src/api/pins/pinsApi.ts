@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getAllUserSavedPins = async () => {
+export const getAllUserSavedPins = async (username: string) => {
     try {
-        const response = await axios.get("/api/v1/pin");
+        const response = await axios.get(`/api/v1/pin/${username}`);
         const { ok, results } = response.data;
 
         if (ok) {

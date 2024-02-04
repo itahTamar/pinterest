@@ -4,14 +4,15 @@ import connection from '../../DB/database';
 export async function addPin(req: express.Request, res: express.Response) {
     try {
 
-        const { title, image, description, link } = req.body
-        if (!title || !image || !description || !link) throw new Error("no data in FUNCTION addPin in FILE pinCtrl.ts")
+        const { title, image, description, link} = req.body
+        if (!title || !image) throw new Error("no data in FUNCTION addPin in FILE pinCtrl.ts")
 
         const {user_id} = req.params
         if (!user_id) throw new Error("at addPin no user_id in params");
         
+        const username  = `SELECT username FROM users WHERE user_id=${user_id};`
 
-        const query = `INSERT INTO pins (image, title, description, link, user_id) VALUES ("${title}", "${image}", "${description}", "${link}", ${user_id});`;
+        const query = `INSERT INTO pins (image, title, description, link, user_id) VALUES ("${title}", "${image}", "${description}", "${link}", ${username});`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -89,9 +90,10 @@ export async function updatePin(req, res) {
     }
 }
 
-export async function getAllPins(req: express.Request, res: express.Response) {
+export async function getAllUserSavedPins(req: express.Request, res: express.Response) {
     try {
-        const query = "SELECT * FROM pins"
+        const {username} = req.params
+        const query = `SELECT * FROM pinterest.pins WHERE username = "${username}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;

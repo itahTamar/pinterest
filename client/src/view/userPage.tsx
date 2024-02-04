@@ -7,7 +7,7 @@ import CreatedPins from '../components/Pins/CreatedPins'
 
 const UserPage = () => {
     const [show, setShow] = useState(false)
-    let { username } = useParams()
+    const { username } = useParams()
 
     function toggleShow() {
         setShow(!show)
@@ -21,7 +21,7 @@ const UserPage = () => {
                 <img className='userImg' src='https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg' alt='jungle' />
                 <h1>{username}</h1>
                 <h4><img src='' />{username}</h4>
-                <h3>number of following</h3>
+                <h3>0 following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
                     <button>Edit profile</button>

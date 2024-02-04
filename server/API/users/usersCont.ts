@@ -67,10 +67,11 @@ export async function login(req: Request, res: Response) {
                     if (!match) throw new Error("at login password incorrect!");
 
                     const resultUserId = results[0].user_id
-                    const resultUserName = results[0].user_name
+                    const resultUserName = results[0].username
                     const resultUserFirstName = results[0].first_name
                     const resultUserLastName = results[0].last_name
 
+                    console.log("resultUserName:", resultUserName)
 
                     const cookie = {
                         uid: resultUserId,
