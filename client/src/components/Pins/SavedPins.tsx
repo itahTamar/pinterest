@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAllUserSavedPins } from '../../api/pins/pinsApi'
+import { getAllUserSavedPinsByUserId } from '../../api/pins/pinsApi'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Pin } from '../../types/pin'
 import PinCard from './PinCard'
@@ -8,15 +8,14 @@ const SavedPins = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
   const navigate = useNavigate()
-  const { username } = useParams()
-
+  const { user_id } = useParams()
 
   const handleGetAllUserSavedPins = async () => {
     try {
-      if (!username) throw new Error("at handleGetAllUserSavedPins there is no username in params");
+      if (!user_id) throw new Error("at handleGetAllUserSavedPins there is no username in params");
       
       //use axios to get the Pin list from DB
-      const response = await getAllUserSavedPins(username)
+      const response = await getAllUserSavedPinsByUserId(user_id)
       if(!response) throw new Error("No response from axios getAllPins at PinsPage");
               console.log("At PinsPage/handelGetAllPins the response is:", response) //got it
   

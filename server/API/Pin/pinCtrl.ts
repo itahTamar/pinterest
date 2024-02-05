@@ -90,10 +90,29 @@ export async function updatePin(req, res) {
     }
 }
 
-export async function getAllUserSavedPins(req: express.Request, res: express.Response) {
+export async function getAllUserSavedPinsByUserId(req: express.Request, res: express.Response) {
+    try {
+        const {user_id} = req.params
+        const query = `SELECT * FROM pins WHERE user_id = "${user_id}";`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+}
+
+export async function getAllUserCreatedPinsByUsername(req: express.Request, res: express.Response) {
     try {
         const {username} = req.params
-        const query = `SELECT * FROM pinterest.pins WHERE username = "${username}";`
+        const query = `SELECT * FROM pins WHERE username = "${username}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -133,7 +152,7 @@ export async function getAllOtherUsersPins(req: express.Request, res: express.Re
 export async function getPinById(req, res) {
     try {
         const {pinId} = req.params;
-        if (!pinId) throw new Error("no title");
+        if (!pinId) throw new Error("no pinId");
 
         const query = `SELECT * FROM pins WHERE pin_id=${pinId}`
 
