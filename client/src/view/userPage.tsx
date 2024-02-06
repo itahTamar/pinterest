@@ -1,14 +1,18 @@
 // import React from 'react'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import { Navbar } from '../components/Navbar/Navbar'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
+import { UserContext } from '../contexts/userContext'
 
 const UserPage = () => {
     const [show, setShow] = useState(false)
-    const { username } = useParams()
+    const { userData } = useContext(UserContext)
 
+
+    console.log("at userPage username:", userData)
+    
     function toggleShow() {
         setShow(!show)
     }

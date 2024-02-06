@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
   { path: "", element: <RLhomepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/userPage/:username", element: <UserPage /> },
+  { path: "/userPage", element: <UserPage /> },
   { path: "/userBoardPage", element: <UserBoardPage /> },
   { path: "/homePage", element: <HomePage /> },
   { path: "/createPin", element: <CreatePin /> },
