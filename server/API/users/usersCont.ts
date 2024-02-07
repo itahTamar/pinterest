@@ -66,20 +66,28 @@ export async function login(req: Request, res: Response) {
                     const match: boolean = await bcrypt.compare(password, hash);
                     if (!match) throw new Error("at login password incorrect!");
 
-                    const resultUserId = results[0].user_id
-                    const resultUserName = results[0].user_name
-                    const resultUserFirstName = results[0].first_name
-                    const resultUserLastName = results[0].last_name
+                    // const resultUserId = results[0].user_id
+                    // const resultUserName = results[0].username
+                    // const resultUserFirstName = results[0].first_name
+                    // const resultUserLastName = results[0].last_name
 
+                    const userData = {
+                        userId: results[0].user_id,
+                        username: results[0].username,
+                        userFirstName: results[0].first_name,
+                        userLastName: results[0].last_name
+                    }
+
+                    console.log("resultUserName:", userData)
 
                     const cookie = {
-                        uid: resultUserId,
+                        uid: results[0].user_id,
                         role: results[0].role,
                     }
                     const token = jwt.encode(cookie, secret)
 
                     res.cookie("user", token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-                    res.send({ ok: true, message: "user login!", resultUserName, resultUserFirstName, resultUserLastName})
+                    res.send({ ok: true, message: "user login!", userData})
                 } else {
                     throw new Error("user not found");
                 }
