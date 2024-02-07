@@ -9,13 +9,13 @@ import { useParams } from 'react-router-dom'
 
 const UserPage = () => {
     const [show, setShow] = useState(false)
-    const { userData } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     const {username} = useParams()
     if (!username) throw new Error("At UserPage no username in params");
     
 
-    console.log("at userPage userData:", userData)
+    console.log("at userPage userData:", user)
     
     function toggleShow() {
         setShow(!show)

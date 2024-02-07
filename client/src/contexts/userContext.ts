@@ -4,14 +4,11 @@
 // export const UserContext = createContext<User | undefined>(undefined)
 
 import { createContext, Dispatch, SetStateAction } from "react";
-import { User } from "../types/user";
+// import { User } from "../types/user";
 
-interface UserContextProps {
-  userData: User | undefined;
-  setUserData: Dispatch<SetStateAction<User | undefined>>;
-}
+// interface UserContextProps {
+//   userData: User | undefined;
+//   setUserData: Dispatch<SetStateAction<User | undefined>>;
+// }
 
-export const UserContext = createContext<UserContextProps>({
-  userData: undefined,
-  setUserData: () => {},
-});
+export const UserContext = createContext<any>(null);
