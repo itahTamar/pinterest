@@ -13,7 +13,7 @@ const Login = () => {
 
     useEffect(() => {
         console.log("at Login.tsx the userData:", user)
-    }, [user]); //! This useEffect runs whenever userData changes - for check only --> userData = undefined
+    }, [user]); 
 
     const handleSubmitLogin = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -21,15 +21,15 @@ const Login = () => {
             console.log("At handleSubmit login the email, password, username are:", email, password)
             const data = await login(email, password)
             console.log("at handleSubmitLogin the data:", data)
-            console.log("at handleSubmitLogin the data:", data?.data.resultUserName)
             if (!data) throw new Error("login failed, please register first");
-            const username = data.data.resultUserName
-            console.log("at handleSubmitLogin the username:", username)//got it!
-            if (!username) throw new Error("at handleSubmitLogin username data failed to come");
 
-            setUser({username: data.data.resultUserName })  
+            const userData = data.data.userData
+            console.log("at handleSubmitLogin the userData:", userData) 
+            if (!userData) throw new Error("at handleSubmitLogin userData failed");
 
-            navigate(`/homePage/${username}`)
+            setUser(userData)  
+
+            navigate(`/homePage`)
 
         } catch (error) {
             console.error(error)

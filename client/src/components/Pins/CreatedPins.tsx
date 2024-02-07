@@ -1,12 +1,11 @@
-import {FC}  from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../contexts/userContext'
+import { useContext } from 'react'
 
-interface UsernameProps {
-    username: string
-}
-
-const CreatedPins:FC<UsernameProps> = (username) => {
+const CreatedPins= () => {
   const navigate = useNavigate()
+  const { user } = useContext(UserContext)
+  const {username} = user
 
     return (
         <div id="renderCreated" className='renderCreated'>
@@ -16,7 +15,7 @@ const CreatedPins:FC<UsernameProps> = (username) => {
             <div className='user-created-pins'>
                 render all user created pins
             </div>
-            <button onClick={()=>{navigate(`/createPin/:${username}`)}}>Create Pin</button>
+            <button onClick={()=>{navigate(`/createPin`)}}>Create Pin</button>
         </div>
     )
 }

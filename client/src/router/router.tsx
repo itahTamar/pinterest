@@ -7,14 +7,16 @@ import { CreatePin } from "../view/CreatePin/CreatePin";
 import UserBoardPage from "../view/userBoardPage";
 import UserPage from "../view/userPage";
 import PinPage from "../view/PinPage";
+import SavedPins from "../components/Pins/SavedPins";
 
 export const router = createBrowserRouter([
   { path: "", element: <RLhomepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/userPage/:username", element: <UserPage /> },
+  { path: "/homePage", element: <HomePage /> }, 
+  { path: "/userPage", element: <UserPage /> },
   { path: "/userBoardPage", element: <UserBoardPage /> },
-  { path: "/homePage/:username", element: <HomePage /> },
+  {path: "/savedPin", element: <SavedPins/>},
   { path: "/createPin", element: <CreatePin /> },
   {path: "/pinPage/:pin_id", element: <PinPage/>}
 ]);

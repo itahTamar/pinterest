@@ -1,20 +1,15 @@
-// import React from 'react'
-// import { useParams } from 'react-router-dom'
 import { Navbar } from '../components/Navbar/Navbar'
 import { useContext, useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
 import { UserContext } from '../contexts/userContext'
-import { useParams } from 'react-router-dom'
 
 const UserPage = () => {
     const [show, setShow] = useState(false)
     const { user } = useContext(UserContext)
 
-    const {username} = useParams()
-    if (!username) throw new Error("At UserPage no username in params");
+    if (!user) throw new Error("At UserPage no user in context");
     
-
     console.log("at userPage userData:", user)
     
     function toggleShow() {
@@ -27,8 +22,8 @@ const UserPage = () => {
             <Navbar />
             <div className='profile-wrapper'>
                 <img className='userImg' src='https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg' alt='jungle' />
-                <h1>{username}</h1>
-                <h4><img src='' />{username}</h4>
+                <h1>{user.userFirstName} {user.userLastName}</h1>
+                <h4><img src='' />{user.username}</h4>
                 <h3>0 following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
@@ -41,7 +36,7 @@ const UserPage = () => {
             </div>
 
             <div className=''>
-                {show ? <CreatedPins username ={username} /> : <SavedPins />}
+                {show ? <CreatedPins /> : <SavedPins />}
             </div>
 
 
