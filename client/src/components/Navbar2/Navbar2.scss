@@ -5,7 +5,6 @@
   position: fixed;
   top:0;
   left: 0;
-  display: flex;
   width: 100%;
   z-index: 1000;
   .divImg{
@@ -27,18 +26,18 @@ span {
 .login{
     color: white;
     background-color:#E60023;
-    border-radius: 60px;
+    border-radius: 2vw;
     height: 2.8vw;
-    font-size: 22px;
+    font-size: 1.2vw;
     margin-right: 1.5vw;
 
 }
 
 .register{
     background-color: rgb(227, 228, 229);
-    border-radius: 60px;
+    border-radius: 2vw;
     height: 2.8vw;
-    font-size: 22px;
+    font-size: 1.2vw;
     margin: 1.5vw 0.5vw;
 
 }

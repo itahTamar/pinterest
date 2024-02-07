@@ -5,16 +5,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding: 1.5vw 0px;
+  // padding: 1.5vw 0px;
   z-index: 1000;
+  width: 100%;
   img {
     width: 2vw;
     margin-right: 1vw;
   }
   .search {
-    width: 83vw;
-    height: 2vw;
-    border-radius: 50px;
+    width: 77vw;
+    height: 2.5vw;
+    border-radius: 2vw;
     border-color: rgb(227, 228, 229);
     background-color: rgb(227, 228, 229);
     
@@ -26,24 +27,26 @@
   .HomePageButton {
     background-color: white;
     color: black;
-    border-radius: 60px;
+    border-radius: 2vw;
     height: 2.5vw;
-    font-size: 18px;
+    font-size: 1.1vw;
   }
   .CreateButton {
     background-color: black;
     color: white;
-    border-radius: 60px;
-    font-size: 18px;
+    border-radius: 2vw;
+    font-size: 1.1vw;
+    height: 2.5vw;
+    margin-right: 0.5vw;
   }
 
   .icon {
-    font-size: 18px;
+    font-size: 1.1vw;
     background-color: white;
   }
   #user {
     background-color: rgb(227, 228, 229);
-    padding: 10px;
-    border-radius: 60px;
+    padding: 0.5vw;
+    border-radius: 2vw;
   }
 }
