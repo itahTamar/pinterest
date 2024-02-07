@@ -12,14 +12,13 @@ export const HomePage = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
-  const { userId } = user
-
+ 
   const handleGetAllOtherUsersPins = async () => {
     try {
-      if (!userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
+      if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
 
       //use axios to get the Pin list by userId from DB
-      const response = await getAllOtherUsersPins(userId)
+      const response = await getAllOtherUsersPins(user.userId)
       if (!response) throw new Error("No response from axios getAllOtherUsersPins at PinsPage");
       console.log("At getAllOtherUsersPins the response is:", response) 
 
@@ -43,7 +42,6 @@ export const HomePage = () => {
 
   return (
     <div>
-      <Navbar />
       welcome to home page
 
       <div>all the user boards</div>
