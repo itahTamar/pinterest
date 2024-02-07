@@ -5,21 +5,21 @@ import { Pin } from '../../types/pin'
 import PinCard from './PinCard'
 import { UserContext } from '../../contexts/userContext'
 
+//work ok
 const SavedPins = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
-  const { userId } = user
 
   const handleGetAllUserSavedPins = async () => {
     try {
-      if (!userId) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
+      if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
       
       //use axios to get the Pin list by userId from DB
-      const response = await getAllUserSavedPinsByUserId(userId)
-      if(!response) throw new Error("No response from axios getAllPins at PinsPage");
-              console.log("At PinsPage/handelGetAllPins the response is:", response) //got it
+      const response = await getAllUserSavedPinsByUserId(user.userId)
+      if(!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
+              console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
   
       //put the list in PinsState and filterPinsState
       const PinList = response;

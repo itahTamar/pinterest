@@ -90,4 +90,19 @@ export const getAllOtherUsersPins = async (user_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
+
+export const getAllUserCreatedPinsByUsername = async (username: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/${username}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+}; //work ok

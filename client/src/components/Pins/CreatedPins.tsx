@@ -1,15 +1,43 @@
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/userContext'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Pin } from '../../types/pin'
 import PinCard from './PinCard'
+import { getAllUserCreatedPinsByUsername } from '../../api/pins/pinsApi'
 
+//work ok
 const CreatedPins = () => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
-    const { username } = user
+
+    const handleGetAllUserCreatedPinsByUsername = async () => {
+        try {
+          if (!user.username) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
+          
+          //use axios to get the Pin list by userId from DB
+          const response = await getAllUserCreatedPinsByUsername(user.username)
+          if(!response) throw new Error("No response from axios getAllUserCreatedPinsByUsername at CreatedPins");
+                  console.log("At CreatedPins/getAllUserCreatedPinsByUsername the response is:", response) //got it
+      
+          //put the list in PinsState and filterPinsState
+          const PinList = response;
+          console.log("PinList:", PinList)
+          setPins(PinList)
+          setFilterPins(PinList)
+    
+          console.log("PinsState:", pinsState)
+          console.log("filterPinsState:", filterPinsState)
+         } catch (error) {
+          console.error(error)
+        }
+      }
+    
+      useEffect(() => { 
+        handleGetAllUserCreatedPinsByUsername() 
+      }, []) //only run this effect on the initial render
+    
 
     return (
         <div id="renderCreated" className='renderCreated'>
