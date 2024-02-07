@@ -21,14 +21,14 @@ export const Navbar = () => {
         <button className="HomePageButton" onClick={()=>{navigate(`/homePage/${username}`)}}>Home</button>
       </div>
       <div>
-        <button className="CreateButton" onClick={()=>{navigate(`/createPin/:${username}`)}}> Create</button>
+        <button className="CreateButton" onClick={()=>{navigate(`/createPin/${username}`)}}> Create</button>
       </div>
       <div>
         <input className="search" type="text" placeholder="Search" />
       </div>
 
       <div>
-        <button className="icon" id="user" onClick={()=>{navigate(`/userPage/:${username}`)}} >
+        <button className="icon" id="user" onClick={()=>{navigate(`/userPage/${username}`)}} >
           <FontAwesomeIcon icon={faUser} />
         </button>
       </div>

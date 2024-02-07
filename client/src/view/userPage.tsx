@@ -15,7 +15,7 @@ const UserPage = () => {
     if (!username) throw new Error("At UserPage no username in params");
     
 
-    console.log("at userPage username:", userData)
+    console.log("at userPage userData:", userData)
     
     function toggleShow() {
         setShow(!show)
