@@ -6,10 +6,9 @@ import { HomePage } from "../components/HomePage/HomePage";
 import { CreatePin } from "../view/CreatePin/CreatePin";
 import UserBoardPage from "../view/userBoardPage";
 import UserPage from "../view/userPage";
-import PinPage from "../view/PinPage";
 import SavedPins from "../components/Pins/SavedPins";
-
 import { EditProfile } from "../components/EditProfile/EditProfile";
+import PinPage from "../view/pinPage";
 
 
 export const router = createBrowserRouter([
