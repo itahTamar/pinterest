@@ -1,8 +1,10 @@
 import React from "react";
+import { Navbar } from "../Navbar/Navbar";
 
 export const EditProfile = () => {
   return (
     <div>
+      <Navbar />
       <h1>Edit Profile</h1>
       <h3>
         Keep your personal details private. Information you add here is visible
@@ -27,6 +29,10 @@ export const EditProfile = () => {
       <input type="text" placeholder="Tell your story" />
       <p>Pronouns</p>
       <input type="text" placeholder="Add your pronouns" />
+      <div>
+        <button>Save</button>
+        <button>Delete</button>
+      </div>
     </div>
   );
 };

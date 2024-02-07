@@ -6,6 +6,7 @@ import { HomePage } from "../components/HomePage/HomePage";
 import { CreatePin } from "../view/CreatePin/CreatePin";
 import UserBoardPage from "../view/userBoardPage";
 import UserPage from "../view/userPage";
+import { EditProfile } from "../components/EditProfile/EditProfile";
 
 export const router = createBrowserRouter([
   { path: "", element: <RLhomepage /> },
@@ -15,5 +16,6 @@ export const router = createBrowserRouter([
   { path: "/userBoardPage", element: <UserBoardPage /> },
   { path: "/homePage", element: <HomePage /> },
   { path: "/createPin", element: <CreatePin /> },
+  { path: "/editProfile", element: <EditProfile /> },
   // {path: "/pinPage", element: <PinPage/>}
 ]);

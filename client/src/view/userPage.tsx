@@ -4,8 +4,10 @@ import { Navbar } from '../components/Navbar/Navbar'
 import { useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
+    const navigate = useNavigate()
     const [show, setShow] = useState(false)
     let { username } = useParams()
 
@@ -24,7 +26,7 @@ const UserPage = () => {
                 <h3>number of following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
-                    <button>Edit profile</button>
+                    <button onClick={()=>{navigate("/editProfile")}}>Edit profile</button>
                 </div>
                 <div className='rendering-btn'>
                     <button onClick={toggleShow}>Created</button>
