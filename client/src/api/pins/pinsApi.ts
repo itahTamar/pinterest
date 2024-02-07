@@ -13,7 +13,7 @@ export const getAllUserSavedPinsByUserId = async (user_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
 
 export const getPinById = async (pinId: string) => {
     try {

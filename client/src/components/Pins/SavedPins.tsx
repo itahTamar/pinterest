@@ -65,7 +65,7 @@ const SavedPins = () => {
           })) : (
             <p>no pin found</p>
           )}
-      </div>
+        </div>
       </div>
     </div>
   )
