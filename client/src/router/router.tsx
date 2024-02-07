@@ -18,10 +18,8 @@ export const router = createBrowserRouter([
   { path: "/homePage", element: <HomePage /> }, 
   { path: "/userPage", element: <UserPage /> },
   { path: "/userBoardPage", element: <UserBoardPage /> },
-  {path: "/savedPin", element: <SavedPins/>},
+  { path: "/savedPin", element: <SavedPins/>},
   { path: "/createPin", element: <CreatePin /> },
-  {path: "/pinPage/:pin_id", element: <PinPage/>},
-  { path: "/editProfile", element: <EditProfile /> },
-  // {path: "/pinPage", element: <PinPage/>}
-
+  { path: "/pinPage/:pin_id", element: <PinPage/>},
+  { path: "/editProfile", element: <EditProfile />}
 ]);
