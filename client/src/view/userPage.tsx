@@ -5,11 +5,15 @@ import { useContext, useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
 import { UserContext } from '../contexts/userContext'
+import { useParams } from 'react-router-dom'
 
 const UserPage = () => {
     const [show, setShow] = useState(false)
     const { userData } = useContext(UserContext)
 
+    const {username} = useParams()
+    if (!username) throw new Error("At UserPage no username in params");
+    
 
     console.log("at userPage username:", userData)
     
@@ -37,7 +41,7 @@ const UserPage = () => {
             </div>
 
             <div className=''>
-                {show ? <CreatedPins /> : <SavedPins />}
+                {show ? <CreatedPins username ={username} /> : <SavedPins />}
             </div>
 
 

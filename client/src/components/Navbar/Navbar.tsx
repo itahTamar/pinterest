@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "./Navbar.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Navbar = () => {
   const navigate = useNavigate()
+  const {username} = useParams()
+
   return (
     <div className="navbar">
       <div>
@@ -16,17 +18,17 @@ export const Navbar = () => {
         />
       </div>
       <div>
-        <button className="HomePageButton" onClick={()=>{navigate("/homePage")}}>Home</button>
+        <button className="HomePageButton" onClick={()=>{navigate(`/homePage/${username}`)}}>Home</button>
       </div>
       <div>
-        <button className="CreateButton" onClick={()=>{navigate("/createPin")}}> Create</button>
+        <button className="CreateButton" onClick={()=>{navigate(`/createPin/:${username}`)}}> Create</button>
       </div>
       <div>
         <input className="search" type="text" placeholder="Search" />
       </div>
 
       <div>
-        <button className="icon" id="user" onClick={()=>{navigate("/userPage")}} >
+        <button className="icon" id="user" onClick={()=>{navigate(`/userPage/:${username}`)}} >
           <FontAwesomeIcon icon={faUser} />
         </button>
       </div>
