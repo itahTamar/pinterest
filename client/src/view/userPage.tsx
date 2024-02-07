@@ -3,8 +3,10 @@ import { useContext, useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
 import { UserContext } from '../contexts/userContext'
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
+    const navigate = useNavigate()
     const [show, setShow] = useState(false)
     const { user } = useContext(UserContext)
 
@@ -27,7 +29,7 @@ const UserPage = () => {
                 <h3>0 following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
-                    <button>Edit profile</button>
+                    <button onClick={()=>{navigate("/editProfile")}}>Edit profile</button>
                 </div>
                 <div className='rendering-btn'>
                     <button onClick={toggleShow}>Created</button>
