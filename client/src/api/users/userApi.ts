@@ -22,3 +22,11 @@ export const login = async (email: string, password: string) => {
         console.error(error)
     }
 } //work ok
+
+export const handleGetUserByCookie = async () => {
+    try {
+        return await axios.post("/api/v1/users/getUserByCookie")
+    } catch (error) {
+        console.error(error)
+    }
+}

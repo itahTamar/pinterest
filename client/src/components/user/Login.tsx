@@ -9,11 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const navigate = useNavigate()
-    const {user, setUser} = useContext(UserContext)
-
-    useEffect(() => {
-        console.log("at Login.tsx the userData:", user)
-    }, [user]); 
+    const { user, setUser } = useContext(UserContext)
 
     const handleSubmitLogin = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -24,18 +20,21 @@ const Login = () => {
             if (!data) throw new Error("login failed, please register first");
 
             const userData = data.data.userData
-            console.log("at handleSubmitLogin the userData:", userData) 
+            console.log("at handleSubmitLogin the userData:", userData)
             if (!userData) throw new Error("at handleSubmitLogin userData failed");
 
-            setUser(userData)  
+            setUser(userData)
 
-            navigate(`/homePage`)
+            navigate(`/main/homePage`)
 
         } catch (error) {
             console.error(error)
         }
     }
-
+    
+    useEffect(() => {
+        console.log("at Login.tsx the userData:", user)
+    }, [user]);
     return (
 
         <div className='login-container'>

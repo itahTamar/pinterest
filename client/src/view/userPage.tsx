@@ -1,4 +1,3 @@
-import { Navbar } from '../components/Navbar/Navbar'
 import { useContext, useState } from 'react'
 import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
@@ -21,7 +20,6 @@ const UserPage = () => {
 
     return (
         <div>
-            <Navbar />
             <div className='profile-wrapper'>
                 <img className='userImg' src='https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg' alt='jungle' />
                 <h1>{user.userFirstName} {user.userLastName}</h1>

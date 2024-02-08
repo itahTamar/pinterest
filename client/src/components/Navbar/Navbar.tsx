@@ -23,6 +23,7 @@ export const Navbar = () => {
         <button className="CreateButton" onClick={()=>{navigate(`/createPin`)}}> Create</button>
       </div>
       <div>
+        {/* <Debouncing setFilterPins={setFilterPins} BooksState={pinState} /> */}
         <input className="search" type="text" placeholder="Search" />
       </div>
 

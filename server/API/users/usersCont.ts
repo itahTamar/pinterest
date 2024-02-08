@@ -3,6 +3,7 @@ import connection from '../../DB/database';
 import jwt from 'jwt-simple';
 import { Results } from '../interfaces/interfaces';
 import { Request, Response } from 'express';
+import { decode } from 'punycode';
 
 const saltRounds = 10;
 
@@ -65,11 +66,6 @@ export async function login(req: Request, res: Response) {
                     const hash = results[0].password
                     const match: boolean = await bcrypt.compare(password, hash);
                     if (!match) throw new Error("at login password incorrect!");
-
-                    // const resultUserId = results[0].user_id
-                    // const resultUserName = results[0].username
-                    // const resultUserFirstName = results[0].first_name
-                    // const resultUserLastName = results[0].last_name
 
                     const userData = {
                         userId: results[0].user_id,
@@ -165,3 +161,32 @@ export async function deleteUser(req: Request, res: Response) {
     }
 } //work ok
 
+export async function getUserByCookie(req: Request, res: Response) {
+    try {
+        const {user} = req.cookies;
+        if (!user) throw new Error("no user at cookie");
+
+        const secret = process.env.SECRET
+        if (!secret) throw new Error("no secret")
+       
+        const decodedId = jwt.decode(user, secret)
+        const {userID} = decodedId;
+        if (!userID) throw new Error("no userID decoded");
+        
+
+        const query = `SELECT * FROM users WHERE user_id = ${userID}`;
+
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+
+                res.send({ok: true, results: results[0]})
+            } catch (error) {
+                res.status(500).send({ok: false, error})
+            }
+        })
+        
+    } catch (error) {
+        res.status(500).send({ok: false, error})
+    }
+}
