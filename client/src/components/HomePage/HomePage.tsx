@@ -54,7 +54,6 @@ export const HomePage = () => {
             (filterPinsState.map((pin) => {
               return (
                 <div className='pin-card-cover' key={pin.title}>
-                  <p>pin_id: {pin.pin_id}</p>
                   <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
                 </div>
               )

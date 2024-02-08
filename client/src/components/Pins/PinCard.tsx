@@ -15,8 +15,8 @@ const PinCard: FC<PinCardProps> = ({ pin }) => {
                     <div className="pin-info">
                         {Array.isArray(pin) && pin.length > 0 && (
                             <div>
-                                <h3>pin title: {pin[0].title}</h3>
-                                <p>pin description: {pin[0].description}</p>
+                                <h3>{pin[0].title}</h3>
+                                <p>{pin[0].description}</p>
                             </div>
                         )}
                     </div>
