@@ -15,13 +15,13 @@ export const getAllUserSavedPinsByUserId = async (user_id: string) => {
     }
 }; //work ok
 
-export const getPinById = async (pinId: string) => {
+export const getPinById = async (pin_id: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/${pinId}`);
+        const response = await axios.get(`/api/v1/pin/onePin/${pin_id}`);
         const { ok, results } = response.data;
 
         if (ok) {
-            
+            console.log("at getPinById the response.data:", response.data)
            return results
         } else {
             console.error("Error retrieving Pins:", response.data.error);

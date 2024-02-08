@@ -9,16 +9,16 @@ import { Pin } from '../types/pin';
 
 const PinPage = () => {
     const [dataPin, setDataPin] = useState<Pin>();
-    let { pinId } = useParams();
+    let { pin_id } = useParams();
     const navigate = useNavigate()
 
     useEffect(() => {
 
         const specificPin = async () => {
-            if (pinId == undefined) throw new Error("the pinId in PinPage is undefined!");
-            console.log(pinId)
+            if (pin_id == undefined) throw new Error("the pin_id in PinPage is undefined!");
+            console.log("at specificPin the pin_id",pin_id)
             try {
-                const data: Pin = await getPinById(pinId);
+                const data: Pin = await getPinById(pin_id);
                 if (!data) throw new Error("no dog data");
                 
                 console.log("at specificPin the data:", data);
@@ -29,13 +29,13 @@ const PinPage = () => {
         };
 
         specificPin();
-    }, [pinId]);
+    }, [pin_id]);
 
     return (
         <div>
-            <PinCard key={pinId} pin={dataPin} />
+            <PinCard key={pin_id} pin={dataPin} />
             <ChatBox />
-            <button onClick={() => { navigate(`/`) }}>Back</button>
+            <button onClick={() => { navigate(-1) }}>Back</button>
         </div>
     );
 };

@@ -13,20 +13,20 @@ import Main from "../components/main/main";
 
 
 export const router = createBrowserRouter([
-  { path: "/start", element: <RLhomepage /> },
+  { path: "/", element: <RLhomepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   {
-    path: "/",
+    path: "/main",
     element: <Main />,
     children: [
-      { path: "/homePage", element: <HomePage /> },
-      { path: "/userPage", element: <UserPage /> },
-      { path: "/userBoardPage", element: <UserBoardPage /> },
-      { path: "/savedPin", element: <SavedPins /> },
-      { path: "/createPin", element: <CreatePin /> },
-      { path: "/pinPage/:pin_id", element: <PinPage /> },
-      { path: "/editProfile", element: <EditProfile /> }
+      { path: "homePage", element: <HomePage /> },
+      { path: "userPage", element: <UserPage /> },
+      { path: "userBoardPage", element: <UserBoardPage /> },
+      { path: "savedPin", element: <SavedPins /> },
+      { path: "createPin", element: <CreatePin /> },
+      { path: "pinPage/:pin_id", element: <PinPage /> },
+      { path: "editProfile", element: <EditProfile /> }
     ]
   }
 ]);

@@ -14,12 +14,10 @@ const Main = () => {
                 if (!result) throw new Error("At main handleGetUserByCookie did't get result");
 
                 const userData = result.data.userData
-                console.log("at handleSubmitLogin the userData:", userData)
-                if (!userData) throw new Error("at handleSubmitLogin userData failed");
+                console.log("at gerData in main the userData:", userData)
+                if (!userData) throw new Error("at gerData in main userData failed");
 
                 setUser(userData)
-
-                console.log(user)
  
             } catch (error) {
                 console.error(error)
@@ -27,6 +25,8 @@ const Main = () => {
         }
 
         getData()
+
+        console.log("user in context:", user)
     }, [])
 
     return (

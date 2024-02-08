@@ -1,6 +1,5 @@
 // import React from 'react'
 import { useContext, useEffect, useState } from 'react'
-import { Navbar } from '../Navbar/Navbar'
 import { Pin } from '../../types/pin'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/userContext'
@@ -20,16 +19,12 @@ export const HomePage = () => {
       //use axios to get the Pin list by userId from DB
       const response = await getAllOtherUsersPins(user.userId)
       if (!response) throw new Error("No response from axios getAllOtherUsersPins at PinsPage");
-      console.log("At getAllOtherUsersPins the response is:", response) 
+      console.log("At getAllOtherUsersPins the response is:", response) //got it
 
       //put the list in PinsState and filterPinsState
-      const PinList = response;
-      console.log("PinList:", PinList)
-      setPins(PinList)
-      setFilterPins(PinList)
+      setPins(response)
+      setFilterPins(response)
 
-      console.log("PinsState:", pinsState)
-      console.log("filterPinsState:", filterPinsState)
     } catch (error) {
       console.error(error)
     }
@@ -39,6 +34,13 @@ export const HomePage = () => {
     handleGetAllOtherUsersPins()
   }, []) //only run this effect on the initial render
 
+  useEffect(() => {
+    console.log("PinsState:", pinsState);  //got it
+  }, [pinsState]);
+  
+  useEffect(() => {
+    console.log("filterPinsState:", filterPinsState);  //got it
+  }, [filterPinsState]);
 
   return (
     <div>
@@ -52,7 +54,8 @@ export const HomePage = () => {
             (filterPinsState.map((pin) => {
               return (
                 <div className='pin-card-cover' key={pin.title}>
-                  <button onClick={() => { navigate(`/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                  <p>pin_id: {pin.pin_id}</p>
+                  <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
                 </div>
               )
             })) : (

@@ -9,7 +9,7 @@ router
     .get("/saved/:user_id", getAllUserSavedPinsByUserId) 
     .get("/:user_id", getAllOtherUsersPins)
     .get("/:username", getAllUserCreatedPinsByUsername)
-    .get("/:pin_id", getPinById)
+    .get("/onePin/:pin_id", getPinById)
     .put("/:pin_id", updatePin)  
     .delete("/:pin_id",deletePin)
 
