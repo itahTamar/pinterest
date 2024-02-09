@@ -17,10 +17,10 @@ export const Navbar = () => {
         />
       </div>
       <div>
-        <button className="HomePageButton" onClick={()=>{navigate(`/homePage`)}}>Home</button>
+        <button className="HomePageButton" onClick={()=>{navigate(`/main/homePage`)}}>Home</button>
       </div>
       <div>
-        <button className="CreateButton" onClick={()=>{navigate(`/createPin`)}}> Create</button>
+        <button className="CreateButton" onClick={()=>{navigate(`/main/createPin`)}}> Create</button>
       </div>
       <div>
         {/* <Debouncing setFilterPins={setFilterPins} BooksState={pinState} /> */}
@@ -28,7 +28,7 @@ export const Navbar = () => {
       </div>
 
       <div>
-        <button className="icon" id="user" onClick={()=>{navigate(`/userPage`)}} >
+        <button className="icon" id="user" onClick={()=>{navigate(`/main/userPage`)}} >
           <FontAwesomeIcon icon={faUser} />
         </button>
       </div>
