@@ -27,7 +27,7 @@ const UserPage = () => {
                 <h3>0 following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
-                    <button onClick={()=>{navigate("/editProfile")}}>Edit profile</button>
+                    <button onClick={()=>{navigate(`/main/editProfile`)}}>Edit profile</button>
                 </div>
                 <div className='rendering-btn'>
                     <button onClick={toggleShow}>Created</button>
