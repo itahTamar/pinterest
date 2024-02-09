@@ -4,9 +4,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { DropDownMenu } from "../DropDownMenu/DropDownMenu";
 
 export const Navbar = () => {
   const navigate = useNavigate()
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <div className="navbar">
@@ -33,10 +36,13 @@ export const Navbar = () => {
         </button>
       </div>
       <div>
-        <button className="icon">
+        <button className="icon" onClick={() => setOpenMenu ((prev) => !prev)}>
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
       </div>
+      {
+        openMenu && <DropDownMenu />
+      }
     </div>
   );
 };
