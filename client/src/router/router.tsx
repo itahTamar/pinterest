@@ -9,7 +9,7 @@ import UserPage from "../view/userPage";
 import SavedPins from "../components/Pins/SavedPins";
 import { EditProfile } from "../components/EditProfile/EditProfile";
 import PinPage from "../view/pinPage";
-import Main from "../components/main/main";
+import Main from "../components/main/Main";
 
 
 export const router = createBrowserRouter([
