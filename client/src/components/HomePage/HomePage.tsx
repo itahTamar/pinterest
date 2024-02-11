@@ -25,6 +25,7 @@ export const HomePage = () => {
       setPins(response)
       setFilterPins(response)
 
+
     } catch (error) {
       console.error(error)
     }
