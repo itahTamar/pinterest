@@ -29,7 +29,7 @@ export const getPinById = async (pin_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; // work ok
 
 export const deletePin = async (pin_id: string) => {
     try {
@@ -106,3 +106,33 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
         console.error("Error:", (error as Error).message);
     }
 }; //work ok
+
+export const findTitleAtOtherUsersPins = async (user_id: string, title: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/findOther/${user_id}`, {title});
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+};
+
+export const findTitleAtUserSavedPinsByUserId = async (user_id: string, title: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}`, {title});
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+};

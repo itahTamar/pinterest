@@ -170,5 +170,53 @@ export async function getPinById(req: express.Request, res: express.Response) {
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-}
+} //work ok
 
+export async function findTitleAtOtherUsersPins(req: express.Request, res: express.Response) {
+    try {
+        const user_id = req.params.user_id
+        if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
+
+        const {title} = req.body
+        if (!title) throw new Error("no title at req.body");
+        
+        
+        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND title LIKE "%${title}%";`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+} 
+
+export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res: express.Response) {
+    try {
+        const user_id = req.params.user_id
+        if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
+
+        const {title} = req.body
+        if (!title) throw new Error("no title at req.body");
+
+        const query = `SELECT * FROM pins WHERE user_id = "${user_id}" AND title LIKE "%${title}%";`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+} 

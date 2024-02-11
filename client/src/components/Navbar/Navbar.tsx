@@ -4,9 +4,39 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { OtherPinsContext, SavedPinsContext, UserContext } from "../../contexts/userContext";
+import { findTitleAtOtherUsersPins, findTitleAtUserSavedPinsByUserId } from "../../api/pins/pinsApi";
 
 export const Navbar = () => {
   const navigate = useNavigate()
+  const { user } = useContext(UserContext)
+  const [text, setText] = useState("")
+  const { savedSearch, setSavedSearch } = useContext(SavedPinsContext)
+  const { otherSearch, setOtherSearch } = useContext(OtherPinsContext)
+
+
+  useEffect(() => {
+
+    const handleSearchPins = async () => {
+      try {
+        const findAtOtherPins = await findTitleAtOtherUsersPins(user.user_id, text)
+        if (!findAtOtherPins) throw new Error("At Navbar->handleSearchPins: no other pins get from DB");
+        setOtherSearch(findAtOtherPins)
+
+        const findAtSaved = await findTitleAtUserSavedPinsByUserId(user.user_id, text)
+        if (!findAtSaved) throw new Error("At Navbar->handleSearchPins: no saved pins get from DB");
+        setSavedSearch(findAtSaved)
+        
+      } catch (error) {
+
+      }
+    }
+
+    handleSearchPins()
+  
+  }, [text])
+
 
   return (
     <div className="navbar">
@@ -17,18 +47,17 @@ export const Navbar = () => {
         />
       </div>
       <div>
-        <button className="HomePageButton" onClick={()=>{navigate(`/main/homePage`)}}>Home</button>
+        <button className="HomePageButton" onClick={() => { navigate(`/main/homePage`) }}>Home</button>
       </div>
       <div>
-        <button className="CreateButton" onClick={()=>{navigate(`/main/createPin`)}}> Create</button>
+        <button className="CreateButton" onClick={() => { navigate(`/main/createPin`) }}> Create</button>
       </div>
       <div>
-        {/* <Debouncing setFilterPins={setFilterPins} BooksState={pinState} /> */}
-        <input className="search" type="text" placeholder="Search" />
+        <input className="search" type="text" placeholder="Search" onInput={(ev) => setText((ev.target as HTMLInputElement).value)} />
       </div>
 
       <div>
-        <button className="icon" id="user" onClick={()=>{navigate(`/main/userPage`)}} >
+        <button className="icon" id="user" onClick={() => { navigate(`/main/userPage`) }} >
           <FontAwesomeIcon icon={faUser} />
         </button>
       </div>
