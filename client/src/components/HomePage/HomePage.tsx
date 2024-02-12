@@ -13,11 +13,10 @@ export const HomePage = () => {
   const { user } = useContext(UserContext)
   const { otherSearch } = useContext(OtherPinsContext)
 
-
   const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
-
+        console.log("at handleGetAllUserSavedPins the userId:", user.userId)
       //use axios to get the Pin list by userId from DB
       const response = await getAllOtherUsersPins(user.userId)
       if (!response) throw new Error("No response from axios getAllOtherUsersPins at PinsPage");
@@ -25,7 +24,7 @@ export const HomePage = () => {
 
       if (otherSearch) {
         setPins(otherSearch)
-        setFilterPins(otherSearch)
+        setFilterPins(otherSearch) //?why i need that too?
       } else {
 
         //put the list in PinsState and filterPinsState

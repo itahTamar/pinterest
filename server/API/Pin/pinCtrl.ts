@@ -177,11 +177,10 @@ export async function findTitleAtOtherUsersPins(req: express.Request, res: expre
         const user_id = req.params.user_id
         if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
 
-        const {title} = req.body
-        if (!title) throw new Error("no title at req.body");
+        const {text} = req.query
+        if (!text) throw new Error("no text at req.body");
         
-        
-        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND title LIKE "%${title}%";`
+        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND title LIKE "%${text}%";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -195,14 +194,14 @@ export async function findTitleAtOtherUsersPins(req: express.Request, res: expre
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-} 
+} //work ok
 
 export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res: express.Response) {
     try {
         const user_id = req.params.user_id
         if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
 
-        const {title} = req.body
+        const {title} = req.query
         if (!title) throw new Error("no title at req.body");
 
         const query = `SELECT * FROM pins WHERE user_id = "${user_id}" AND title LIKE "%${title}%";`
@@ -219,4 +218,4 @@ export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-} 
+} //work ok

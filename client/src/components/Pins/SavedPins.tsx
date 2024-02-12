@@ -3,7 +3,7 @@ import { getAllUserSavedPinsByUserId } from '../../api/pins/pinsApi'
 import { useNavigate } from 'react-router-dom'
 import { Pin } from '../../types/pin'
 import PinCard from './PinCard'
-import { UserContext } from '../../contexts/userContext'
+import { OtherPinsContext, SavedPinsContext, UserContext } from '../../contexts/userContext'
 
 //work ok
 const SavedPins = () => {
@@ -11,31 +11,39 @@ const SavedPins = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
+  const { otherSearch } = useContext(OtherPinsContext)
+  const { savedSearch } = useContext(SavedPinsContext)
 
   const handleGetAllUserSavedPins = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
-      
+
       //use axios to get the Pin list by userId from DB
       const response = await getAllUserSavedPinsByUserId(user.userId)
-      if(!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
-              console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
-  
-      //put the list in PinsState and filterPinsState
-      const PinList = response;
-      console.log("PinList:", PinList)
-      setPins(PinList)
-      setFilterPins(PinList)
+      if (!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
+      console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
 
-      console.log("PinsState:", pinsState)
-      console.log("filterPinsState:", filterPinsState)
-     } catch (error) {
+      if (savedSearch) {
+        setPins(savedSearch)
+        setFilterPins(savedSearch)
+      } else {
+        if (otherSearch) {
+          setPins(otherSearch)
+          setFilterPins(otherSearch) //?why i need that too?
+        } else {
+          //put the list in PinsState and filterPinsState
+          setPins(response)
+          setFilterPins(response)
+        }
+      }
+
+    } catch (error) {
       console.error(error)
     }
   }
 
-  useEffect(() => { 
-    handleGetAllUserSavedPins() 
+  useEffect(() => {
+    handleGetAllUserSavedPins()
   }, []) //only run this effect on the initial render
 
   return (
@@ -55,16 +63,16 @@ const SavedPins = () => {
 
         render all user's saved pins (the one he likes)
         <div className='pins-container'>
-        {filterPinsState && pinsState.length > 0 ?
-          (filterPinsState.map((pin) => {
-            return (
-              <div className='pin-card-cover' key={pin.title}>
-                <button onClick={() => { navigate(`/pinPage/${pin.pin_id}`) }}><PinCard pin={pin}/></button>                
-              </div>
-            )
-          })) : (
-            <p>no pin found</p>
-          )}
+          {filterPinsState && pinsState.length > 0 ?
+            (filterPinsState.map((pin) => {
+              return (
+                <div className='pin-card-cover' key={pin.title}>
+                  <button onClick={() => { navigate(`/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                </div>
+              )
+            })) : (
+              <p>no pin found</p>
+            )}
         </div>
       </div>
     </div>

@@ -20,15 +20,16 @@ export const Navbar = () => {
 
     const handleSearchPins = async () => {
       try {
-        const findAtOtherPins = await findTitleAtOtherUsersPins(user.user_id, text)
+        const findAtOtherPins = await findTitleAtOtherUsersPins(user.userId, text)
         if (!findAtOtherPins) throw new Error("At Navbar->handleSearchPins: no other pins get from DB");
         setOtherSearch(findAtOtherPins)
 
-        const findAtSaved = await findTitleAtUserSavedPinsByUserId(user.user_id, text)
+        const findAtSaved = await findTitleAtUserSavedPinsByUserId(user.userId, text)
         if (!findAtSaved) throw new Error("At Navbar->handleSearchPins: no saved pins get from DB");
         setSavedSearch(findAtSaved)
         
       } catch (error) {
+        console.error(error)
 
       }
     }
@@ -37,6 +38,13 @@ export const Navbar = () => {
   
   }, [text])
 
+  useEffect(()=>{
+    console.log(savedSearch)
+  },[savedSearch])
+
+  useEffect(()=>{
+    console.log(otherSearch)
+  },[otherSearch])
 
   return (
     <div className="navbar">

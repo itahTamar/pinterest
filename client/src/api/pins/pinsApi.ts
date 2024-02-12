@@ -107,9 +107,9 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
     }
 }; //work ok
 
-export const findTitleAtOtherUsersPins = async (user_id: string, title: string) => {
+export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findOther/${user_id}`, {title});
+        const response = await axios.get(`/api/v1/pin/findOther/${user_id}`, {params: {text: text}});
         const { ok, results } = response.data;
 
         if (ok) {
@@ -122,9 +122,9 @@ export const findTitleAtOtherUsersPins = async (user_id: string, title: string) 
     }
 };
 
-export const findTitleAtUserSavedPinsByUserId = async (user_id: string, title: string) => {
+export const findTitleAtUserSavedPinsByUserId = async (user_id: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}`, {title});
+        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}`, {params: {text: text}});
         const { ok, results } = response.data;
 
         if (ok) {
