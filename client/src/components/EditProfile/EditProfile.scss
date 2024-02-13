@@ -1,0 +1,58 @@
+.profile-edit {
+  width: 800px;
+  margin-left: -10vw;
+  margin-top: -5vw;
+  margin-top: 5vw;
+  text-align: left;
+  .imgdiv {
+    display: flex;
+    align-items: center;
+    img {
+      border-radius: 50%;
+      width: 5vw;
+      height: 5vw;
+    }
+    button {
+      height: 3vw;
+      font-size: 1.1vw;
+      border-radius: 1.2vw;
+    }
+  }
+  .namediv {
+    display: flex;
+
+    input {
+      margin-right: 0.5vw;
+      width: 16vw;
+      height: 3vw;
+      border-radius: 1vw;
+    }
+  }
+
+  .About {
+    height: 6vw;
+    width: 33vw;
+    border-radius: 1vw;
+  }
+
+  .Pronouns {
+    height: 3vw;
+    width: 33vw;
+    border-radius: 1vw;
+  }
+}
+
+h2 {
+  font-size: 2vw;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.1vw;
+  font-weight: 400;
+  padding-right: 5vw;
+}
+
+p {
+  font-size: 0.9vw;
+}

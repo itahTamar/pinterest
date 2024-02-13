@@ -1,37 +1,51 @@
 import React from "react";
 import { Navbar } from "../Navbar/Navbar";
+import "./EditProfile.scss";
 
 export const EditProfile = () => {
   return (
     <div>
       <Navbar />
-      <h1>Edit Profile</h1>
-      <h3>
-        Keep your personal details private. Information you add here is visible
-        to any who can view your profile.
-      </h3>
-      <p>photo</p>
-      <div>
-        <img src="" alt="" />
-        <button>Change</button>
-      </div>
-      <div>
-        <div>
-          <p>First name</p>
-          <input type="text" />
+      <div className="profile-edit">
+        <h2>Edit Profile</h2>
+        <h3>
+          Keep your personal details private. Information you add here is
+          visible to anyone who can view your profile.
+        </h3>
+        <p>photo</p>
+        <div className="imgdiv">
+          <img
+            src="https://th.bing.com/th/id/OIP.ONfngQFEugONLEQvUQV4vwHaE7?w=253&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            alt=""
+          />
+          <button>Change</button>
         </div>
-        <div>
-          <p>Last name</p>
-          <input type="text" />
+        <div className="namediv">
+          <div>
+            <p>First name</p>
+            <input type="text" />
+          </div>
+          <div>
+            <p>Last name</p>
+            <input type="text" />
+          </div>
         </div>
-      </div>
-      <p>About</p>
-      <input type="text" placeholder="Tell your story" />
-      <p>Pronouns</p>
-      <input type="text" placeholder="Add your pronouns" />
-      <div>
-        <button>Save</button>
-        <button>Delete</button>
+        <p>About</p>
+        <input className="About" type="text" placeholder="Tell your story" />
+        <p>Pronouns</p>
+        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
+        <p>
+          Choose up to 2 sets of pronouns to appear on your profile so others
+          know how to refer to you. You can edit or remove these any time.
+        </p>
+        <p>Website</p>
+        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
+        <p>Username</p>
+        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
+        <div className="button-container">
+          <button>Save</button>
+          <button>Delete</button>
+        </div>
       </div>
     </div>
   );
