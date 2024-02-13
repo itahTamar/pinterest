@@ -9,16 +9,17 @@ import PinCard from '../Pins/PinCard'
 export const HomePage = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
+  const [boardList, setBoardList] = useState([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
- 
+
   const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
 
       //use axios to get the Pin list by userId from DB
       const response = await getAllOtherUsersPins(user.userId)
-      if (!response) throw new Error("No response from axios getAllOtherUsersPins at PinsPage");
+      if (!response) throw new Error("No response from axios getAllOtherUsersPins at HomePage");
       console.log("At getAllOtherUsersPins the response is:", response) //got it
 
       //put the list in PinsState and filterPinsState
@@ -30,14 +31,29 @@ export const HomePage = () => {
     }
   }
 
+  const handleGetAllUsersBoardsTitle = async () => {
+    try {
+      if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
+      
+      //use axios to get all user boards title from DB by userId
+      const response = await GetAllUsersBoardsTitle(user.userId)
+      if (!response) throw new Error("No response from axios GetAllUsersBoardsTitle at HomePage");
+      console.log("At GetAllUsersBoardsTitle the response is:", response)
+    } catch (error) {
+      console.error(error)
+      
+    }
+  }
+
   useEffect(() => {
     handleGetAllOtherUsersPins()
+    handleGetAllUsersBoardsTitle()
   }, []) //only run this effect on the initial render
 
   useEffect(() => {
     console.log("PinsState:", pinsState);  //got it
   }, [pinsState]);
-  
+
   useEffect(() => {
     console.log("filterPinsState:", filterPinsState);  //got it
   }, [filterPinsState]);
@@ -46,21 +62,34 @@ export const HomePage = () => {
     <div>
       welcome to home page
 
-      <div>all the user boards</div>
+      <div>more ideas or the user boards</div> 
+      <div className="boards-container">
+        {boardList && boardList.length > 0 ?
+        (boardList.map((board) => {
+          return
+          <div className='board'>
+            <h3>More ideas for</h3>
+            <h2>${board.title}</h2>
+          </div>
+        })) : (
+          null
+        )
+      } 
+      </div>
 
       <div>all other user's Pins</div>
-        <div className='pins-container'>
-          {filterPinsState && pinsState.length > 0 ?
-            (filterPinsState.map((pin) => {
-              return (
-                <div className='pin-card-cover' key={pin.title}>
-                  <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
-                </div>
-              )
-            })) : (
-              <p>no pin found</p>
-            )}
-        </div>
+      <div className='pins-container'>
+        {filterPinsState && pinsState.length > 0 ?
+          (filterPinsState.map((pin) => {
+            return (
+              <div className='pin-card-cover' key={pin.title}>
+                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+              </div>
+            )
+          })) : (
+            <p>no pin found</p>
+          )}
       </div>
+    </div>
   )
 }

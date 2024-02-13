@@ -25,7 +25,9 @@ export async function addOneBoard(req: express.Request, res: express.Response) {
         const { userId } = req.params;
         if (!userId) throw new Error("no Id")
 
-        const query = `INSERT INTO boards (user_id) VALUES ('${userId}');`;
+        const {title} = req.body
+
+        const query = `INSERT INTO boards (user_id, title) VALUES ('${userId}', '${title}');`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
