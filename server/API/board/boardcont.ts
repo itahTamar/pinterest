@@ -2,8 +2,11 @@ import express from 'express'
 import connection from '../../DB/database'
 import { Results } from '../interfaces/interfaces'
 
-export async function getAllBoards(req: express.Request, res: express.Response) {
+export async function getAllUsersBoards(req: express.Request, res: express.Response) {
     try {
+        const { userId } = req.params;
+        if (!userId) throw new Error("no Id")
+        
         const query = "SELECT * FROM boards"
         connection.query(query, (err, results: Results) => {
             try {

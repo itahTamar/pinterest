@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const GetAllUsersBoardsTitle = async (user_id: string) => {
+export const getAllUsersBoards = async (user_id: string) => {
     try {
-        const response = await axios.get(`/api/v1/board/${user_id}`);
+        const response = await axios.get(`/api/v1/board/getAllUsersBoards/${user_id}`);
         const { ok, results } = response.data;
 
         if (ok) {

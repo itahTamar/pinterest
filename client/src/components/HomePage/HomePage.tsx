@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/userContext'
 import { getAllOtherUsersPins } from '../../api/pins/pinsApi'
 import PinCard from '../Pins/PinCard'
+import { getAllUsersBoards } from '../../api/boards/boardApi'
+import { Board } from '../../types/board'
 
 export const HomePage = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
-  const [boardList, setBoardList] = useState([])
+  const [boardList, setBoardList] = useState<Board[]>([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
 
@@ -31,14 +33,17 @@ export const HomePage = () => {
     }
   }
 
-  const handleGetAllUsersBoardsTitle = async () => {
+  const handleGetAllUsersBoards = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
       
       //use axios to get all user boards title from DB by userId
-      const response = await GetAllUsersBoardsTitle(user.userId)
+      const response = await getAllUsersBoards(user.userId)
       if (!response) throw new Error("No response from axios GetAllUsersBoardsTitle at HomePage");
       console.log("At GetAllUsersBoardsTitle the response is:", response)
+
+      setBoardList(response)
+
     } catch (error) {
       console.error(error)
       
@@ -47,7 +52,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     handleGetAllOtherUsersPins()
-    handleGetAllUsersBoardsTitle()
+    handleGetAllUsersBoards()
   }, []) //only run this effect on the initial render
 
   useEffect(() => {
@@ -72,7 +77,7 @@ export const HomePage = () => {
             <h2>${board.title}</h2>
           </div>
         })) : (
-          null
+          <p>no bourds</p>
         )
       } 
       </div>
