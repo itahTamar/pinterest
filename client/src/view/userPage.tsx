@@ -3,6 +3,7 @@ import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
 import { UserContext } from '../contexts/userContext'
 import { useNavigate } from "react-router-dom";
+import { RenderBoards } from '../components/board/addBoard/RenderBoards';
 
 const UserPage = () => {
     const navigate = useNavigate()
@@ -33,6 +34,10 @@ const UserPage = () => {
                     <button onClick={toggleShow}>Created</button>
                     <button onClick={toggleShow}>Saved</button>
                 </div>
+            </div>
+
+            <div>user boards here
+                <RenderBoards/>
             </div>
 
             <div className=''>

@@ -12,6 +12,7 @@ export const HomePage = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
   const [filterPinsState, setFilterPins] = useState<Pin[]>([])
   const [boardList, setBoardList] = useState<Board[]>([])
+  const [filterBoardList, setFilterBoardList] = useState<Board[]>([])
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
 
@@ -43,6 +44,7 @@ export const HomePage = () => {
       console.log("At GetAllUsersBoardsTitle the response is:", response)
 
       setBoardList(response)
+      setFilterBoardList(response)
 
     } catch (error) {
       console.error(error)
@@ -66,11 +68,11 @@ export const HomePage = () => {
   return (
     <div>
       welcome to home page
-
+{/* 
       <div>more ideas or the user boards</div> 
       <div className="boards-container">
-        {boardList && boardList.length > 0 ?
-        (boardList.map((board) => {
+        {filterBoardList && boardList.length > 0 ?
+        (filterBoardList.map((board) => {
           return
           <div className='board'>
             <h3>More ideas for</h3>
@@ -80,7 +82,8 @@ export const HomePage = () => {
           <p>no bourds</p>
         )
       } 
-      </div>
+      </div> */}
+      <RenderBoards/>
 
       <div>all other user's Pins</div>
       <div className='pins-container'>

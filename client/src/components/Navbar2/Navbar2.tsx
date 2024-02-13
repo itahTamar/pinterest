@@ -4,6 +4,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "../Navbar2/Navbar2.scss";
 import { useNavigate } from "react-router-dom";
+import PopupLogin from "../popup/PopupLogin";
+import PopupRegister from "../popup/PopupRegister";
 
 export const Navbar2 = () => {
   const navigate = useNavigate();
@@ -24,8 +26,8 @@ export const Navbar2 = () => {
         <span>About</span>
         <span>Business</span>
         <span>Blog</span>
-        <button className="login" onClick={() => { navigate("/login") }}>Log in</button>
-        <button className="register" onClick={() => { navigate("/register") }}>Sigh up</button>
+        <button className="login" onClick={() => { <PopupLogin/> }}>Log in</button>
+        <button className="register" onClick={() => { <PopupRegister/> }}>Sigh up</button>
       </div>
     </div>
   );

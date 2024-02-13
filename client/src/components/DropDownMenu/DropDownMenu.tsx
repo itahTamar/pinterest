@@ -8,10 +8,10 @@ export const DropDownMenu = () => {
     <div className="DropDownMenu">
         <ul>
             <p>Your accounts</p>
-            <button>Add account</button>
+            <button onClick={()=>{navigate("/register")}}>Add account</button>
             <p>More options</p>
             <button onClick={()=>{navigate(`/main/editProfile`)}}>Edit profile</button>
-            <button>Log out</button>
+            <button onClick={()=>{navigate('/')}}>Log out</button>
         </ul>
     </div>
   )
