@@ -5,25 +5,26 @@
   position: fixed;
   top: 0;
   left: 0;
-  // padding: 1.5vw 0px;
   z-index: 1000;
-  width: 100%;
+  // width: 100%;
+  background-color: white;
+  padding: 1.5vw 1vw;
   img {
     width: 2vw;
     margin-right: 1vw;
   }
   .search {
     width: 77vw;
-    height: 2.5vw;
+    height: 3.2vw;
     border-radius: 2vw;
     border-color: rgb(227, 228, 229);
     background-color: rgb(227, 228, 229);
-    
+
     &::placeholder {
       font-size: 18px;
     }
   }
-  
+
   .HomePageButton {
     background-color: white;
     color: black;
@@ -32,21 +33,29 @@
     font-size: 1.1vw;
   }
   .CreateButton {
-    background-color: black;
-    color: white;
+    background-color: white;
     border-radius: 2vw;
     font-size: 1.1vw;
     height: 2.5vw;
     margin-right: 0.5vw;
-  }
+}
+
+.CreateButton:active {
+    background-color: black;
+    color: white; /* Adding text color change on active state */
+}
+
 
   .icon {
     font-size: 1.1vw;
     background-color: white;
+    color: gray;
   }
   #user {
     background-color: rgb(227, 228, 229);
     padding: 0.5vw;
-    border-radius: 2vw;
+    border-radius: 50%;
+    font-size: 0.8vw;
+    height: 2vw;
   }
 }

@@ -33,19 +33,31 @@ export const EditProfile = () => {
         <p>About</p>
         <input className="About" type="text" placeholder="Tell your story" />
         <p>Pronouns</p>
-        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
+        <input
+          className="Pronouns"
+          type="text"
+          placeholder="Add your pronouns"
+        />
         <p>
           Choose up to 2 sets of pronouns to appear on your profile so others
           know how to refer to you. You can edit or remove these any time.
         </p>
         <p>Website</p>
-        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
+        <input
+          className="Pronouns"
+          type="text"
+          placeholder="Add your pronouns"
+        />
         <p>Username</p>
-        <input className="Pronouns" type="text" placeholder="Add your pronouns" />
-        <div className="button-container">
-          <button>Save</button>
-          <button>Delete</button>
-        </div>
+        <input
+          className="Pronouns"
+          type="text"
+          placeholder="Add your pronouns"
+        />
+      </div>
+      <div className="button-container">
+        <button>Save</button>
+        <button>Delete</button>
       </div>
     </div>
   );
