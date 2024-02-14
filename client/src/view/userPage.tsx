@@ -3,7 +3,7 @@ import SavedPins from '../components/Pins/SavedPins'
 import CreatedPins from '../components/Pins/CreatedPins'
 import { UserContext } from '../contexts/userContext'
 import { useNavigate } from "react-router-dom";
-import { RenderBoards } from '../components/board/addBoard/RenderBoards';
+import { RenderUserBoards } from '../components/board/addBoard/RenderUserBoards';
 
 const UserPage = () => {
     const navigate = useNavigate()
@@ -11,9 +11,9 @@ const UserPage = () => {
     const { user } = useContext(UserContext)
 
     if (!user) throw new Error("At UserPage no user in context");
-    
+
     console.log("at userPage userData:", user)
-    
+
     function toggleShow() {
         setShow(!show)
     }
@@ -28,7 +28,7 @@ const UserPage = () => {
                 <h3>0 following</h3>
                 <div className='profile-btn'>
                     <button>Share</button>
-                    <button onClick={()=>{navigate(`/main/editProfile`)}}>Edit profile</button>
+                    <button onClick={() => { navigate(`/main/editProfile`) }}>Edit profile</button>
                 </div>
                 <div className='rendering-btn'>
                     <button onClick={toggleShow}>Created</button>
@@ -37,7 +37,7 @@ const UserPage = () => {
             </div>
 
             <div>user boards here
-                <RenderBoards/>
+                <RenderUserBoards />
             </div>
 
             <div className=''>

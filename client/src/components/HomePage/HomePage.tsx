@@ -7,6 +7,8 @@ import { getAllOtherUsersPins } from '../../api/pins/pinsApi'
 import PinCard from '../Pins/PinCard'
 import { getAllUsersBoards } from '../../api/boards/boardApi'
 import { Board } from '../../types/board'
+import { RenderUserBoards } from '../board/addBoard/RenderUserBoards'
+import { RenderSuggestedBoards } from '../board/addBoard/RenderSuggestedBoards'
 
 export const HomePage = () => {
   const [pinsState, setPins] = useState<Pin[]>([])
@@ -68,24 +70,9 @@ export const HomePage = () => {
   return (
     <div>
       welcome to home page
-{/* 
-      <div>more ideas or the user boards</div> 
-      <div className="boards-container">
-        {filterBoardList && boardList.length > 0 ?
-        (filterBoardList.map((board) => {
-          return
-          <div className='board'>
-            <h3>More ideas for</h3>
-            <h2>${board.title}</h2>
-          </div>
-        })) : (
-          <p>no bourds</p>
-        )
-      } 
-      </div> */}
-      <RenderBoards/>
+      <RenderSuggestedBoards/>
 
-      <div>all other user's Pins</div>
+      <div>render all other user's Pins</div>
       <div className='pins-container'>
         {filterPinsState && pinsState.length > 0 ?
           (filterPinsState.map((pin) => {
