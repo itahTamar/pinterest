@@ -57,7 +57,7 @@ export const EditProfile = () => {
       </div>
       <div className="button-container">
         <button>Save</button>
-        <button>Delete</button>
+        <button>reset</button>
       </div>
     </div>
   );

@@ -30,3 +30,21 @@ export const handleGetUserByCookie = async () => {
         console.error(error)
     }
 }
+
+
+export const updateUser = async (user_id:string ,field: string, update:string | number) => {
+    try {
+        const response = await axios.patch(`/api/v1/users/"${user_id}"`, {field, update});
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+}; //
+
+
