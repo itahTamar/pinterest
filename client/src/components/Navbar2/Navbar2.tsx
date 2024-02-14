@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "../Navbar2/Navbar2.scss";
-import { useNavigate } from "react-router-dom";
 import PopupLogin from "../popup/PopupLogin";
 import PopupRegister from "../popup/PopupRegister";
+import { useState } from "react";
 
 export const Navbar2 = () => {
-  const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+
   return (
     <div className="navbar2">
       <div className="divImg">
@@ -26,8 +27,10 @@ export const Navbar2 = () => {
         <span>About</span>
         <span>Business</span>
         <span>Blog</span>
-        <button className="login" onClick={() => { <PopupLogin/> }}>Log in</button>
-        <button className="register" onClick={() => { <PopupRegister/> }}>Sigh up</button>
+        <button className="login" onClick={() => setShowPopup(true)}>Log in</button>
+        {showPopup && <PopupLogin onClose={() => setShowPopup(false)} />}
+        <button className="register" onClick={() => setShowPopup(true)}>Sigh up</button>
+        {showPopup && <PopupRegister onClose={() => setShowPopup(false)} />}
       </div>
     </div>
   );
