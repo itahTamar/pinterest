@@ -7,7 +7,6 @@ import { getAllOtherUsersPins } from '../../api/pins/pinsApi'
 import PinCard from '../Pins/PinCard'
 import { getAllUsersBoards } from '../../api/boards/boardApi'
 import { Board } from '../../types/board'
-import { RenderUserBoards } from '../board/addBoard/RenderUserBoards'
 import { RenderSuggestedBoards } from '../board/addBoard/RenderSuggestedBoards'
 
 export const HomePage = () => {

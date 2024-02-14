@@ -6,10 +6,10 @@ const {board_id} = useParams()
 
   return (
     <div>boardPage
-        <h1>title/category</h1><select>... {/*board options in small pupup window (edit, shar, merge. archive)- only the edit will work as popup*/}
+        <h1>title/category</h1><select>... {/*board options in small popup window (edit, shear, merge. archive)- only the edit will work as popup*/}
                                     <label>Board options</label>
                                     <option >edit</option>
-                                    <option>shar</option>
+                                    <option>shear</option>
                                     <option>merge</option>
                                     <option>archive</option>
                                 </select>
@@ -21,7 +21,7 @@ const {board_id} = useParams()
         </div>
         <div>render all user saved pin in that category</div>
         <div>find some ideas for this boars: (div box with more pin in that category of other users)</div>
-        <button>+ to creat a pin or ass a section (in the down-middle of the box)</button>
+        <button>+ to create a pin or ass a section (in the down-middle of the box)</button>
         <button>?</button> {/*only visual btn */}
     </div>
   )
