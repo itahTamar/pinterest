@@ -8,7 +8,8 @@ import PopupRegister from "../popup/PopupRegister";
 import { useState } from "react";
 
 export const Navbar2 = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopupLogin, setShowPopupLogin] = useState(false);
+  const [showPopupRegister, setShowPopupRegister] = useState(false);
 
   return (
     <div className="navbar2">
@@ -27,10 +28,10 @@ export const Navbar2 = () => {
         <span>About</span>
         <span>Business</span>
         <span>Blog</span>
-        <button className="login" onClick={() => setShowPopup(true)}>Log in</button>
-        {showPopup && <PopupLogin onClose={() => setShowPopup(false)} />}
-        <button className="register" onClick={() => setShowPopup(true)}>Sigh up</button>
-        {showPopup && <PopupRegister onClose={() => setShowPopup(false)} />}
+        <button className="login" onClick={() => setShowPopupLogin(true)}>Log in</button>
+        {showPopupLogin && <PopupLogin onClose={() => setShowPopupLogin(false)}/> }
+        <button className="register" onClick={() => setShowPopupRegister(true)}>Sigh up</button>
+        {showPopupRegister && <PopupRegister onClose={() => setShowPopupRegister(false)}/> }
       </div>
     </div>
   );
