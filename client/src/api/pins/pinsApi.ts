@@ -47,9 +47,9 @@ export const deletePin = async (pin_id: string) => {
     }
 }; //
 
-export const addPin = async (image: string, title:string,  description:string, link:string, user_id: string) => {
+export const addPin = async (title:string, image: string,   description:string, link:string, user_id: string) => {
     try {
-        const response = await axios.post(`/api/v1/pin/addPin/${user_id}`, {image, title, description, link});
+        const response = await axios.post(`/api/v1/pin/${user_id}`, {title, image,  description, link});
         const { ok, results } = response.data;
 
         if (ok) {
