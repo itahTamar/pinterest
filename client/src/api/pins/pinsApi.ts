@@ -120,4 +120,4 @@ export const getPinsByCategory = async (category: string, user_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-};
+}; //work ok

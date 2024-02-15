@@ -196,4 +196,4 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-}
+} //work ok

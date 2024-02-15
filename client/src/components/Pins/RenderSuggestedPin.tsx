@@ -2,9 +2,10 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Pin } from '../../types/pin'
 import { getPinsByCategory } from '../../api/pins/pinsApi'
-import PinCard from '../Pins/PinCard'
+import PinCard from './PinCard'
 import { UserContext } from '../../contexts/userContext'
 
+//work ok
 interface PinProp {
     category: string
 }
