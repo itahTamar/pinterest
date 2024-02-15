@@ -17,7 +17,10 @@ const Login = () => {
             console.log("At handleSubmit login the email, password, username are:", email, password)
             const data = await login(email, password)
             console.log("at handleSubmitLogin the data:", data)
-            if (!data) throw new Error("login failed, please register first");
+            if (!data){
+                window.alert("login failed! check your email or password or please register first")
+               throw new Error("login failed, please register first"); 
+            } 
 
             const userData = data.data.userData
             console.log("at handleSubmitLogin the userData:", userData)

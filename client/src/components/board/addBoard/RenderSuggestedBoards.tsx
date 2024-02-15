@@ -41,10 +41,10 @@ export const RenderSuggestedBoards = () => {
         {filterBoardList && boardList.length > 0 ?
           (filterBoardList.map((board) => {
             return (
-              <div className='board' key={board.title}>
+              <div className='board' key={board.name}>
                 <button onClick={() => {}}> {/*move to the user page with suggested pin in that category*/}
                   <h3>More ideas for</h3>
-                  <h2>{board.title}</h2>
+                  <h2>{board.name}</h2>
                 </button>
               </div>
             )
