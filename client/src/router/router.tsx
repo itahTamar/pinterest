@@ -9,6 +9,8 @@ import SavedPins from "../components/Pins/SavedPins";
 import { EditProfile } from "../components/EditProfile/EditProfile";
 import PinPage from "../view/pinPage";
 import Main from "../components/main/Main";
+import BoardCard from "../components/board/addBoard/BoardCard";
+import BoardPage from "../view/boardPage";
 
 
 export const router = createBrowserRouter([
@@ -24,7 +26,9 @@ export const router = createBrowserRouter([
       { path: "savedPin", element: <SavedPins /> },
       { path: "createPin", element: <CreatePin /> },
       { path: "pinPage/:pin_id", element: <PinPage /> },
-      { path: "editProfile", element: <EditProfile /> }
+      { path: "editProfile", element: <EditProfile /> },
+      { path: "boardPage/:board.name", element: <BoardPage/>},
+      { path: "boardCard/:board.name", element: <BoardCard board={undefined}/>}
     ]
   }
 ]);

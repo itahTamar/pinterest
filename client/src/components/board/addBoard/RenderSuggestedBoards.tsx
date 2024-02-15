@@ -3,12 +3,14 @@ import { Board } from '../../../types/board'
 import { UserContext } from '../../../contexts/userContext'
 import { useNavigate } from 'react-router-dom'
 import { getAllUsersBoards } from '../../../api/boards/boardApi'
+import RenderSuggestedPin from '../../HomePage/RenderSuggestedPin'
 
-
+//work ok
 export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([])
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([])
   const { user } = useContext(UserContext)
+
   const navigate = useNavigate()
 
   const handleGetAllOtherBoardsByTitle = async () => {
@@ -42,9 +44,10 @@ export const RenderSuggestedBoards = () => {
           (filterBoardList.map((board) => {
             return (
               <div className='board' key={board.name}>
-                <button onClick={() => {}}> {/*move to the user page with suggested pin in that category*/}
+                <button onClick={() => {navigate(`/main/boardPage/${board.name}`)}}> {/*move to the user page with suggested pin in that category*/}
                   <h3>More ideas for</h3>
                   <h2>{board.name}</h2>
+                  <RenderSuggestedPin category={board.name} /> {/*Hadar, you need to adjust this component style here to show only 3 pins */}
                 </button>
               </div>
             )

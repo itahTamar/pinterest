@@ -10,7 +10,7 @@ const BoardCard: FC<BoardProp> = ({ board }) => {
     <>
       {board != undefined ?
         <div className='board-card'>
-          here i need to render the board's pins
+          here i need to render the board's pins by their category
 
         </div>
 

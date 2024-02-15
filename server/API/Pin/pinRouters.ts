@@ -1,5 +1,5 @@
 import express from "express"
-import { addPin, deletePin,updatePin, getPinById, getAllOtherUsersPins, getAllUserSavedPinsByUserId, getAllUserCreatedPinsByUsername } from "./pinCtrl"
+import { addPin, deletePin,updatePin, getPinById, getAllOtherUsersPins, getAllUserSavedPinsByUserId, getAllUserCreatedPinsByUsername, getPinsByCategory } from "./pinCtrl"
 
 const router = express.Router()
 
@@ -7,8 +7,9 @@ const router = express.Router()
 router
     .post("/:user_id", addPin)   
     .get("/saved/:user_id", getAllUserSavedPinsByUserId) 
-    .get("/:user_id", getAllOtherUsersPins)
-    .get("/:username", getAllUserCreatedPinsByUsername)
+    .get("/others/:user_id", getAllOtherUsersPins)
+    .get("/category/:category", getPinsByCategory)
+    .get("/created/:username", getAllUserCreatedPinsByUsername)
     .get("/onePin/:pin_id", getPinById)
     .put("/:pin_id", updatePin)  
     .delete("/:pin_id",deletePin)
