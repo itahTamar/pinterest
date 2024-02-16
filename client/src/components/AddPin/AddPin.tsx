@@ -23,7 +23,7 @@ export const AddPin = () => {
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
-      const response = await addPin(title, image, description, link, user.user_id);
+      const response = await addPin(title, image, description, link, user.userId);
       console.log(response);
 
       setPin(response.data.results[0]);

@@ -185,5 +185,30 @@ export async function getPinById(req: express.Request, res: express.Response) {
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-}
+} //work ok
 
+export async function getPinsByCategory(req: express.Request, res: express.Response) {
+    try {
+        const category = req.params.category
+        console.log(category)
+        if (!category) throw new Error("at getPinsByCategory no category in params");
+
+        const user_id = req.query.user_id
+        console.log(user_id)
+        if (!user_id) throw new Error("at getPinsByCategory no user id in query");
+        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND category = "${category}";`
+
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+} //work ok
