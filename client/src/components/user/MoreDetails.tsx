@@ -8,7 +8,7 @@ interface userDataProp {
   password: string
 }
 
-const EditProfile:FC<userDataProp> = ({email, password}) => {
+const MoreDetails:FC<userDataProp> = ({email, password}) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [about, setAbout] = useState("")
@@ -75,4 +75,4 @@ const EditProfile:FC<userDataProp> = ({email, password}) => {
   )
 }
 
-export default EditProfile
+export default MoreDetails

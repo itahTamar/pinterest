@@ -1,9 +1,9 @@
 // import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Navbar2 } from "../../components/Navbar2/Navbar2";
 import Register from "../../components/user/Register";
 import "./RLhomepage.scss";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Navbar2 } from "../../components/navbars/Navbar2/Navbar2";
 
 const RLhomepage = () => {
   return (

@@ -2,15 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import RLhomepage from "../view/RLhomepage/RLhomepage";
 import Login from "../components/user/Login";
 import Register from "../components/user/Register";
-import { HomePage } from "../components/HomePage/HomePage";
+import { HomePage } from "../view/HomePage/HomePage";
 import { CreatePin } from "../view/CreatePin/CreatePin";
 import UserPage from "../view/userPage";
 import SavedPins from "../components/Pins/SavedPins";
-import { EditProfile } from "../components/EditProfile/EditProfile";
 import PinPage from "../view/pinPage";
 import Main from "../components/main/Main";
 import BoardCard from "../components/board/addBoard/BoardCard";
 import BoardPage from "../view/boardPage";
+import { EditProfile } from "../components/user/EditProfile/EditProfile";
 
 
 export const router = createBrowserRouter([

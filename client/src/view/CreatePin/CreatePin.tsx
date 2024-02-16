@@ -1,7 +1,6 @@
-import React from "react";
 import { AddPin } from "../../components/AddPin/AddPin";
-import { Navbar } from "../../components/Navbar/Navbar";
 import "./CreatePin.scss";
+import { Navbar } from "../../components/navbars/Navbar/Navbar";
 
 export const CreatePin = () => {
   return (

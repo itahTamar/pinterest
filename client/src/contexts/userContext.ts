@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { User } from "../types/user";
 
 export const UserContext = createContext<User>({
-    userFirstName: "",
+    userFirstName: '',
     userId: '',
     userLastName: '',
     username: '',

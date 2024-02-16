@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../../style/register.css'
-import EditProfile from './EditProfile'
+import MoreDetails from './MoreDetails'
 
 //work ok
 
@@ -30,7 +30,7 @@ const Register = () => {
             </form>
 
             {show ?
-                <EditProfile email={email} password={password} />
+                <MoreDetails email={email} password={password} />
                 : null}
         </>
     )

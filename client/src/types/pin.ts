@@ -5,6 +5,6 @@ export interface Pin {
     description?: string,
     link?: string,
     user_id: number,
-    category_id?: number
+    category: number
     username: string
   }
