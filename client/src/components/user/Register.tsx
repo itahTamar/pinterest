@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../../style/register.css'
+import './login/login.scss'
 import MoreDetails from './MoreDetails'
 
 //work ok
@@ -23,8 +23,10 @@ const Register = () => {
 
     return (
         <>
-            <form className="register-form" onSubmit={handleSubmitRegister}>
+            <form className="login-form" onSubmit={handleSubmitRegister}>
+                <label >Email</label>
                 <input type='email' name='email' autoComplete='given-name' placeholder='Email' value={email} onInput={(ev) => setEmail((ev.target as HTMLInputElement).value)}></input>
+                <label >Password</label>
                 <input type='password' name='password' autoComplete='off' placeholder='Password' value={password} onInput={(ev) => setPassword((ev.target as HTMLInputElement).value)}></input>
                 <button type='submit'>Register</button>
             </form>

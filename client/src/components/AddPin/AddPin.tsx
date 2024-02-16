@@ -16,14 +16,21 @@ export const AddPin = () => {
   const [pin, setPin] = useState(null);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
+  const [openInput, setOpenInput] = useState(false);
 
   if (!user) throw new Error("At UserPage no user in context");
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
-      const response = await addPin(title, image, description, link, user.userId);
+      const response = await addPin(
+        title,
+        image,
+        description,
+        link,
+        user.userId
+      );
       console.log(response);
 
       setPin(response.data.results[0]);
@@ -35,19 +42,32 @@ export const AddPin = () => {
     }
   };
 
-
   return (
-    <div className="AddPin">
-      <div className="AddPin_image">
-        <div>
-          <FontAwesomeIcon className="icon" icon={faShareFromSquare} />
-          <p>Choose a file or drag and drop it here</p>
+    <div>
+      <form className="AddPin" onSubmit={handleSubmit}>
+        <div className="AddPin_image">
+          <div>
+            <FontAwesomeIcon className="icon" icon={faShareFromSquare} />
+            <p>Choose a file or drag and drop it here</p>
+          </div>
+          <hr />
+          <button onClick={() => setOpenInput((prev) => !prev)}>
+            *Save from URL
+          </button>
+          {openInput && (
+            <div className="DropDownInput">
+              <input
+                type="image"
+                value={image}
+                onInput={(ev) =>
+                  setImage((ev.target as HTMLInputElement).value)
+                }
+                placeholder="Add a image"
+              />
+            </div>
+          )}
         </div>
-        <hr />
-        <button onClick={() => setImage("image")}>*Save from URL</button>
-      </div>
-      <div className="AddPin_form">
-        <form onSubmit={handleSubmit}>
+        <div className="AddPin_form">
           <p>*Title</p>
           <input
             type="text"
@@ -62,7 +82,8 @@ export const AddPin = () => {
             value={description}
             onInput={(ev) =>
               setDescription((ev.target as HTMLInputElement).value)
-            } placeholder="Add a description"
+            }
+            placeholder="Add a description"
           />
           <p>Link</p>
           <input
@@ -79,9 +100,11 @@ export const AddPin = () => {
             onInput={(ev) => setBoard((ev.target as HTMLInputElement).value)}
             placeholder="Choose a board"
           />
-        </form>
-        <button type='submit' className="publish">Publish</button>
-      </div>
+          <button type="submit" className="publish">
+            Publish
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
