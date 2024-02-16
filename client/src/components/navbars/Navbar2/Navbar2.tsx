@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "../Navbar2/Navbar2.scss";
-import PopupLogin from "../popup/PopupLogin";
-import PopupRegister from "../popup/PopupRegister";
 import { useState } from "react";
+import PopupLogin from "../../popup/PopupLogin";
+import PopupRegister from "../../popup/PopupRegister";
 
 export const Navbar2 = () => {
   const [showPopupLogin, setShowPopupLogin] = useState(false);

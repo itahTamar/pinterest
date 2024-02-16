@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom"
-import { Navbar } from "../Navbar/Navbar"
 import { handleGetUserByCookie } from "../../api/users/userApi"
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../contexts/userContext"
+import { Navbar } from "../navbars/Navbar/Navbar"
 
 const Main = () => {
     const { user, setUser } = useContext(UserContext)

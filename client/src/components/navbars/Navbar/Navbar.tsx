@@ -5,7 +5,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { DropDownMenu } from "../DropDownMenu/DropDownMenu";
+import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
 
 export const Navbar = () => {
   const navigate = useNavigate()

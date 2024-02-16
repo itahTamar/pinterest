@@ -1,6 +1,6 @@
 import React from "react";
-import { Navbar } from "../Navbar/Navbar";
 import "./EditProfile.scss";
+import { Navbar } from "../../navbars/Navbar/Navbar";
 
 export const EditProfile = () => {
   return (
