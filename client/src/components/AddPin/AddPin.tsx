@@ -5,6 +5,7 @@ import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { addPin } from "../../api/pins/pinsApi";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
+import { AddInput } from "./AddInput";
 // import { useNavigate } from "react-router-dom";
 
 export const AddPin = () => {
@@ -17,7 +18,11 @@ export const AddPin = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const [openInput, setOpenInput] = useState(false);
+  const [show, setShow] = useState(false);
+
+  function toggleShow() {
+    setShow(!show);
+  }
 
   if (!user) throw new Error("At UserPage no user in context");
 
@@ -46,26 +51,15 @@ export const AddPin = () => {
     <div>
       <form className="AddPin" onSubmit={handleSubmit}>
         <div className="AddPin_image">
-          <div>
+          <div className="divimg">
             <FontAwesomeIcon className="icon" icon={faShareFromSquare} />
             <p>Choose a file or drag and drop it here</p>
           </div>
           <hr />
-          <button onClick={() => setOpenInput((prev) => !prev)}>
+          <button onClick={toggleShow}>
             *Save from URL
           </button>
-          {openInput && (
-            <div className="DropDownInput">
-              <input
-                type="image"
-                value={image}
-                onInput={(ev) =>
-                  setImage((ev.target as HTMLInputElement).value)
-                }
-                placeholder="Add a image"
-              />
-            </div>
-          )}
+          <div className="">{show && <AddInput/>}</div>
         </div>
         <div className="AddPin_form">
           <p>*Title</p>
