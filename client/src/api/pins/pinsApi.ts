@@ -123,7 +123,7 @@ export const getPinsByCategory = async (category: string, user_id: string) => {
     }
 }; //work ok
 
-export const savePinToUserByUserId = async (pin_id: string, user_id: string) => {
+export const savePinToUserByUserId = async (pin_id: number, user_id: string) => {
     try {
         const response = await axios.post(`/api/v1/pin/favorite/${pin_id}?user_id=${user_id}`);
         const { ok, results } = response.data;
