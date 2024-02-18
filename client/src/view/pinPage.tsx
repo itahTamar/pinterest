@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import PinCard from '../components/Pins/PinCard';
 import { getPinById } from '../api/pins/pinsApi';
 import { Pin } from '../types/pin';
-import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
+// import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
 
 const PinPage = () => {
     const [dataPin, setDataPin] = useState<Pin>();

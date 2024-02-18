@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { getAllOtherUsersPins } from '../../api/pins/pinsApi'
+import { getAllOtherUsersPinsByUsername } from '../../api/pins/pinsApi'
 import { UserContext } from '../../contexts/userContext'
 import { useNavigate } from 'react-router-dom'
 import { Pin } from '../../types/pin'
@@ -18,9 +18,9 @@ const RenderOthersPins = () => {
         if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
   
         //use axios to get the Pin list by userId from DB
-        const response = await getAllOtherUsersPins(user.userId)
-        if (!response) throw new Error("No response from axios getAllOtherUsersPins at HomePage");
-        console.log("At getAllOtherUsersPins the response is:", response) //got it
+        const response = await getAllOtherUsersPinsByUsername(user.username)
+        if (!response) throw new Error("No response from axios getAllOtherUsersPinsByUsername at HomePage");
+        console.log("At getAllOtherUsersPinsByUsername the response is:", response) //got it
   
         //put the list in PinsState and filterPinsState
         setPins(response)
