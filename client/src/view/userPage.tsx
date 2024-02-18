@@ -31,7 +31,7 @@ const UserPage = () => {
                     <button onClick={() => { navigate(`/main/editProfile`) }}>Edit profile</button>
                 </div>
                 <div className='rendering-btn'>
-                    <button onClick={toggleShow}>Created</button>
+                    <button onClick={toggleShow}>Created</button> 
                     <button onClick={toggleShow}>Saved</button>
                 </div>
             </div>
