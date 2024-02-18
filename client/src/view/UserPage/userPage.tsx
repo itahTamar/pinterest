@@ -4,6 +4,7 @@ import CreatedPins from "../../components/Pins/CreatedPins";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import "./userPage.scss"
+import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -41,11 +42,7 @@ const UserPage = () => {
         <h3>0 following</h3>
         <div className="profile-btn">
           <button>Share</button>
-          <button
-            onClick={() => {
-              navigate(`/main/editProfile`);
-            }}
-          >
+          <button onClick={() => { navigate(`/main/editProfile`) }}>
             Edit profile
           </button>
         </div>
@@ -53,6 +50,10 @@ const UserPage = () => {
           <button onClick={toggleShow}>Created</button>
           <button onClick={toggleShow}>Saved</button>
         </div>
+      </div>
+
+      <div>user boards here
+        <RenderUserBoards />
       </div>
 
       <div className="">{show ? <CreatedPins /> : <SavedPins />}</div>
