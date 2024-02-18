@@ -12,8 +12,18 @@
 
 .popup-inner{
     position: relative;
-    padding: 32px;
-    width: 100%;
-    max-width: 640px;
+    padding: 60px;
+    height: 30vw;
+    width: 25vw;
     background-color: #FFF;
+
+    .close {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 1vw;
+        background-color: white;
+      }
+
+
 }

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RLhomepage from "../view/RLhomepage/RLhomepage";
-import Login from "../components/user/Login";
+import Login from "../components/user/login/Login";
 import Register from "../components/user/Register";
 import { HomePage } from "../view/HomePage/HomePage";
 import SavedPins from "../components/Pins/SavedPins";
@@ -11,7 +11,6 @@ import BoardPage from "../view/boardPage";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";
 import UserPage from "../view/UserPage/userPage";
 import { CreatePin } from "../view/CreatePinPage/CreatePin";
-
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
@@ -27,8 +26,11 @@ export const router = createBrowserRouter([
       { path: "createPin", element: <CreatePin /> },
       { path: "pinPage/:pin_id", element: <PinPage /> },
       { path: "editProfile", element: <EditProfile /> },
-      { path: "boardPage/:board.name", element: <BoardPage/>},
-      { path: "boardCard/:board.name", element: <BoardCard board={undefined}/>}
-    ]
-  }
+      { path: "boardPage/:board.name", element: <BoardPage /> },
+      {
+        path: "boardCard/:board.name",
+        element: <BoardCard board={undefined} />,
+      },
+    ],
+  },
 ]);

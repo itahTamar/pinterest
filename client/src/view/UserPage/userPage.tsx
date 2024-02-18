@@ -48,11 +48,7 @@ const UserPage = () => {
         <h3>0 following</h3>
         <div className="profile-btn">
           <button>Share</button>
-          <button
-            onClick={() => {
-              navigate(`/main/editProfile`);
-            }}
-          >
+          <button onClick={() => { navigate(`/main/editProfile`) }}>
             Edit profile
           </button>
         </div>
@@ -62,7 +58,7 @@ const UserPage = () => {
         </div>
       </div>
 
-      <div>
+          <div>
         <RenderUserBoards />
       </div>
 
