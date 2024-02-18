@@ -1,8 +1,16 @@
 import React from "react";
 import "./EditProfile.scss";
 import { Navbar } from "../../navbars/Navbar/Navbar";
+import { useState } from "react";
+import { AddInput } from "../../AddPin/AddInput";
 
 export const EditProfile = () => {
+
+  const [show, setShow] = useState(false);
+
+  function toggleShow() {
+    setShow(!show);
+  }
   return (
     <div>
       <Navbar />
@@ -18,7 +26,8 @@ export const EditProfile = () => {
             src="https://th.bing.com/th/id/OIP.ONfngQFEugONLEQvUQV4vwHaE7?w=253&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
             alt=""
           />
-          <button>Change</button>
+          <button onClick={toggleShow}>Change</button>
+          <div className="">{show && <AddInput/>}</div>
         </div>
         <div className="namediv">
           <div>
