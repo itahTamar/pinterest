@@ -1,22 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SavedPins from "../../components/Pins/SavedPins";
 import CreatedPins from "../../components/Pins/CreatedPins";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import "./userPage.scss"
+import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
 
 const UserPage = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);  //true is showing the saved-pins 
   const { user } = useContext(UserContext);
 
   if (!user) throw new Error("At UserPage no user in context");
 
   console.log("at userPage userData:", user);
 
-  function toggleShow() {
-    setShow(!show);
+  function toggleShowCreate() {
+    setShow(false);
   }
+
+  function toggleShowSave() {
+    setShow(true);
+  }
+
+  useEffect(()=>{console.log("show=",show)},[show])
 
   return (
     <div>
@@ -50,12 +57,16 @@ const UserPage = () => {
           </button>
         </div>
         <div className="rendering-btn">
-          <button onClick={toggleShow}>Created</button>
-          <button onClick={toggleShow}>Saved</button>
+          <button onClick={toggleShowCreate}>Created</button>
+          <button onClick={toggleShowSave}>Saved</button>
         </div>
       </div>
 
-      <div className="">{show ? <CreatedPins /> : <SavedPins />}</div>
+      <div>
+        <RenderUserBoards />
+      </div>
+
+      <div className="">{show ? <SavedPins /> : <CreatedPins /> }</div>
     </div>
   );
 };

@@ -47,7 +47,7 @@ export const RenderSuggestedBoards = () => {
                 <button onClick={() => {navigate(`/main/boardPage/${board.name}`)}}> {/*this route not work. it should move to the user page with suggested pin in that category*/}
                   <h3>More ideas for</h3>
                   <h2>{board.name}</h2>
-                  <RenderSuggestedPin category={board.name} /> {/*Hadar, you need to adjust this component style here to show only 3 pins */}
+                  <RenderSuggestedPin category={board.name} /> {/*Tamar, adjust this component style to show only 3 pins */}
                 </button>
               </div>
             )
