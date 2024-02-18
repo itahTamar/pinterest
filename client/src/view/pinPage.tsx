@@ -1,5 +1,5 @@
 import ChatBox from '../components/chatBox/ChatBox';
-import '../style/chatBox.css';
+import './pinPage.scss'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -7,6 +7,9 @@ import PinCard from '../components/Pins/PinCard';
 import { getPinById } from '../api/pins/pinsApi';
 import { Pin } from '../types/pin';
 import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
+import { NavbarPin } from '../components/navbars/NavbarPin/NavbarPin';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const PinPage = () => {
     const [dataPin, setDataPin] = useState<Pin>();
@@ -34,10 +37,13 @@ const PinPage = () => {
 
     return (
         <>
-            <div>
-                <PinCard key={pin_id} pin={dataPin} />
+            <div className='main'>
+            <button onClick={() => { navigate(-1) }}><FontAwesomeIcon icon={faArrowLeft} /></button>
+                <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div>
+                <div className='divR'>
+                <NavbarPin/>
                 <ChatBox />
-                <button onClick={() => { navigate(-1) }}>Back</button>
+                </div>
             </div>
             {/* <RenderSuggestedPin /> */}
         </>
