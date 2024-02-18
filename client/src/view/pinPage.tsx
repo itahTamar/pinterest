@@ -37,7 +37,7 @@ const PinPage = () => {
 
     return (
         <>
-            <div className='main'>
+            <div className='mainPP'>
             <button onClick={() => { navigate(-1) }}><FontAwesomeIcon icon={faArrowLeft} /></button>
                 <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div>
                 <div className='divR'>
