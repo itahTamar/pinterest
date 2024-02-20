@@ -110,7 +110,7 @@ export async function getAllUserSavedPinsByUserId(req: express.Request, res: exp
         const { user_id } = req.params
         if (!user_id) throw new Error("no user_id in params");
         
-        const query = `SELECT * FROM pins WHERE user_id = "${user_id}";`
+        const query = `SELECT * FROM user_favorites_pins WHERE user_id = "${user_id}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -196,10 +196,10 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
         console.log(category)
         if (!category) throw new Error("at getPinsByCategory no category in params");
 
-        const user_id = req.query.user_id
-        console.log(user_id)
-        if (!user_id) throw new Error("at getPinsByCategory no user id in query");
-        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND category = "${category}";`
+        const username = req.query.username
+        console.log(username)
+        if (!username) throw new Error("at getPinsByCategory no user id in query");
+        const query = `SELECT * FROM pins WHERE username != "${username}" AND category = "${category}";`
 
         connection.query(query, (err, results) => {
             try {
@@ -220,7 +220,7 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
     try {
         const {pin_id} = req.params
         console.log(pin_id)
-        if (!pin_id) throw new Error("at savePinToUserByUserId no pin_id in params");
+        if (!pin_id || pin_id == undefined) throw new Error("at savePinToUserByUserId no pin_id in params or it's undefine");
 
         const user_id = req.query.user_id
         console.log(user_id)
@@ -241,4 +241,4 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
         console.error(error)
     }
     
-}
+} //work ok

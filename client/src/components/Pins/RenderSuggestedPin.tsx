@@ -21,7 +21,7 @@ const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
             if (!category) throw new Error("at handleGetPinsByCategory there is no category in params");
             console.log("userId at render-suggested-pin:", user.userId)
             //use axios to get the Pin list by userId from DB
-            const response = await getPinsByCategory(category, user.userId)
+            const response = await getPinsByCategory(category, user.username)
             if (!response) throw new Error("No response from axios getPinsByCategory at render suggested pins");
             console.log("At getPinsByCategory the response is:", response)
 

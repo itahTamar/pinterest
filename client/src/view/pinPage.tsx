@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import PinCard from '../components/Pins/PinCard';
 import { getPinById } from '../api/pins/pinsApi';
-import { Pin } from '../types/pin';
+import { Pin, PinData } from '../types/pin';
 // import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
-import { NavbarPin } from '../components/navbars/NavbarPin/NavbarPin';
+// import { NavbarPin } from '../components/navbars/NavbarPin/NavbarPin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,11 +22,15 @@ const PinPage = () => {
             if (pin_id == undefined) throw new Error("the pin_id in PinPage is undefined!");
             console.log("at specificPin the pin_id", pin_id)
             try {
-                const data: Pin = await getPinById(pin_id);
+                const data: PinData = await getPinById(pin_id);
                 if (!data) throw new Error("no dog data");
 
                 console.log("at specificPin the data:", data);
-                setDataPin(data);
+                if (data[0] == undefined) throw new Error("");
+ 
+                const pinData = data[0]
+                
+                setDataPin(pinData);
             } catch (error) {
                 console.error("Error fetching specificPin:", error);
             }
@@ -41,7 +45,7 @@ const PinPage = () => {
             <button onClick={() => { navigate(-1) }}><FontAwesomeIcon icon={faArrowLeft} /></button>
                 <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div>
                 <div className='divR'>
-                <NavbarPin pin_id={pin_id}/>
+                {/* <NavbarPin pin_id={pin_id}/> */}
                 <ChatBox />
                 </div>
             </div>

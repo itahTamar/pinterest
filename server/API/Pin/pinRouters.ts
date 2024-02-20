@@ -8,7 +8,7 @@ router
     .post("/:user_id", addPin)
     .post("/favorite/:pin_id", savePinToUserByUserId)   
     .get("/saved/:user_id", getAllUserSavedPinsByUserId) 
-    .get("/others/:user_id", getAllOtherUsersPinsByUsername)
+    .get("/others/:username", getAllOtherUsersPinsByUsername)
     .get("/category/:category", getPinsByCategory)
     .get("/created/:username", getAllUserCreatedPinsByUsername)
     .get("/onePin/:pin_id", getPinById)

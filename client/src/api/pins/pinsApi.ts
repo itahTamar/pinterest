@@ -1,14 +1,22 @@
 import axios from "axios";
 
+interface PinId {
+    pin_id: string; 
+}
+
 export const getAllUserSavedPinsByUserId = async (user_id: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/saved/${user_id}`);
-        const { ok, results } = response.data;
+        const response1 = await axios.get(`/api/v1/pin/saved/${user_id}`);
+        const { ok, results } = response1.data;
+        console.log("at getAllUserSavedPinsByUserId in pinAIP results:", results)
+        console.log("at getAllUserSavedPinsByUserId in pinAIP results[0].pin_id:", results[0].pin_id)
 
-        if (ok) {
+         if (ok) {
+            const response2 = await Promise.all(results.map((result:PinId) => getPinById(result.pin_id)));
+            return response2;
            return results
         } else {
-            console.error("Error retrieving Pins:", response.data.error);
+            console.error("Error retrieving Pins:", response1.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
@@ -29,7 +37,7 @@ export const getPinById = async (pin_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
 
 export const deletePin = async (pin_id: string) => {
     try {
@@ -108,9 +116,9 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
     }
 }; //work ok
 
-export const getPinsByCategory = async (category: string, user_id: string) => {
+export const getPinsByCategory = async (category: string, username: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/category/${category}?user_id=${user_id}`);
+        const response = await axios.get(`/api/v1/pin/category/${category}?username=${username}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -123,7 +131,7 @@ export const getPinsByCategory = async (category: string, user_id: string) => {
     }
 }; //work ok
 
-export const savePinToUserByUserId = async (pin_id: number, user_id: string) => {
+export const savePinToUserByUserId = async (pin_id: number | string |undefined, user_id: string) => {
     try {
         const response = await axios.post(`/api/v1/pin/favorite/${pin_id}?user_id=${user_id}`);
         const { ok, results } = response.data;

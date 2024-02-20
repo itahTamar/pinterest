@@ -17,10 +17,10 @@ const SavedPins = () => {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
       
       //use axios to get the Pin list by userId from DB
-      const response = await getAllUserSavedPinsByUserId(user.userId)
+      const response = await getAllUserSavedPinsByUserId(user.userId)  //get pin_id list of favorite user's pins
       if(!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
               console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
-  
+      
       //put the list in PinsState and filterPinsState
       const PinList = response;
       console.log("PinList:", PinList)

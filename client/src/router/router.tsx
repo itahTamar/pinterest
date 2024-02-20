@@ -9,8 +9,8 @@ import Main from "../components/main/Main";
 import BoardCard from "../components/board/addBoard/BoardCard";
 import BoardPage from "../view/boardPage";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";
-import UserPage from "../view/UserPage/userPage";
 import { CreatePin } from "../view/CreatePinPage/CreatePin";
+import UserPage from "../view/UserPage/userPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
