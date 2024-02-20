@@ -7,7 +7,7 @@ import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
 //rendering big-page-view with all the details and without the btn
 
 interface PinCardProps {
-    pin: Pin | undefined;
+    pin: Pin ;
 }
 const SpecificPin: FC<PinCardProps> = ({ pin }) => {
   if (pin == undefined) throw new Error("pin is undefined at pinCard");

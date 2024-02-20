@@ -13,25 +13,21 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 //rendering the SpecificPin component
 const PinPage = () => {
-    const [dataPin, setDataPin] = useState<Pin>();
+    const [dataPin, setDataPin] = useState<Pin | null>(null);
     let { pin_id } = useParams();
     const navigate = useNavigate()
 
     useEffect(() => {
 
         const specificPin = async () => {
-            if (pin_id == undefined) throw new Error("the pin_id in PinPage is undefined!");
+            if (pin_id == undefined) throw new Error("the pin_id in PinPage params is undefined!");
             console.log("at specificPin the pin_id", pin_id)
             try {
-                const data: PinData = await getPinById(pin_id);
+                const data: Pin = await getPinById(pin_id);
                 if (!data) throw new Error("no dog data");
 
                 console.log("at specificPin the data:", data);
-                if (data[0] == undefined) throw new Error("");
- 
-                const pinData = data[0]
-                
-                setDataPin(pinData);
+                setDataPin(data);
             } catch (error) {
                 console.error("Error fetching specificPin:", error);
             }
@@ -45,13 +41,13 @@ const PinPage = () => {
             <div className='main'>
             <NavbarPin pin_id={pin_id}/>
             <button onClick={() => { navigate(-1) }}><FontAwesomeIcon icon={faArrowLeft} /></button>
-                <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div>
+                { dataPin != null ? <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div> : <p>Pin not found </p>}
                 <div className='divR'>
                 
                 <ChatBox />
                 </div>
             </div>
-            {dataPin != undefined ? <RenderSuggestedPin category={dataPin.category} />: <p>dataPin = undefined</p> }
+            {dataPin != null ? <RenderSuggestedPin category={dataPin.category} />: <p>Pin not found</p> }
             
         </>
     );

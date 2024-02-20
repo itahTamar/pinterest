@@ -133,7 +133,7 @@ export async function getAllUserCreatedPinsByUsername(req: express.Request, res:
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-                res.send({ ok: true, results })
+                res.send({ ok: true, results })  //{"ok": true,"results": []}
             } catch (error) {
                 console.log(error)
                 res.status(500).send({ ok: false, error })

@@ -8,7 +8,7 @@ import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
 //small rendering view with img only
 
 interface PinCardProps {
-    pin: Pin | undefined;
+    pin: Pin;
 }
 
 const PinCard: FC<PinCardProps> = ({ pin }) => {
