@@ -13,8 +13,8 @@ export const getAllUserSavedPinsByUserId = async (user_id: string) => {
 
          if (ok) {
             const response2 = await Promise.all(results.map((result:PinId) => getPinById(result.pin_id)));
+            console.log("at getAllUserSavedPinsByUserId in pinAIP response2:", response2)
             return response2;
-           return results
         } else {
             console.error("Error retrieving Pins:", response1.data.error);
         }
@@ -30,7 +30,9 @@ export const getPinById = async (pin_id: string) => {
 
         if (ok) {
             console.log("at getPinById the response.data:", response.data)
-           return results
+            console.log("at getPinById the results[0]:", results[0])
+
+           return results[0]
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }

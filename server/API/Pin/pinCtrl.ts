@@ -114,6 +114,7 @@ export async function getAllUserSavedPinsByUserId(req: express.Request, res: exp
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
+                    console.log("save", results)
                 res.send({ ok: true, results })
             } catch (error) {
                 console.log(error)
