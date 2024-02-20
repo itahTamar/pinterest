@@ -1,24 +1,21 @@
 import { FC, useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Pin } from '../../types/pin'
-import { getPinsByCategory } from '../../api/pins/pinsApi'
-import PinCard from './PinCard'
-import { UserContext } from '../../contexts/userContext'
+import { Pin } from '../../../types/pin'
+import { UserContext } from '../../../contexts/userContext'
+import { getPinsByCategory } from '../../../api/pins/pinsApi'
 
 //work ok
 interface PinProp {
     category: string
 }
 
-const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
+const RenderPinImg: FC<PinProp> = ({ category }) => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
-    const navigate = useNavigate()
     const { user } = useContext(UserContext)
 
     const handleGetPinsByCategory = async () => {
         try {
-            if (!category) throw new Error("at handleGetPinsByCategory there is no category in props");
+            if (!category) throw new Error("at handleGetPinsByCategory there is no category in params");
             console.log("userId at render-suggested-pin:", user.userId)
             //use axios to get the Pin list by userId from DB
             const response = await getPinsByCategory(category, user.username)
@@ -54,7 +51,7 @@ const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
                     (filterPinsState.map((pin) => {
                         return (
                             <div className='pin-card-cover' key={pin.title}>
-                                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                                <img src={pin.image}/>
                             </div>
                         )
                     })) : (
@@ -65,4 +62,4 @@ const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
     )
 }
 
-export default RenderSuggestedPin
+export default RenderPinImg

@@ -4,6 +4,7 @@ import { UserContext } from '../../../contexts/userContext'
 import { useNavigate } from 'react-router-dom'
 import { getAllUsersBoards } from '../../../api/boards/boardApi'
 import RenderSuggestedPin from '../../Pins/RenderSuggestedPin'
+import RenderPinImg from './RenderPinImg'
 
 //work ok
 export const RenderSuggestedBoards = () => {
@@ -47,7 +48,7 @@ export const RenderSuggestedBoards = () => {
                 <button onClick={() => {navigate(`/main/boardPage/${board.name}`)}}> {/*this route not work. it should move to the user page with suggested pin in that category*/}
                   <h3>More ideas for</h3>
                   <h2>{board.name}</h2>
-                  <RenderSuggestedPin category={board.name} /> {/*Hadar, you need to adjust this component style here to show only 3 pins */}
+                  <RenderPinImg category={board.name} />
                 </button>
               </div>
             )

@@ -18,8 +18,8 @@ export async function addPin(req: express.Request, res: express.Response) {
                 console.log(results1)
                 const username1 = results1[0].username
                 console.log(username1)
-                const query = `INSERT INTO pins (title, image, description, link, user_id, username) VALUES (?, ?, ?, ?, ?, ?)`;
-                connection.query(query, [title, image, description, link, user_id, username1], (err, results) => {
+                const query = `INSERT INTO pins (title, image, description, link, username) VALUES (?, ?, ?, ?, ?, ?)`;
+                connection.query(query, [title, image, description, link, username1], (err, results) => {
                     try {
                         if (err) throw err;
                         res.send({ ok: true, results })
@@ -108,10 +108,13 @@ export async function updatePin(req, res) {
 export async function getAllUserSavedPinsByUserId(req: express.Request, res: express.Response) {
     try {
         const { user_id } = req.params
-        const query = `SELECT * FROM pins WHERE user_id = "${user_id}";`
+        if (!user_id) throw new Error("no user_id in params");
+        
+        const query = `SELECT * FROM user_favorites_pins WHERE user_id = "${user_id}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
+                    console.log("save", results)
                 res.send({ ok: true, results })
             } catch (error) {
                 console.log(error)
@@ -131,7 +134,7 @@ export async function getAllUserCreatedPinsByUsername(req: express.Request, res:
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-                res.send({ ok: true, results })
+                res.send({ ok: true, results })  //{"ok": true,"results": []}
             } catch (error) {
                 console.log(error)
                 res.status(500).send({ ok: false, error })
@@ -143,12 +146,13 @@ export async function getAllUserCreatedPinsByUsername(req: express.Request, res:
     }
 } //work ok
 
-export async function getAllOtherUsersPins(req: express.Request, res: express.Response) {
+//get all other users pin by username
+export async function getAllOtherUsersPinsByUsername(req: express.Request, res: express.Response) {
     try {
-        const user_id = req.params.user_id
-        if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
+        const username = req.params.username
+        if (!username) throw new Error("at getAllOtherUsersPins no username in params");
 
-        const query = `SELECT * FROM pins where user_id != "${user_id}";`
+        const query = `SELECT * FROM pins where username != "${username}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
@@ -193,10 +197,10 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
         console.log(category)
         if (!category) throw new Error("at getPinsByCategory no category in params");
 
-        const user_id = req.query.user_id
-        console.log(user_id)
-        if (!user_id) throw new Error("at getPinsByCategory no user id in query");
-        const query = `SELECT * FROM pins WHERE user_id != "${user_id}" AND category = "${category}";`
+        const username = req.query.username
+        console.log(username)
+        if (!username) throw new Error("at getPinsByCategory no user id in query");
+        const query = `SELECT * FROM pins WHERE username != "${username}" AND category = "${category}";`
 
         connection.query(query, (err, results) => {
             try {
@@ -211,4 +215,31 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
+} //work ok
+
+export async function savePinToUserByUserId(req: express.Request, res: express.Response) {
+    try {
+        const {pin_id} = req.params
+        console.log(pin_id)
+        if (!pin_id || pin_id == undefined) throw new Error("at savePinToUserByUserId no pin_id in params or it's undefine");
+
+        const user_id = req.query.user_id
+        console.log(user_id)
+        if (!user_id) throw new Error("at savePinToUserByUserId no user_id in query");
+
+        const query = `INSERT INTO user_favorites_pins (user_id, pin_id) VALUES (${user_id}, ${pin_id});
+        `;
+                connection.query(query, (err, results) => {
+                    try {
+                        if (err) throw err;
+                        res.send({ ok: true, results })
+                    } catch (error) {
+                        res.status(500).send({ ok: false, error })
+                    }
+                })
+
+    } catch (error) {
+        console.error(error)
+    }
+    
 } //work ok

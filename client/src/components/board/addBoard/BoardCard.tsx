@@ -6,11 +6,13 @@ interface BoardProp {
 }
 
 const BoardCard: FC<BoardProp> = ({ board }) => {
+
+
   return (
     <>
       {board != undefined ?
         <div className='board-card'>
-          here i need to render the board's pins by their category
+          here i need to render the board's with their pins by their category
 
         </div>
 

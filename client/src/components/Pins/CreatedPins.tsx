@@ -52,7 +52,7 @@ const CreatedPins = () => {
                         (filterPinsState.map((pin) => {
                             return (
                                 <div className='pin-card-cover' key={pin.title}>
-                                    <button onClick={() => { navigate(`/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                                    <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
                                 </div>
                             )
                         })) : (

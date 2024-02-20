@@ -15,28 +15,36 @@ const SavedPins = () => {
   const handleGetAllUserSavedPins = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in params");
-      
+
       //use axios to get the Pin list by userId from DB
-      const response = await getAllUserSavedPinsByUserId(user.userId)
-      if(!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
-              console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
-  
+      const response = await getAllUserSavedPinsByUserId(user.userId)  //get pin_id list of favorite user's pins
+      if (!response) throw new Error("No response from axios getAllUserSavedPinsByUserId at SavedPins");
+      console.log("At SavedPins/getAllUserSavedPinsByUserId the response is:", response) //got it
+
       //put the list in PinsState and filterPinsState
       const PinList = response;
       console.log("PinList:", PinList)
       setPins(PinList)
       setFilterPins(PinList)
 
-      console.log("PinsState:", pinsState)
-      console.log("filterPinsState:", filterPinsState)
-     } catch (error) {
+    } catch (error) {
       console.error(error)
     }
   }
 
-  useEffect(() => { 
-    handleGetAllUserSavedPins() 
+  useEffect(() => {
+    handleGetAllUserSavedPins()
+
   }, []) //only run this effect on the initial render
+
+  useEffect(() => {
+    console.log("PinsState lime 41:", pinsState)
+  }, [pinsState])
+
+
+  useEffect(() => {
+    console.log("filterPinsState:", filterPinsState)
+  }, [filterPinsState])
 
   return (
     <div id="renderSaved" className='renderSaved'>
@@ -55,16 +63,16 @@ const SavedPins = () => {
 
         render all user's saved pins (the one he likes)
         <div className='pins-container'>
-        {filterPinsState && pinsState.length > 0 ?
-          (filterPinsState.map((pin) => {
-            return (
-              <div className='pin-card-cover' key={pin.title}>
-                <button onClick={() => { navigate(`/pinPage/${pin.pin_id}`) }}><PinCard pin={pin}/></button>                
-              </div>
-            )
-          })) : (
-            <p>no pin found</p>
-          )}
+          {filterPinsState && pinsState.length > 0 ?
+            (filterPinsState.map((pin) => {
+              return (
+                <div className='pin-card-cover' key={pin.title}>
+                  <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                </div>
+              )
+            })) : (
+              <p>no pin found</p>
+            )}
         </div>
       </div>
     </div>
