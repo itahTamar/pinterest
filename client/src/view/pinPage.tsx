@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import PinCard from '../components/Pins/PinCard';
 import { getPinById } from '../api/pins/pinsApi';
 import { Pin, PinData } from '../types/pin';
-// import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
-// import { NavbarPin } from '../components/navbars/NavbarPin/NavbarPin';
+import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
+import { NavbarPin } from '../components/navbars/NavbarPin/NavbarPin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+//rendering the SpecificPin component
 const PinPage = () => {
     const [dataPin, setDataPin] = useState<Pin>();
     let { pin_id } = useParams();
@@ -42,14 +43,16 @@ const PinPage = () => {
     return (
         <>
             <div className='main'>
+            <NavbarPin pin_id={pin_id}/>
             <button onClick={() => { navigate(-1) }}><FontAwesomeIcon icon={faArrowLeft} /></button>
                 <div className='divL'><PinCard key={pin_id} pin={dataPin} /></div>
                 <div className='divR'>
-                {/* <NavbarPin pin_id={pin_id}/> */}
+                
                 <ChatBox />
                 </div>
             </div>
-            {/* <RenderSuggestedPin /> */}
+            {dataPin != undefined ? <RenderSuggestedPin category={dataPin.category} />: <p>dataPin = undefined</p> }
+            
         </>
     );
 };

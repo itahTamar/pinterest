@@ -4,7 +4,7 @@ export interface Pin {
   title: string,
   description?: string,
   link?: string,
-  category: number
+  category: string,
   username: string
 }
 
@@ -15,7 +15,7 @@ export interface PinData {
   title: string,
   description?: string,
   link?: string,
-  category: number
+  category: string,
   username: string
   },
  length: number
