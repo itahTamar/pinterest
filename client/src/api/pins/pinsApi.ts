@@ -147,3 +147,33 @@ export const savePinToUserByUserId = async (pin_id: number | string |undefined, 
         console.error("Error:", (error as Error).message);
     }
 };
+
+export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/findOther/${user_id}/?${text}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+};
+
+export const findTitleAtUserSavedPinsByUserId = async (user_id: string, text: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}/?${text}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+};

@@ -7,3 +7,6 @@ export const UserContext = createContext<User>({
     userLastName: '',
     username: '',
 });
+
+export const SavedPinsContext = createContext<any>("");
+export const OtherPinsContext = createContext<any>("");

@@ -242,3 +242,56 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
     }
     
 } //work ok
+
+//!need to fix in accordance to the new table of favorite
+export async function findTitleAtOtherUsersPins(req: express.Request, res: express.Response) {
+    try {
+        const {user_id} = req.params
+        if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
+        console.log("at findTitleAtOtherUsersPins at server side, user_id:", user_id)
+
+        const {text} = req.query
+        if (!text) throw new Error("no text at req.body");
+        console.log("at findTitleAtOtherUsersPins at server side, text:", text)
+        
+        const query = `SELECT * FROM pins WHERE title LIKE "%${text}%";`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+} //
+
+
+//!need to fix in accordance to the new table of favorite
+export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res: express.Response) {
+    try {
+        const {user_id} = req.params
+        if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
+
+        const {title} = req.query 
+        if (!title) throw new Error("no title at req.body");
+
+        const query = `SELECT * FROM pins WHERE user_id = "${user_id}" AND title LIKE "%${title}%";`
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ ok: false, error })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ ok: false, error })
+    }
+} //
