@@ -201,7 +201,7 @@ export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res
         const user_id = req.params.user_id
         if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
 
-        const {title} = req.query
+        const {title} = req.query 
         if (!title) throw new Error("no title at req.body");
 
         const query = `SELECT * FROM pins WHERE user_id = "${user_id}" AND title LIKE "%${title}%";`

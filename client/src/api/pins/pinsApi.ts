@@ -109,7 +109,7 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
 
 export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findOther/${user_id}`, {params: {text: text}});
+        const response = await axios.get(`/api/v1/pin/findOther/${user_id}/?${text}`);
         const { ok, results } = response.data;
 
         if (ok) {
