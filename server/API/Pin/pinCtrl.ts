@@ -227,8 +227,7 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
         console.log(user_id)
         if (!user_id) throw new Error("at savePinToUserByUserId no user_id in query");
 
-        const query = `INSERT INTO user_favorites_pins IF NOT EXISTS (user_id, pin_id) VALUES (${user_id}, ${pin_id});
-        `;
+        const query = `INSERT INTO user_favorites_pins IF NOT EXISTS (user_id, pin_id) VALUES (${user_id}, ${pin_id});`;
                 connection.query(query, (err, results) => {
                     try {
                         if (err) throw err;
