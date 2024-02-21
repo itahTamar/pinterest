@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { getAllUserSavedPinsByUserId } from '../../api/pins/pinsApi'
 import { useNavigate } from 'react-router-dom'
-import { Pin } from '../../types/pin'
-import PinCard from './PinCard'
+import { getAllUserSavedPinsByUserId } from '../../api/pins/pinsApi'
 import { UserContext } from '../../contexts/userContext'
+import { Pin } from '../../types/pin'
+import SpecificPin from './SpecificPin'
 
 //work ok
 const SavedPins = () => {
@@ -67,7 +67,7 @@ const SavedPins = () => {
             (filterPinsState.map((pin) => {
               return (
                 <div className='pin-card-cover' key={pin.title}>
-                  <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                  <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><SpecificPin pin={pin} /></button>
                 </div>
               )
             })) : (

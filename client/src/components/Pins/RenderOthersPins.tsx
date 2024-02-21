@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getAllOtherUsersPinsByUsername } from '../../api/pins/pinsApi'
 import { UserContext } from '../../contexts/userContext'
-import { useNavigate } from 'react-router-dom'
 import { Pin } from '../../types/pin'
-import PinCard from './PinCard'
 import { NavbarPin } from '../navbars/NavbarPin/NavbarPin'
+import SpecificPin from './SpecificPin'
 
 //work ok
 
@@ -53,7 +53,7 @@ const RenderOthersPins = () => {
             return (
               <div className='pin-card-cover' key={pin.title}>
                 <NavbarPin pin_id={pin.pin_id} />
-                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><SpecificPin pin={pin} /></button>
               </div>
             )
           })) : (

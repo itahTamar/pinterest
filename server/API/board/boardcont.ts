@@ -30,7 +30,7 @@ export async function addOneBoard(req: express.Request, res: express.Response) {
 
         const {title} = req.body
 
-        const query = `INSERT INTO boards (user_id, title) VALUES ('${userId}', '${title}');`;
+        const query = `INSERT INTO boards IF NOT EXISTS (user_id, title) VALUES ('${userId}', '${title}');`;
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
