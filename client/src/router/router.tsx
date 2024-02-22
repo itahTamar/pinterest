@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
       { path: "createPin", element: <CreatePin /> },
       { path: "pinPage/:pin_id", element: <PinPage /> },
       { path: "editProfile", element: <EditProfile /> },
-      { path: "boardPage/:board.name", element: <BoardPage /> },
+      { path: "boardPage/:boardName", element: <BoardPage /> },
       {
         path: "boardCard/:board.name",
         element: <BoardCard board={undefined} />,
