@@ -191,6 +191,7 @@ export async function getPinById(req: express.Request, res: express.Response) {
     }
 } //work ok
 
+//!fix to get the pin that the user did not save
 export async function getPinsByCategory(req: express.Request, res: express.Response) {
     try {
         const category = req.params.category
@@ -217,6 +218,7 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
     }
 } //work ok
 
+//!need to fix to be no doplication - 
 export async function savePinToUserByUserId(req: express.Request, res: express.Response) {
     try {
         const {pin_id} = req.params
@@ -241,7 +243,7 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
         console.error(error)
     }
     
-} //work ok
+} //!not work
 
 //!need to fix in accordance to the new table of favorite
 export async function findTitleAtOtherUsersPins(req: express.Request, res: express.Response) {
