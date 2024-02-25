@@ -1,12 +1,17 @@
+*{
+margin: 0;
+}
 h3 {
   padding: 0px;
 }
 .profile-wrapper {
-  margin-top: 7vw ;
-  display: flex; /* הגדרת Flexbox */
-  justify-content: center; /* מרכוז על פי ציר ה-X */
-  align-items: center; /* מרכוז על פי ציר ה-Y */
-  flex-direction: column;
+  margin-top: vw ;
+  margin-left:0 ;
+  width: 50vw;
+  // display: flex; /* הגדרת Flexbox */
+  // justify-content: center; /* מרכוז על פי ציר ה-X */
+  // align-items: center; /* מרכוז על פי ציר ה-Y */
+  // flex-direction: column;
  
 
   img {
