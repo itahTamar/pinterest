@@ -1,16 +1,19 @@
-*{
-margin-bottom: 0.01vw;
+h3 {
+  padding: 0px;
 }
-h3{
-    padding: 0px;
-}
-.profile-wrapper{
-  img {
-  border-radius: 50%;
-  margin: 0px;
-}
-}
+.profile-wrapper {
+  margin-top: 7vw ;
+  display: flex; /* הגדרת Flexbox */
+  justify-content: center; /* מרכוז על פי ציר ה-X */
+  align-items: center; /* מרכוז על פי ציר ה-Y */
+  flex-direction: column;
+ 
 
+  img {
+    border-radius: 50%;
+    margin: 0px;
+  }
+}
 
 .divUsername {
   display: flex;
@@ -24,23 +27,28 @@ h3{
   }
 }
 
-.profile-btn{
-    display: flex;
-    justify-content: center;
-    button{
-        font-size: 1vw;
-        margin: 0px 0.3vw;
-        border-radius: 1.5vw;
+.profile-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5vw;
+  button {
+    font-size: 1vw;
+    margin: 0px 0.3vw;
+    border-radius: 1.5vw;
+    background-color: #e9e9e9;
+
+    :active {
+      text-decoration: underline;
     }
+  }
 }
 
-.rendering-btn{
-    margin-top: 2vw;
-    button{
-        font-size: 1vw;
-        margin: 0px 0.3vw;
-        border-radius: 1.5vw;
-        background-color: white;
-    }
-    
+.rendering-btn {
+  margin-top: 2vw;
+  button {
+    font-size: 1vw;
+    margin: 0px 0.3vw;
+    border-radius: 1.5vw;
+    background-color: white;
+  }
 }

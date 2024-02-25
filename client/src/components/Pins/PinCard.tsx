@@ -3,9 +3,6 @@ import { Pin } from "../../types/pin";
 import "../../style/pinCard.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
-// import { NavbarPin } from "../navbars/NavbarPin/NavbarPin";
-
-//small rendering view with img only
 
 interface PinCardProps {
     pin: Pin;

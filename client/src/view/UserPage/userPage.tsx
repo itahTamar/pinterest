@@ -15,9 +15,15 @@ const UserPage = () => {
 
   console.log("at userPage userData:", user);
 
+
   function toggleShowCreate() {
     setShow(false);
   }
+
+  function toggleShow() {
+    setShow(!show);
+  } 
+
 
   function toggleShowSave() {
     setShow(true);
@@ -26,8 +32,8 @@ const UserPage = () => {
   useEffect(()=>{console.log("show=",show)},[show])
 
   return (
-    <div>
-      <div className="profile-wrapper">
+    <div className="profile-wrapper">
+      <div >
         <img
           className="userImg"
           src="https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg"
