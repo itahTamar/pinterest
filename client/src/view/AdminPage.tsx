@@ -15,7 +15,7 @@ const AdminPage = () => {
             allUsers.map((user:User) => {
                 return (
                   <div>
-                    <h1>{user.userFirstName} {user.userLastName}</h1>
+                    {/* <h1>{user.userFirstName} {user.userLastName}</h1> */}
                     <button onClick={handleDeletUser}>Delete user</button>
                   </div>  
                 )            

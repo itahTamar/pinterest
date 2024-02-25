@@ -8,8 +8,10 @@ export function isAdmin(req, res, next) {
 
         //take from cookie and decode cookie and check for admin role
         const token = req.cookies.user;
+        console.log("at isAdmin the token is:", token)
         if(!token) throw new Error("no token");
         const cookie = jwt.decode(token, secret);
+        console.log("at isAdmin the decode cookie:", cookie)
         //decoded cookie
         const {role} = cookie;
         req.role = role;

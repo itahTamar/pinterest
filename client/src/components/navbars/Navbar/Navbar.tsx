@@ -55,7 +55,9 @@ export const Navbar = () => {
 
   const handleIsAdmin = async () => {
     try {
+      console.log("handleIsAdmin click")
       const response = await handleGetAllUsers()
+      console.log("at handleIsAdmin:",response)
       if (response) {
         setAllUsers(response.data.response)
         navigate(`/admin`, {state: {allUsers}}) // Pass allUsers as state
@@ -70,6 +72,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
+      <button onClick={ handleIsAdmin }>test admin</button>
       <div>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgyyIKl5PAu0J0fSGntKciPTG6aD1Ep4s9bosLM2X-g&s"
@@ -77,7 +80,7 @@ export const Navbar = () => {
         />
       </div>
       <div>
-        <button className="HomePageButton" onClick={() => { handleIsAdmin }}>Home</button>
+        <button className="HomePageButton" onClick={() => { navigate(`/main/homePage`) }}>Home</button>
       </div>
       <div>
         <button className="CreateButton" onClick={() => { navigate(`/main/createPin`) }}> Create</button>

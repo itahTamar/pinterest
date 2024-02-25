@@ -191,7 +191,7 @@ export async function getUserByCookie(req: Request, res: Response) {
     }
 }
 
-export async function AdmingetAllUsers(req: Request, res: Response) {
+export async function AdminGetAllUsers(req: Request, res: Response) {
     try {      
 
         const query = `SELECT * FROM users`;
@@ -199,8 +199,8 @@ export async function AdmingetAllUsers(req: Request, res: Response) {
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-
-                res.send({ok: true, results: results[0]})
+                console.log("at AdminGetAllUsers the results:", results)
+                res.send({ok: true, results: results})
             } catch (error) {
                 res.status(500).send({ok: false, error})
             }
@@ -209,4 +209,4 @@ export async function AdmingetAllUsers(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ok: false, error})
     }
-}
+}//work ok

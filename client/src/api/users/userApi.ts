@@ -47,7 +47,9 @@ export const updateUser = async (user_id:string ,field: string, update:string | 
 
 export const handleGetAllUsers = async () => {
     try {
-        return await axios.post("/api/v1/users/admin")
+        const response = await axios.get("/api/v1/users/admin")
+        console.log("at handleGetAllUsers:",response)
+        return response
     } catch (error) {
         console.error(error)
     }
