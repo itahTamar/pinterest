@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/userContext'
 import { Pin } from '../../types/pin'
 import { NavbarPin } from '../navbars/NavbarPin/NavbarPin'
 import SpecificPin from './SpecificPin'
+import PinCard from './PinCard'
 
 //work ok
 
@@ -53,7 +54,7 @@ const RenderOthersPins = () => {
             return (
               <div className='pin-card-cover' key={pin.title}>
                 <NavbarPin pin_id={pin.pin_id} />
-                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><SpecificPin pin={pin} /></button>
+                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
               </div>
             )
           })) : (
