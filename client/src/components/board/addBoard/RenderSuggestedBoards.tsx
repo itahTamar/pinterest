@@ -37,7 +37,7 @@ export const RenderSuggestedBoards = () => {
 
   return (
     <div>
-     render more idea to user boards:
+     {/* render more idea to user boards: */}
       <div className='boards-container'>
         {filterBoardList && boardList.length > 0 ?
           (filterBoardList.map((board) => {
