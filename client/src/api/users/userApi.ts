@@ -11,7 +11,6 @@ export const register = async (email: string, password: string, username: string
     }
 } //work ok
 
-
 export const login = async (email: string, password: string) => {
     try {
         if ( !email || !password) throw new Error("no username/email/password from client at register");
@@ -31,7 +30,6 @@ export const handleGetUserByCookie = async () => {
     }
 }
 
-
 export const updateUser = async (user_id:string ,field: string, update:string | number) => {
     try {
         const response = await axios.patch(`/api/v1/users/"${user_id}"`, {field, update});
@@ -47,4 +45,10 @@ export const updateUser = async (user_id:string ,field: string, update:string | 
     }
 }; //
 
-
+export const handleGetAllUsers = async () => {
+    try {
+        return await axios.post("/api/v1/users/admin")
+    } catch (error) {
+        console.error(error)
+    }
+}

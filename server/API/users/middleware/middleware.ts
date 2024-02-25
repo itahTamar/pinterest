@@ -16,6 +16,6 @@ export function isAdmin(req, res, next) {
         if(role !== "admin") throw new Error("no admin");
         next();
     } catch (error) {
-        res.status(401).send({ error: error.message });
+        res.status(401).send({ok: false, error: error.message });
     }
 }
