@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { getAllOtherUsersPinsByUsername } from '../../api/pins/pinsApi'
 import { UserContext } from '../../contexts/userContext'
 import { Pin } from '../../types/pin'
-import { NavbarPin } from '../navbars/NavbarPin/NavbarPin'
-import SpecificPin from './SpecificPin'
 import PinCard from './PinCard'
 import './RenderOthersPins.scss'
 

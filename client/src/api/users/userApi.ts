@@ -49,6 +49,10 @@ export const handleGetAllUsers = async () => {
     try {
         const response = await axios.get("/api/v1/users/admin")
         console.log("at handleGetAllUsers:",response)
+        if (response.data.ok === false) {
+            console.log(response.data.error)
+            return response.data
+        }
         return response
     } catch (error) {
         console.error(error)

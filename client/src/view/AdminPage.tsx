@@ -5,7 +5,7 @@ const AdminPage = () => {
     const location = useLocation()
     const {allUsers} = location.state // Access allUsers from location.state
 
-    const handleDeletUser = async () => {
+    const handleDeleteUser = async () => {
         
     }
 
@@ -16,7 +16,7 @@ const AdminPage = () => {
                 return (
                   <div>
                     {/* <h1>{user.userFirstName} {user.userLastName}</h1> */}
-                    <button onClick={handleDeletUser}>Delete user</button>
+                    <button onClick={handleDeleteUser}>Delete user</button>
                   </div>  
                 )            
                 
