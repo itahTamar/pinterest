@@ -3,6 +3,7 @@ import { Pin } from "../../types/pin";
 import "../../style/pinCard.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
+import './PinCard.scss'
 
 interface PinCardProps {
     pin: Pin | undefined;

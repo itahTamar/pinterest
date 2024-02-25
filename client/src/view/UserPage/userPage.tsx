@@ -17,11 +17,11 @@ const UserPage = () => {
 
   function toggleShow() {
     setShow(!show);
-  }
+  } 
 
   return (
-    <div>
-      <div className="profile-wrapper">
+    <div className="profile-wrapper">
+      <div >
         <img
           className="userImg"
           src="https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg"
