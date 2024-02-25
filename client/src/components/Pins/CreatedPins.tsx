@@ -46,7 +46,7 @@ const CreatedPins = () => {
             </div>
             
             <div className='user-created-pins'>
-                render all user created pins
+                {/* render all user created pins */}
                 <div className='pins-container'>
                     {filterPinsState && pinsState.length > 0 ?
                         (filterPinsState.map((pin) => {

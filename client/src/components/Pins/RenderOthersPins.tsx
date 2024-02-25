@@ -53,7 +53,7 @@ const RenderOthersPins = () => {
           (filterPinsState.map((pin) => {
             return (
               <div className='pin-card-cover' key={pin.title}>
-                <NavbarPin pin_id={pin.pin_id} />
+                {/* <NavbarPin pin_id={pin.pin_id} /> */}
                 <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
               </div>
             )

@@ -72,17 +72,14 @@ const SavedPins = () => {
       <div className="user-saved-pins">
         
         </div>
-        render all user's saved pins (the one he likes)
+        {/* render all user's saved pins (the one he likes) */}
         <div className="pins-container">
           {filterPinsState && pinsState.length > 0 ? (
             filterPinsState.map((pin) => {
               return (
                 <div className="pin-card-cover" key={pin.title}>
                   <button
-                    onClick={() => {
-                      navigate(`/pinPage/${pin.pin_id}`);
-                    }}
-                  >
+                    onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }} >
                     <PinCard pin={pin} />
                   </button>
                 </div>
