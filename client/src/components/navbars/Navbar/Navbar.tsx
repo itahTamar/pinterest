@@ -24,7 +24,6 @@ export const Navbar = () => {
   const { savedSearch, setSavedSearch } = useContext(SavedPinsContext);
   const { otherSearch, setOtherSearch } = useContext(OtherPinsContext);
   const { user } = useContext(UserContext);
-  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     const handleSearchPins = async () => {
@@ -71,15 +70,16 @@ export const Navbar = () => {
   const handleIsAdmin = async () => {
     try {
       console.log("handleIsAdmin click");
-      const response = await handleGetAllUsers();
+      const response = await handleGetAllUsers(); //response = { ok , results }
       console.log("at handleIsAdmin:", response);
       if (response.ok === false) {
         alert(response.error);
         navigate(`/login`)
       } else {
-        if (response) {
-          setAllUsers(response.data.response);
-          navigate(`/admin`, { state: { allUsers } }); // Pass allUsers as state
+        if (response.ok) {
+          const dataAdmin = response.results
+          console.log("dataAdmin:", dataAdmin)
+          navigate(`/admin`, { state: { dataAdmin } }); // Pass allUsers as state
         } else {
           navigate(`/main/homePage`);
         }

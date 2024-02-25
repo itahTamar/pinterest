@@ -1,29 +1,40 @@
-import { useLocation } from 'react-router-dom'
-import { User } from '../types/user'
+import { useLocation, useNavigate } from "react-router-dom";
+import { DataAdmin } from "../types/user";
+import UserCard from "../components/user/UserCard";
+import { deleteUser } from "../api/users/userApi";
 
 const AdminPage = () => {
-    const location = useLocation()
-    const {allUsers} = location.state // Access allUsers from location.state
+  const navigate = useNavigate() 
+  const location = useLocation();
+  const { dataAdmin } = location.state; // Access allUsers from location.state
 
-    const handleDeleteUser = async () => {
-        
-    }
+  const handleDeleteUser = async () => {};
+  if (dataAdmin.user_id === undefined)
+    throw new Error("At handleDeleteUser, user_id is undefined");
+  try {
+    const response = deleteUser(dataAdmin.user_id);
+    console.log("At handleDeleteUser response is: ", response);
+    navigate("/admin");
+  } catch (error) {
+    console.error("Error fetching specific book:", error);
+  }
 
   return (
     <>
-        {allUsers && allUsers.length>0 ? 
-            allUsers.map((user:User) => {
-                return (
-                  <div>
-                    {/* <h1>{user.userFirstName} {user.userLastName}</h1> */}
-                    <button onClick={handleDeleteUser}>Delete user</button>
-                  </div>  
-                )            
-                
-            })
-        : <p>no users</p>}
+      {dataAdmin && dataAdmin.length > 0 ? (
+        dataAdmin.map((data: DataAdmin) => {
+          return (
+            <div>
+              <UserCard data={data} />
+              <button key={data.user_id} onClick={handleDeleteUser}> Delete </button>
+            </div>
+          );
+        })
+      ) : (
+        <p>no users</p>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default AdminPage
+export default AdminPage;

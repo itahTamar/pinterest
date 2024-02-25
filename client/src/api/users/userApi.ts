@@ -53,8 +53,24 @@ export const handleGetAllUsers = async () => {
             console.log(response.data.error)
             return response.data
         }
-        return response
+        return response.data
     } catch (error) {
         console.error(error)
+    }
+} //work ok
+
+export const deleteUser = async (user_id: number) => {
+    try {
+        const response = await axios.delete(`/api/v1/users/${user_id}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+          
+           return results
+        } else {
+            console.error("Error retrieving user:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
     }
 }
