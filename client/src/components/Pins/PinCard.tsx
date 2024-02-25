@@ -23,10 +23,10 @@ const PinCard: FC<PinCardProps> = ({ pin }) => {
 
                     <img className="pin-img" src={pin.image} alt={pin.title} />
 
-                    <div>
+                    {/* <div>
                         <FontAwesomeIcon icon={faEllipsis} />
                         <FontAwesomeIcon icon={faUpload} />
-                    </div>
+                    </div> */}
                 </div>
                 :
                 <p>pin undefine</p>

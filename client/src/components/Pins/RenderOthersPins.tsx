@@ -6,6 +6,7 @@ import { Pin } from '../../types/pin'
 import { NavbarPin } from '../navbars/NavbarPin/NavbarPin'
 import SpecificPin from './SpecificPin'
 import PinCard from './PinCard'
+import './RenderOthersPins.scss'
 
 //work ok
 
