@@ -75,7 +75,7 @@ export const Navbar = () => {
       <button onClick={ handleIsAdmin }>test admin</button>
       <div>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgyyIKl5PAu0J0fSGntKciPTG6aD1Ep4s9bosLM2X-g&s"
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"
           alt="logo"
         />
       </div>

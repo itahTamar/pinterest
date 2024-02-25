@@ -15,9 +15,15 @@ const UserPage = () => {
 
   console.log("at userPage userData:", user);
 
+
   function toggleShowCreate() {
     setShow(false);
   }
+
+  function toggleShow() {
+    setShow(!show);
+  } 
+
 
   function toggleShowSave() {
     setShow(true);
@@ -26,8 +32,8 @@ const UserPage = () => {
   useEffect(()=>{console.log("show=",show)},[show])
 
   return (
-    <div>
-      <div className="profile-wrapper">
+    <div className="profile-wrapper">
+      <div >
         <img
           className="userImg"
           src="https://www.dtapet.com/wp-content/uploads/2022/09/1020-60-60.jpg"
@@ -38,7 +44,7 @@ const UserPage = () => {
         </h2>
         <div className="divUsername">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgyyIKl5PAu0J0fSGntKciPTG6aD1Ep4s9bosLM2X-g&s"
+            src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"
             alt="logo"
           />
           <h4>

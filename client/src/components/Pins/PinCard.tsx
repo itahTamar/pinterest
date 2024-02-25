@@ -3,9 +3,6 @@ import { Pin } from "../../types/pin";
 import "../../style/pinCard.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
-// import { NavbarPin } from "../navbars/NavbarPin/NavbarPin";
-
-//small rendering view with img only
 
 interface PinCardProps {
     pin: Pin;
@@ -26,10 +23,10 @@ const PinCard: FC<PinCardProps> = ({ pin }) => {
 
                     <img className="pin-img" src={pin.image} alt={pin.title} />
 
-                    <div>
+                    {/* <div>
                         <FontAwesomeIcon icon={faEllipsis} />
                         <FontAwesomeIcon icon={faUpload} />
-                    </div>
+                    </div> */}
                 </div>
                 :
                 <p>pin undefine</p>
