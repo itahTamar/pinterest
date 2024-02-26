@@ -1,4 +1,3 @@
-// import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
@@ -91,13 +90,12 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <button onClick={handleIsAdmin}>test admin</button>
-      <div>
-        <img
+      <button onClick={handleIsAdmin}>
+        <img className="admin-btn"
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"
           alt="logo"
         />
-      </div>
+      </button>
       <div>
         <button
           className="HomePageButton"

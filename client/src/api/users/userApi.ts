@@ -22,6 +22,7 @@ export const login = async (email: string, password: string) => {
     }
 } //work ok
 
+//!this two are for the edit user page
 export const handleGetUserByCookie = async () => {
     try {
         return await axios.post("/api/v1/users/getUserByCookie")
@@ -32,7 +33,7 @@ export const handleGetUserByCookie = async () => {
 
 export const updateUser = async (user_id:string ,field: string, update:string | number) => {
     try {
-        const response = await axios.patch(`/api/v1/users/"${user_id}"`, {field, update});
+        const response = await axios.patch(`/api/v1/users/update-user/"${user_id}"`, {field, update});
         const { ok, results } = response.data;
 
         if (ok) {
@@ -44,6 +45,7 @@ export const updateUser = async (user_id:string ,field: string, update:string | 
         console.error("Error:", (error as Error).message);
     }
 }; //
+//!
 
 export const handleGetAllUsers = async () => {
     try {
@@ -61,7 +63,7 @@ export const handleGetAllUsers = async () => {
 
 export const deleteUser = async (user_id: number) => {
     try {
-        const response = await axios.delete(`/api/v1/users/${user_id}`);
+        const response = await axios.delete(`/api/v1/users/delete-user/${user_id}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -73,4 +75,4 @@ export const deleteUser = async (user_id: number) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}
+}//work ok

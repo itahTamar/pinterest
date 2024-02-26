@@ -1,37 +1,35 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DataAdmin } from "../types/user";
 import UserCard from "../components/user/UserCard";
 import { deleteUser } from "../api/users/userApi";
 
 const AdminPage = () => {
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
   const location = useLocation();
   const { dataAdmin } = location.state; // Access allUsers from location.state
+  const [users, setUsers] = useState<DataAdmin[]>(dataAdmin || []);
 
-  const handleDeleteUser = async () => {};
-  if (dataAdmin.user_id === undefined)
-    throw new Error("At handleDeleteUser, user_id is undefined");
-  try {
-    const response = deleteUser(dataAdmin.user_id);
-    console.log("At handleDeleteUser response is: ", response);
-    navigate("/admin");
-  } catch (error) {
-    console.error("Error fetching specific book:", error);
-  }
+  const handleDeleteUser = async (userId: number) => {
+    try {
+      await deleteUser(userId);
+      setUsers(users.filter(user => user.user_id !== userId));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   return (
     <>
-      {dataAdmin && dataAdmin.length > 0 ? (
-        dataAdmin.map((data: DataAdmin) => {
-          return (
-            <div>
-              <UserCard data={data} />
-              <button key={data.user_id} onClick={handleDeleteUser}> Delete </button>
-            </div>
-          );
-        })
+    <button onClick={() => { navigate(`/main/homepage`) }}>Back to Home Page</button>
+      {users.length > 0 ? (
+        users.map((data: DataAdmin) => (
+          <div key={data.user_id}>
+            <UserCard data={data} onDelete={() => handleDeleteUser(data.user_id)} />
+          </div>
+        ))
       ) : (
-        <p>no users</p>
+        <p>No users</p>
       )}
     </>
   );

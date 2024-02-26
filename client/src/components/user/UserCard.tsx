@@ -1,39 +1,45 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { DataAdmin } from "../../types/user";
-// import { deleteUser } from "../../api/users/userApi";
-// import { useNavigate } from "react-router-dom";
+import { deleteUser } from "../../api/users/userApi";
 
 interface DataProp {
   data: DataAdmin;
+  onDelete: () => void; // Function to trigger parent component update
 }
 
-const UserCard: FC<DataProp> = ({ data }) => {
-    // const navigate = useNavigate() 
+const UserCard: FC<DataProp> = ({ data, onDelete }) => {
+  const [isLoading, setIsLoading] = useState(false);
 
-//   const handleDeleteUser = async () => {};
-//   if (data.user_id === undefined)
-//     throw new Error("At handleDeleteUser, user_id is undefined");
-//   try {
-//     const response = deleteUser(data.user_id);
-//     console.log("At handleDeleteUser response is: ", response);
-//     navigate("/admin");
-//   } catch (error) {
-//     console.error("Error fetching specific book:", error);
-//   }
+  const handleDeleteUser = async () => {
+    setIsLoading(true);
+    try {
+      await deleteUser(data.user_id);
+      onDelete(); // Trigger parent component update after successful delete
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
       <table>
-        <tr>
-          <th>{data.first_name}</th>
-          <th>{data.last_name}</th>
-          <th>{data.username}</th>
-          {/* <th>
-            <button key={data.user_id} onClick={handleDeleteUser}>
-              Delete
-            </button>
-          </th> */}
-        </tr>
+        <tbody>
+          <tr>
+            <th>{data.first_name}</th>
+            <th>{data.last_name}</th>
+            <th>{data.username}</th>
+            <th>
+              <button
+                disabled={isLoading}
+                onClick={handleDeleteUser}
+              >
+                {isLoading ? "Deleting..." : "Delete 🗑"}
+              </button>
+            </th>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
