@@ -1,5 +1,10 @@
 .div1 {
   height: 20vw;
+  h2 {
+    font-size: 4vw;
+    color: red;
+    font-weight: 800;
+  }
 }
 
 .div2 {
@@ -40,6 +45,7 @@
       width: 20vw;
       height: 5vw;
       border-radius: 2vw;
+      font-size: 1.3vw;
     }
 
     .img1 {
@@ -59,7 +65,7 @@
       width: 10vw;
       position: absolute;
       right: 60vw;
-      top: 48vw;
+      top: 42vw;
     }
     .img4 {
       width: 10vw;
@@ -75,6 +81,7 @@
   background-color: #ddfefe;
   color: #006b6c;
   display: flex;
+
   img {
     border-radius: 20%;
   }
@@ -93,7 +100,7 @@
     }
 
     .img3 {
-      width: 12vw;
+      width: 11vw;
       position: absolute;
       top: 95vw;
       right: 8vw;
@@ -167,27 +174,20 @@
 }
 
 .div5 {
-  height: 20vw;
   display: flex;
-  height: 43vw;
+  height: 60vw;
   background-image: url("pinterest.png");
-  filter: brightness(40%);
   z-index: -1;
   div {
     width: 50%;
-
-  }
-  .divImg4 {
-
   }
   .divText4 {
     h2 {
       font-size: 4.8vw;
       padding: 5vw 12vw;
       color: white;
-      font-weight:500;
+      font-weight: 500;
       z-index: 1;
-
     }
   }
 }

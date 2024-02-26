@@ -54,7 +54,7 @@ const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
                     (filterPinsState.map((pin) => {
                         return (
                             <div className='pin-card-cover' key={pin.title}>
-                                <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                                <div onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><PinCard pin={pin} /></div>
                             </div>
                         )
                     })) : (

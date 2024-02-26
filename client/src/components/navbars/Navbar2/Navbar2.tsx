@@ -30,7 +30,7 @@ export const Navbar2 = () => {
         <span>Blog</span>
         <button className="login" onClick={() => setShowPopupLogin(true)}>Log in</button>
         {showPopupLogin && <PopupLogin onClose={() => setShowPopupLogin(false)}/> }
-        <button className="register" onClick={() => setShowPopupRegister(true)}>Sigh up</button>
+        <button className="register" onClick={() => setShowPopupRegister(true)}>Sign up</button>
         {showPopupRegister && <PopupRegister onClose={() => setShowPopupRegister(false)}/> }
       </div>
     </div>

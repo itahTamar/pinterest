@@ -4,6 +4,7 @@ import { getAllUsersBoards } from '../../../api/boards/boardApi'
 import { UserContext } from '../../../contexts/userContext'
 import { Board } from '../../../types/board'
 import RenderPinImg from './RenderPinImg'
+import './RenderSuggestedBoards.scss'
 
 //work ok
 export const RenderSuggestedBoards = () => {
@@ -44,9 +45,9 @@ export const RenderSuggestedBoards = () => {
             return (
               <div className='board' key={board.name}>
                 <button onClick={() => {navigate(`/main/boardPage/${board.name}`)}}> {/*this route not work. it should move to the user page with suggested pin in that category, for naw it move to board page in that category*/}
-                  <h3>More ideas for</h3>
+                  {/* <p>More ideas for</p> */}
                   <h2>{board.name}</h2>
-                  <RenderPinImg category={board.name} />
+                  {/* <RenderPinImg category={board.name} /> */}
                 </button>
               </div>
             )
