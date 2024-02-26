@@ -13,6 +13,6 @@ export interface User {
     "info": string,
     "serverStatus": number,
     "warningsStatus": number,
-    "changedRows": number
-    "length": number
+    "changedRows": number,
+    "length": number,
 }
