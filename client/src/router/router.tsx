@@ -12,6 +12,8 @@ import { EditProfile } from "../components/user/EditProfile/EditProfile";
 import { CreatePin } from "../view/CreatePinPage/CreatePin";
 import UserPage from "../view/UserPage/userPage";
 import AdminPage from "../view/AdminPage";
+import { EditPin } from "../components/Pins/EditPin/EditPin";
+import PageOfCreatedPin from "../view/pageOfCreatedPin";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
@@ -25,6 +27,8 @@ export const router = createBrowserRouter([
       { path: "savedPin", element: <SavedPins /> },
       { path: "createPin", element: <CreatePin /> },
       { path: "pinPage/:pin_id", element: <PinPage /> },
+      { path: "PageOfCreatedPin/:pin_id", element: <PageOfCreatedPin /> },
+      { path: "editPin/:pin_id", element: <EditPin /> },
       { path: "editProfile", element: <EditProfile /> },
       { path: "boardPage/:boardName", element: <BoardPage /> },
       {

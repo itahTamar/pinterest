@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPinById } from "../api/pins/pinsApi";
 import ChatBox from "../components/chatBox/ChatBox";
-import { NavbarPin } from "../components/navbars/NavbarPin/NavbarPin";
 import { Pin } from "../types/pin";
 import "./pinPage.scss";
 import SpecificPin from "../components/Pins/SpecificPin";
+import { NavbarCreatedPin } from "../components/navbars/NavbarPin/NavbarCreatedPin";
 
 //rendering the SpecificPin component
-const PinPage = () => {
+const PageOfCreatedPin = () => {
   const [dataPin, setDataPin] = useState<Pin | null>(null);
   let { pin_id } = useParams();
   const navigate = useNavigate();
@@ -48,23 +48,22 @@ const PinPage = () => {
         <div>
           {dataPin != null ? (
             <div className="divL">
-              <SpecificPin key={pin_id} pin={dataPin} /> 
+              <SpecificPin key={pin_id} pin={dataPin} />
             </div>
           ) : (
             <p>Pin not found </p>
           )}
         </div>
-        <div>
-          <NavbarPin pin_id={pin_id} />
-          <ChatBox />
-        </div>
+        {dataPin ?
+          <div>
+            <NavbarCreatedPin pin_id={pin_id} dataPin={dataPin} />
+            <ChatBox />
+          </div> :
+          <p>no data pin</p>
+        }
       </div>
-
-      {/* <div>
-                {dataPin != null ? <RenderSuggestedPin category={dataPin.category} /> : <p>Pin not found</p>}
-            </div > */}
     </>
   );
 };
 
-export default PinPage;
+export default PageOfCreatedPin;

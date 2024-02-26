@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAllUserCreatedPinsByUsername } from '../../api/pins/pinsApi'
 import { UserContext } from '../../contexts/userContext'
 import { Pin } from '../../types/pin'
-import SpecificPin from './SpecificPin'
+import PinCard from './PinCard'
 
 //work ok
 const CreatedPins = () => {
@@ -52,7 +52,7 @@ const CreatedPins = () => {
                         (filterPinsState.map((pin) => {
                             return (
                                 <div className='pin-card-cover' key={pin.title}>
-                                    <button onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }}><SpecificPin pin={pin} /></button>
+                                    <button onClick={() => { navigate(`/main/PageOfCreatedPin/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
                                 </div>
                             )
                         })) : (
