@@ -74,7 +74,7 @@ export async function login(req: Request, res: Response) {
                         userLastName: results[0].last_name
                     }
 
-                    console.log("resultUserName:", userData)
+                    console.log("result userData:", userData)
 
                     const cookie = {
                         uid: results[0].user_id,
@@ -163,8 +163,10 @@ export async function deleteUser(req: Request, res: Response) {
 
 export async function getUserByCookie(req: Request, res: Response) {
     try {
-        const {user} = req.cookies;
-        if (!user) throw new Error("no user at cookie");
+        console.log("Cookies:", req.cookies);
+
+        const {user} = req.cookies.user;
+        if (!user) throw new Error("no user at cookie"); //!here the problem
 
         const secret = process.env.SECRET
         if (!secret) throw new Error("no secret")
@@ -172,7 +174,6 @@ export async function getUserByCookie(req: Request, res: Response) {
         const decodedId = jwt.decode(user, secret)
         const {userID} = decodedId;
         if (!userID) throw new Error("no userID decoded");
-        
 
         const query = `SELECT * FROM users WHERE user_id = ${userID}`;
 
@@ -189,7 +190,7 @@ export async function getUserByCookie(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ok: false, error})
     }
-}
+}//!not working
 
 export async function AdminGetAllUsers(req: Request, res: Response) {
     try {      

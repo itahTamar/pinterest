@@ -15,7 +15,7 @@ const Login = () => {
     try {
       ev.preventDefault();
       console.log(
-        "At handleSubmit login the email, password, username are:",
+        "At handleSubmit login the email & password are:",
         email,
         password
       );

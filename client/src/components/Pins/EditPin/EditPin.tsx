@@ -6,24 +6,26 @@ export const EditPin = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const { dataPin } = location.state; // Access all pin's data from location.stat
-  console.log("dataPin at EditPin:", dataPin)
-  console.log("dataPin.category at EditPin:", dataPin.category)
-  if(!dataPin) throw new Error("not dataPin at EditPin");
-  
-  const [title, setTitle] = useState(dataPin.title)
-  const [description, setDescription] = useState(dataPin.description)
-  const [link, setLink] = useState(dataPin.link)
-  const [board, setBoard] = useState(dataPin.category)
+   
+  const [title, setTitle] = useState<string>("")
+  const [description, setDescription] = useState<string>("")
+  const [link, setLink] = useState<string>("")
+  const [board, setBoard] = useState<string>("")
 
   const handleEditPin = async () => {
+ 
+    const { dataPin } = location.state; // Access all pin's data from location.stat
+    if(!dataPin) throw new Error("No dataPin found in location.state at EditPin");
+    setTitle(dataPin.title)
+    setDescription(dataPin.description)
+    setLink(dataPin.link)
+    setBoard(dataPin.category)
+
     const response = await EditPinById(dataPin.pin_id, title, description, link, board) //this work - the data in DB change
     if (!response) throw new Error("No response from axios EditPinById at EditPin");  //here it collapse: Cannot destructure property 'dataPin' of 'location.state' as it is null.
-      console.log("At handleEditPin the response is:", response) //
-
-      // navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`)
-      navigate(`/main/homePage`)
-
+    console.log("At handleEditPin the response is:", response) //
+     navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`)
+    //  navigate(`/main/homePage`)
   }
 
   return (
