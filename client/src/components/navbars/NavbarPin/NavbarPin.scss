@@ -1,0 +1,12 @@
+.navbarPin{
+    display: flex;
+    justify-content: space-between;
+
+    &-icons{
+        display: flex;
+    }
+
+    &-btns{
+        display: flex;
+    }
+}

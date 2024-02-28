@@ -1,16 +1,23 @@
-import '../../style/popup.css';
-import Register from '../user/Register';
+import "./popup.scss";
+import Register from "../user/Register";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-
-const PopupRegister = () => {
-
-    return (
-        <div className='popup'>
-            <div className='popup-inner'>
-                   <Register/>
-            </div>
-        </div>
-    )
+interface PopupLoginProps {
+  onClose: () => void;
 }
 
-export default PopupRegister
+const PopupRegister: React.FC<PopupLoginProps> = ({ onClose }) => {
+  return (
+    <div className="popup">
+      <div className="popup-inner">
+        <button className="close" onClick={onClose}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+        <Register />
+      </div>
+    </div>
+  );
+};
+
+export default PopupRegister;

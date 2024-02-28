@@ -1,0 +1,44 @@
+.navbar2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  .divImg{
+    display: flex;
+    align-items: center;
+  }
+}
+img {
+  width: 7vw;
+  margin-right: 2vw;
+}
+
+span {
+  font-size: 1.1vw;
+  margin: 0px 1.2vw;
+  font-weight: 500;
+}
+
+.login{
+    color: white;
+    background-color:#E60023;
+    border-radius: 2vw;
+    height: 2.8vw;
+    font-size: 1.2vw;
+    margin-right: 0.5vw;
+
+}
+
+.register{
+    background-color: rgb(227, 228, 229);
+    border-radius: 2vw;
+    height: 2.8vw;
+    font-size: 1.2vw;
+    margin: 1.5vw 0.5vw;
+
+}

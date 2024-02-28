@@ -1,43 +1,71 @@
-import ChatBox from '../components/chatBox/ChatBox';
-import '../style/chatBox.css';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import PinCard from '../components/Pins/PinCard';
-import { getPinById } from '../api/pins/pinsApi';
-import { Pin } from '../types/pin';
+import { useNavigate, useParams } from "react-router-dom";
+import { getPinById } from "../api/pins/pinsApi";
+import PinCard from "../components/Pins/PinCard";
+// import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
+import ChatBox from "../components/chatBox/ChatBox";
+import { NavbarPin } from "../components/navbars/NavbarPin/NavbarPin";
+import { Pin } from "../types/pin";
+import "./pinPage.scss";
 
+//rendering the SpecificPin component
 const PinPage = () => {
-    const [dataPin, setDataPin] = useState<Pin>();
-    let { pin_id } = useParams();
-    const navigate = useNavigate()
+  const [dataPin, setDataPin] = useState<Pin | null>(null);
+  let { pin_id } = useParams();
+  const navigate = useNavigate();
 
-    useEffect(() => {
+  useEffect(() => {
+    const specificPin = async () => {
+      if (pin_id == undefined)
+        throw new Error("the pin_id in PinPage params is undefined!");
+      console.log("at specificPin the pin_id", pin_id);
+      try {
+        const data: Pin = await getPinById(pin_id);
+        if (!data) throw new Error("no dog data");
 
-        const specificPin = async () => {
-            if (pin_id == undefined) throw new Error("the pin_id in PinPage is undefined!");
-            console.log("at specificPin the pin_id",pin_id)
-            try {
-                const data: Pin = await getPinById(pin_id);
-                if (!data) throw new Error("no dog data");
-                
-                console.log("at specificPin the data:", data);
-                setDataPin(data);
-            } catch (error) {
-                console.error("Error fetching specificPin:", error);
-            }
-        };
+        console.log("at specificPin the data:", data);
 
-        specificPin();
-    }, [pin_id]);
+        setDataPin(data);
+      } catch (error) {
+        console.error("Error fetching specificPin:", error);
+      }
+    };
 
-    return (
+    specificPin();
+  }, [pin_id]);
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
+      <div className="mainPP">
         <div>
-            <PinCard key={pin_id} pin={dataPin} />
-            <ChatBox />
-            <button onClick={() => { navigate(-1) }}>Back</button>
+          {dataPin != null ? (
+            <div className="divL">
+              <PinCard key={pin_id} pin={dataPin} />
+            </div>
+          ) : (
+            <p>Pin not found </p>
+          )}
         </div>
-    );
+        <div>
+          <NavbarPin pin_id={pin_id} />
+          <ChatBox />
+        </div>
+      </div>
+
+      {/* <div>
+                {dataPin != null ? <RenderSuggestedPin category={dataPin.category} /> : <p>Pin not found</p>}
+            </div > */}
+    </>
+  );
 };
 
 export default PinPage;

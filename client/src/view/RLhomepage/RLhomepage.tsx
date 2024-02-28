@@ -1,9 +1,9 @@
 // import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Navbar2 } from "../../components/Navbar2/Navbar2";
 import Register from "../../components/user/Register";
 import "./RLhomepage.scss";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Navbar2 } from "../../components/navbars/Navbar2/Navbar2";
 
 const RLhomepage = () => {
   return (
@@ -63,22 +63,22 @@ const RLhomepage = () => {
 
             <img
               className="img2"
-              src="https://i.pinimg.com/564x/8c/19/c5/8c19c5331c300349147e57bd4f7b6ad3.jpg"
+              src="https://i.pinimg.com/564x/06/09/12/060912db19ae3c89079d6f2cd14aa054.jpg"
               alt=""
             />
             <img
               className="img3"
-              src="https://i.pinimg.com/564x/8c/19/c5/8c19c5331c300349147e57bd4f7b6ad3.jpg"
+              src="https://i.pinimg.com/236x/11/62/ae/1162ae6e797110a57a613b3a9937a0e9.jpg"
               alt=""
             />
             <img
               className="img4"
-              src="https://i.pinimg.com/564x/8c/19/c5/8c19c5331c300349147e57bd4f7b6ad3.jpg"
+              src="https://i.pinimg.com/236x/bf/05/4b/bf054bd97ed96b7f2262029fe0f7bf02.jpg"
               alt=""
             />
             <img
               className="img5"
-              src="https://i.pinimg.com/564x/8c/19/c5/8c19c5331c300349147e57bd4f7b6ad3.jpg"
+              src="https://i.pinimg.com/236x/9a/8f/29/9a8f29c7a304d085c2872ef3bdcb2240.jpg"
               alt=""
             />
           </div>

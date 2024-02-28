@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom"
-import { Navbar } from "../Navbar/Navbar"
 import { handleGetUserByCookie } from "../../api/users/userApi"
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../contexts/userContext"
+import { Navbar } from "../navbars/Navbar/Navbar"
 
 const Main = () => {
     const { user, setUser } = useContext(UserContext)
@@ -14,7 +14,7 @@ const Main = () => {
                 if (!result) throw new Error("At main handleGetUserByCookie did't get result");
 
                 const userData = result.data.userData
-                console.log("at gerData in main the userData:", userData)
+                console.log("at getData in main the userData:", userData)
                 if (!userData) throw new Error("at gerData in main userData failed");
 
                 setUser(userData)

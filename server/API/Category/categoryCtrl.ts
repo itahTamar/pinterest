@@ -7,7 +7,7 @@ export async function addCategory(req: express.Request, res: express.Response) {
         const { title } = req.body
         if (!title) throw new Error("no data in FUNCTION addCategory in FILE Ctrl.ts")
 
-        const query = `INSERT INTO categories (title) VALUES ("${title}");`;
+        const query = `INSERT INTO categories IF NOT EXISTS (title) VALUES ("${title}");`;
         
         connection.query(query, (err, results) => {
             try {

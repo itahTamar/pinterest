@@ -1,0 +1,23 @@
+.DropDownMenu{
+    position: absolute;
+    top: 6.8rem;
+    right: 2rem;
+    width: 10vw;
+    padding: 15px;
+    border-radius: 1.5vw;
+    background-color: white;
+    border: 1px solid gray;
+
+}
+
+.DropDownMenu::before{
+    position: absolute;
+    top: -0.7rem;
+    right: 1.1rem;
+    width: 28px;
+    height: 28px;
+    transform: rotate(45deg);
+    background-color: white;
+    border: 1px solid gray;
+
+}

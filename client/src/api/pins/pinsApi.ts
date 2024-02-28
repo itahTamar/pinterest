@@ -1,14 +1,22 @@
 import axios from "axios";
 
+interface PinId {
+    pin_id: string; 
+}
+
 export const getAllUserSavedPinsByUserId = async (user_id: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/saved/${user_id}`);
-        const { ok, results } = response.data;
+        const response1 = await axios.get(`/api/v1/pin/saved/${user_id}`);
+        const { ok, results } = response1.data;
+        console.log("at getAllUserSavedPinsByUserId in pinAIP results:", results)
+        console.log("at getAllUserSavedPinsByUserId in pinAIP results[0].pin_id:", results[0].pin_id)
 
-        if (ok) {
-           return results
+         if (ok) {
+            const response2 = await Promise.all(results.map((result:PinId) => getPinById(result.pin_id)));
+            console.log("at getAllUserSavedPinsByUserId in pinAIP response2:", response2)
+            return response2;
         } else {
-            console.error("Error retrieving Pins:", response.data.error);
+            console.error("Error retrieving Pins:", response1.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
@@ -22,14 +30,16 @@ export const getPinById = async (pin_id: string) => {
 
         if (ok) {
             console.log("at getPinById the response.data:", response.data)
-           return results
+            console.log("at getPinById the results[0]:", results[0])
+
+           return results[0]
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; // work ok
+}; //work ok work ok
 
 export const deletePin = async (pin_id: string) => {
     try {
@@ -47,9 +57,9 @@ export const deletePin = async (pin_id: string) => {
     }
 }; //
 
-export const addPin = async (image: string, title:string,  description:string, link:string, user_id: string) => {
+export const addPin = async (title:string, image: string,   description:string, link:string, user_id: string) => {
     try {
-        const response = await axios.post(`/api/v1/pin/addPin/${user_id}`, {image, title, description, link});
+        const response = await axios.post(`/api/v1/pin/${user_id}`, {title, image,  description, link});
         const { ok, results } = response.data;
 
         if (ok) {
@@ -77,9 +87,10 @@ export const updatePinById = async (pin_id:string ,field: string, update:string 
     }
 }; //
 
-export const getAllOtherUsersPins = async (user_id: string) => {
+//get all other users pin by username
+export const getAllOtherUsersPinsByUsername = async (username: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/${user_id}`);
+        const response = await axios.get(`/api/v1/pin/others/${username}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -94,7 +105,7 @@ export const getAllOtherUsersPins = async (user_id: string) => {
 
 export const getAllUserCreatedPinsByUsername = async (username: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/${username}`);
+        const response = await axios.get(`/api/v1/pin/created/${username}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -106,6 +117,36 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
         console.error("Error:", (error as Error).message);
     }
 }; //work ok
+
+export const getPinsByCategory = async (category: string, username: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/category/${category}?username=${username}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+}; //work ok
+
+export const savePinToUserByUserId = async (pin_id: number | string |undefined, user_id: string) => {
+    try {
+        const response = await axios.post(`/api/v1/pin/favorite/${pin_id}?user_id=${user_id}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+};
 
 export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
     try {
@@ -124,7 +165,7 @@ export const findTitleAtOtherUsersPins = async (user_id: string, text: string) =
 
 export const findTitleAtUserSavedPinsByUserId = async (user_id: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}`, {params: {text: text}});
+        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}/?${text}`);
         const { ok, results } = response.data;
 
         if (ok) {
