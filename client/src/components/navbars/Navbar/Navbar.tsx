@@ -20,6 +20,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
+  const [key, setKey] = useState(true);
   const { savedSearch, setSavedSearch } = useContext(SavedPinsContext);
   const { otherSearch, setOtherSearch } = useContext(OtherPinsContext);
   const { user } = useContext(UserContext);
@@ -27,15 +28,19 @@ export const Navbar = () => {
   useEffect(() => {
     const handleSearchPins = async () => {
       try {
+        if (!user) throw new Error("at handleSearchPins - no user in context");
+
         const findAtOtherPins = await findTitleAtOtherUsersPins(
-          user.userId,
+          user.username,
           text
         );
+        console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins[0]) //got it
+
         if (!findAtOtherPins)
           throw new Error(
             "At Navbar->handleSearchPins: no other pins get from DB"
           );
-        setOtherSearch(findAtOtherPins);
+        setOtherSearch(findAtOtherPins[0]); //!problem
 
         const findAtSaved = await findTitleAtUserSavedPinsByUserId(
           user.userId,
@@ -52,7 +57,7 @@ export const Navbar = () => {
     };
 
     handleSearchPins();
-  }, [text]);
+  }, [key]);
 
   useEffect(() => {
     console.log(text);
@@ -73,11 +78,11 @@ export const Navbar = () => {
       console.log("at handleIsAdmin:", response);
       if (response.ok === false) {
         alert(response.error);
-        navigate(`/login`)
+        navigate(`/login`);
       } else {
         if (response.ok) {
-          const dataAdmin = response.results
-          console.log("dataAdmin:", dataAdmin)
+          const dataAdmin = response.results;
+          console.log("dataAdmin:", dataAdmin);
           navigate(`/admin`, { state: { dataAdmin } }); // Pass allUsers as state
         } else {
           navigate(`/main/homePage`);
@@ -88,10 +93,18 @@ export const Navbar = () => {
     }
   };
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
+      setKey(!key)
+    }
+  };
+
   return (
     <div className="navbar">
       <button onClick={handleIsAdmin}>
-        <img className="admin-btn"
+        <img
+          className="admin-btn"
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"
           alt="logo"
         />
@@ -122,8 +135,10 @@ export const Navbar = () => {
           className="search"
           type="text"
           placeholder="Search"
-          onInput={(ev) => setText((ev.target as HTMLInputElement).value)}
+          onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
+          onKeyDown={handleKeyDown} // Triggering button click on Enter key press
         />
+        <button onClick={() => setKey(!key)}>🔎</button>
       </div>
 
       <div>

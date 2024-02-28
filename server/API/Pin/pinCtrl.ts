@@ -289,8 +289,8 @@ export async function findTitleAtUserSavedPinsByUserId(
     if (!user_id)
       throw new Error("at getAllOtherUsersPins no user id in params");
 
-    const { text } = req.body;
-    if (!text) throw new Error("no text at req.body");
+    const { text } = req.query;
+    if (!text) throw new Error("no text at req.query");
 
     const query = `SELECT * FROM pins 
         JOIN user_favorites_pins
@@ -323,8 +323,8 @@ export async function findTitleAtOtherUsersPinsByUsername(
         "at findTitleAtOtherUsersPinsByUsername no username in params"
       );
 
-    const { text } = req.body;
-    if (!text) throw new Error("no text at req.body");
+    const { text } = req.query;
+    if (!text) throw new Error("no text at req.query");
     console.log(
       "at findTitleAtOtherUsersPinsByUsername at server side, text:",
       text
