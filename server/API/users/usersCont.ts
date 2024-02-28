@@ -57,7 +57,7 @@ export async function login(req: Request, res: Response) {
 
         connection.query(query, async (err, results: Results) => {
             const secret = process.env.SECRET
-            if (!secret) throw new Error("no secret")
+            if (!secret) throw new Error("no secret at .env")
 
             try {
                 if (err) throw err;
@@ -190,3 +190,23 @@ export async function getUserByCookie(req: Request, res: Response) {
         res.status(500).send({ok: false, error})
     }
 }
+
+export async function AdminGetAllUsers(req: Request, res: Response) {
+    try {      
+
+        const query = `SELECT * FROM users`;
+
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                console.log("at AdminGetAllUsers the results:", results)
+                res.send({ok: true, results: results})
+            } catch (error) {
+                res.status(500).send({ok: false, error})
+            }
+        })
+        
+    } catch (error) {
+        res.status(500).send({ok: false, error})
+    }
+}//work ok
