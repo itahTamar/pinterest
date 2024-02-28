@@ -146,7 +146,7 @@ export const savePinToUserByUserId = async (pin_id: number | string |undefined, 
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-};
+}; //work ok
 
 export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
     try {
