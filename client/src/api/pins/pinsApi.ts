@@ -154,9 +154,14 @@ export const findTitleAtOtherUsersPins = async (username: string, text: string) 
         console.log("at findTitleAtOtherUsersPins client-side the text:", text)
 
         const response = await axios.get(`/api/v1/pin/findOther/${username}/?text=${text}`);
+        console.log("at findTitleAtOtherUsersPins client-side the response:", response)
+        console.log("at findTitleAtOtherUsersPins client-side the response.data:", response.data)
+
         const { ok, results } = response.data;
 
         if (ok) {
+            console.log("at findTitleAtOtherUsersPins client-side the results:", results)
+
            return results
         } else {
             console.error("Error retrieving Pins:", response.data.error);
