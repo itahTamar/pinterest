@@ -10,7 +10,7 @@ import "./RenderOthersPins.scss";
 const RenderOtherSearchPin = () => {
   const { savedPinsSearch } = useContext(SavedPinsContext);
 
-  const [filterPinsState, setFilterPins] = useState<Pin[]>(savedPinsSearch);
+  const [filterPinsState] = useState<Pin[]>(savedPinsSearch);
   const navigate = useNavigate();
 
   return (
