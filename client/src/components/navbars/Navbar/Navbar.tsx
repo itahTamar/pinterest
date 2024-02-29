@@ -7,11 +7,9 @@ import { useContext, useEffect, useState } from "react";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
 import {
   findTitleAtOtherUsersPins,
-  findTitleAtUserSavedPinsByUserId,
 } from "../../../api/pins/pinsApi";
 import {
   OtherPinsContext,
-  SavedPinsContext,
   UserContext,
 } from "../../../contexts/userContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
@@ -22,7 +20,6 @@ export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
-  const { savedPinsSearch, setSavedPinsSearch } = useContext(SavedPinsContext);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
   const { user } = useContext(UserContext);
 
@@ -41,17 +38,8 @@ export const Navbar = () => {
           throw new Error(
             "At Navbar->handleSearchPins: no other pins get from DB"
           );
-          setOtherPinsSearch(findAtOtherPins); //!problem
-
-        const findAtSaved = await findTitleAtUserSavedPinsByUserId(
-          user.userId,
-          text
-        );
-        if (!findAtSaved)
-          throw new Error(
-            "At Navbar->handleSearchPins: no saved pins get from DB"
-          );
-          setSavedPinsSearch(findAtSaved);
+          setOtherPinsSearch(findAtOtherPins); //!need to add the rendering after search
+        
       } catch (error) {
         console.error(error);
       }
@@ -63,10 +51,6 @@ export const Navbar = () => {
   useEffect(() => {
     console.log(text);
   }, [text]);
-
-  useEffect(() => {
-    console.log(savedPinsSearch);
-  }, [savedPinsSearch]);
 
   useEffect(() => {
     console.log(otherPinsSearch);
