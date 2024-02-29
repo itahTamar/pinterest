@@ -37,6 +37,7 @@ export const Navbar = () => {
     const handleSearchPins = async () => {
       try {
         if (!user) throw new Error("at handleSearchPins - no user in context");
+        
         if (searchOption === "other") {
           const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
             user.username,
@@ -48,7 +49,7 @@ export const Navbar = () => {
             throw new Error(
               "At Navbar->handleSearchPins: no other pins get from DB"
             );
-          setOtherPinsSearch(findAtOtherPins); //!problem
+          setOtherPinsSearch(findAtOtherPins); 
         }
 
         if (searchOption === "saved") {
