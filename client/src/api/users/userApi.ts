@@ -22,10 +22,9 @@ export const login = async (email: string, password: string) => {
     }
 } //work ok
 
-//!this two are for the edit user page
 export const handleGetUserByCookie = async () => {
     try {
-        return await axios.post("/api/v1/users/getUserByCookie")
+        return await axios.get("/api/v1/users/getUserByCookie")
     } catch (error) {
         console.error(error)
     }

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SavedPinsContext } from "../../contexts/userContext";
+import { SavedPinsContext } from "../../contexts/pinsContext";
 import { Pin } from "../../types/pin";
 import PinCard from "./PinCard";
 import "./RenderOthersPins.scss";

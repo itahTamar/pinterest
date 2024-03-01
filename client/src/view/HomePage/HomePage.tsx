@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { RenderSuggestedBoards } from '../../components/board/addBoard/RenderSuggestedBoards'
 import RenderOthersPins from '../../components/Pins/RenderOthersPins'
-import { OtherPinsContext } from '../../contexts/userContext';
+import { OtherPinsContext } from '../../contexts/pinsContext';
 import RenderOtherSearchPin from '../../components/Pins/RenderOtherSearchPin';
 
 export const HomePage = () => {

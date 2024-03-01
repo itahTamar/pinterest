@@ -9,11 +9,11 @@ import {
   findTitleAtOtherUsersPins,
 } from "../../../api/pins/pinsApi";
 import {
-  OtherPinsContext,
   UserContext,
 } from "../../../contexts/userContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
 import { Pin } from "../../../types/pin";
+import { OtherPinsContext } from "../../../contexts/pinsContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Navbar = () => {
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const { user } = useContext(UserContext);
+  const  user  = useContext(UserContext);
 
   useEffect(() => {
     const handleSearchPins = async () => {

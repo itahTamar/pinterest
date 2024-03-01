@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import { getAllUserCreatedPinsByUsername } from '../../api/pins/pinsApi'
-import { OtherPinsContext, SavedPinsContext, UserContext } from '../../contexts/userContext'
+import { UserContext } from '../../contexts/userContext'
 import { useContext, useEffect, useState } from 'react'
 import { Pin } from '../../types/pin'
 import SpecificPin from './SpecificPin'
+import { OtherPinsContext, SavedPinsContext } from '../../contexts/pinsContext'
 
 //work ok
 const CreatedPins = () => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
+    const user = useContext(UserContext)
     const { otherSearch } = useContext(OtherPinsContext)
     const { savedSearch } = useContext(SavedPinsContext)
 

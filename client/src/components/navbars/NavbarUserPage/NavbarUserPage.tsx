@@ -12,11 +12,11 @@ import {
 import {
   OtherPinsContext,
   SavedPinsContext,
-  UserContext,
-} from "../../../contexts/userContext";
+} from "../../../contexts/pinsContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
 import { Pin } from "../../../types/pin";
 import { DropDownOption } from "../../dropDownOption/DropDownOption";
+import { UserContext } from "../../../contexts/userContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const Navbar = () => {
   const [openOption, setOpenOption] = useState(false);
   const { savedPinsSearch, setSavedPinsSearch } = useContext(SavedPinsContext);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const { user } = useContext(UserContext);
+  const  user  = useContext(UserContext);
 
   const handleDataFromChild = (data:string) => {
     setSearchOption(data)

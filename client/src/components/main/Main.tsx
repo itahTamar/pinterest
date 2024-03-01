@@ -1,15 +1,22 @@
 import { Outlet } from "react-router-dom";
-import { handleGetUserByCookie } from "../../api/users/userApi";
+// import { handleGetUserByCookie } from "../../api/users/userApi";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { Navbar } from "../navbars/Navbar/Navbar";
+import { handleGetUserByCookie } from "../../api/users/userApi";
+// import { User } from "../../types/user";
 
 const Main = () => {
-  // const { user, setUser } = useContext(UserContext)
-  const [user, setUser] = useState();
+  const { user, setUser } = useContext(UserContext)
+  const [currentUser, setCurrentUsr] = useState()
+  console.log("at Main.tsx the user from UserContext:", user)
 
   useEffect(() => {
-    const getData = async () => {
+    getData();
+    console.log("at Main.tsx user in context:", user);
+  }, []);
+
+    const getData = async () => { //!this doesn't happened
       try {
         const result = await handleGetUserByCookie();
         if (!result)
@@ -19,20 +26,17 @@ const Main = () => {
         console.log("at getData in main the userData:", userData);
         if (!userData) throw new Error("at gerData in main userData failed");
 
-        setUser(userData);
+        setCurrentUsr(userData);
+
       } catch (error) {
         console.error(error);
       }
     };
 
-    getData();
-
-    console.log("user in context:", user);
-  }, []);
-
   return (
     <div>
-      <UserContext.Provider value={{ user, setUser }}>
+      {/* @ts-ignore */}
+      <UserContext.Provider value={{ currentUser, setUser }}>
         <Navbar />
         <Outlet />
       </UserContext.Provider>
