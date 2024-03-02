@@ -8,7 +8,11 @@ import SpecificPin from "./SpecificPin";
 import PinCard from "./PinCard";
 import "./RenderOthersPins.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faEllipsis,
+  faUpload,
+} from "@fortawesome/free-solid-svg-icons";
 
 //work ok
 
@@ -64,24 +68,37 @@ const RenderOthersPins = () => {
             return (
               <div className="pin-card-cover" key={pin.title}>
                 <div className="btnTop">
-                  <button>board</button>
-                  <button>save</button>
-                </div>
-
-                <div className="img-container"
+                    <div>
+                      <label>
+                        board <FontAwesomeIcon icon={faCaretDown} />
+                      </label>
+                    </div>
+                    <div>
+                      <button className="save">save</button>
+                    </div>
+                  </div>
+                <div
+                  className="img-container"
                   onClick={() => {
                     navigate(`/main/pinPage/${pin.pin_id}`);
                   }}
                 >
-                  <PinCard pin={pin} />
-                </div>
-                <div className="btnBottom">
-                  <button>
-                    <FontAwesomeIcon icon={faUpload} />
-                  </button>
-                  <button>
-                    <FontAwesomeIcon icon={faEllipsis} />
-                  </button>
+                  
+                  <div className="img">
+                    <PinCard pin={pin} />
+                  </div>
+                  {/* <div className="btnBottom">
+                    <div>
+                      <button>
+                        <FontAwesomeIcon icon={faUpload} />
+                      </button>
+                    </div>
+                    <div>
+                      <button>
+                        <FontAwesomeIcon icon={faEllipsis} />
+                      </button>
+                    </div>
+                  </div> */}
                 </div>
               </div>
             );

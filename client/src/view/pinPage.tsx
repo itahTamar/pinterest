@@ -38,13 +38,13 @@ const PinPage = () => {
 
   return (
     <>
-      <button
+      <div className="back"
         onClick={() => {
           navigate(-1);
         }}
       >
         <FontAwesomeIcon icon={faArrowLeft} />
-      </button>
+      </div>
       <div className="mainPP">
         <div>
           {dataPin != null ? (

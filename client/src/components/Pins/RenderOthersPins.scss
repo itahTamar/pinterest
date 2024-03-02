@@ -1,5 +1,57 @@
-.pins-container{
-    display: grid;
-    grid-template-columns: repeat(5);
+.pins-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  height: auto;
+  margin-top: 20vw;
+  display: grid;
+  grid-template-columns: repeat(5, 18vw);
 }
 
+.pin-card-cover {
+  .img-container {
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .btnTop {
+    width: 16vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+
+    .save {
+      color: white;
+      background-color: #e60023;
+      border-radius: 2vw;
+      padding: 0.5vw 0.8vw;
+      font-size: 1vw;
+    }
+    label {
+      margin-left: 0.5vw;
+      color: white;
+      font-size: 1vw;
+      font-weight: 600;
+    }
+  }
+
+  .btnBottom {
+    width: 16vw;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+   
+    
+  }
+}
+
+.pin-card-cover .img-container .btnTop {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .pin-card-cover .img-container:hover .btnTop {
+    opacity: 1;
+  }
+  
