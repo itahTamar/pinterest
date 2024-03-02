@@ -62,27 +62,27 @@ const RenderOthersPins = () => {
         {filterPinsState && pinsState.length > 0 ? (
           filterPinsState.map((pin) => {
             return (
-              <div>
-                
-                <div className="pin-card-cover" key={pin.title}>
-                <div>
+              <div className="pin-card-cover" key={pin.title}>
+                <div className="btnTop">
                   <button>board</button>
                   <button>save</button>
                 </div>
-                  {/* <NavbarPin pin_id={pin.pin_id} /> */}
-                  <button
-                    onClick={() => {
-                      navigate(`/main/pinPage/${pin.pin_id}`);
-                    }}
-                  >
-                    <PinCard pin={pin} />
+
+                <div className="img-container"
+                  onClick={() => {
+                    navigate(`/main/pinPage/${pin.pin_id}`);
+                  }}
+                >
+                  <PinCard pin={pin} />
+                </div>
+                <div className="btnBottom">
+                  <button>
+                    <FontAwesomeIcon icon={faUpload} />
                   </button>
-                  <div>
-                  <button><FontAwesomeIcon icon={faUpload} /></button>
-                  <button><FontAwesomeIcon icon={faEllipsis} /></button>
+                  <button>
+                    <FontAwesomeIcon icon={faEllipsis} />
+                  </button>
                 </div>
-                </div>
-                
               </div>
             );
           })

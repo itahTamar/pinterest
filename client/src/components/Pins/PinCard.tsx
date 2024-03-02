@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Pin } from "../../types/pin";
-import "../../style/pinCard.css";
+import "./PinCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,7 +15,11 @@ const PinCard: FC<PinCardProps> = ({ pin }) => {
   return (
     <>
       {pin != undefined ? (
-        <img className="pin-img" src={pin.image} alt={pin.title} />
+        <div className="container">
+          <div className="imgs">
+            <img src={pin.image} alt={pin.title} />
+          </div>
+        </div>
       ) : (
         <p>pin undefine</p>
       )}
