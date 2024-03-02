@@ -1,21 +1,17 @@
-.boards-container{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 10vw;
-    .board{
-        padding: 1vw;
-        border: 0.2vw solid red;
-        border-radius: 1vw;
-        margin: 0px 1vw;
-        
-        h2{
-            font-size: 3vw;
-            color: grey;
-    
-        }
+.boards-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10vw;
+  .board {
+    padding: 1vw;
+    border: 0.2vw solid red;
+    border-radius: 1vw;
+    margin: 0px 1vw;
 
-
+    h2 {
+      font-size: 3vw;
+      color: grey;
     }
-
+  }
 }
