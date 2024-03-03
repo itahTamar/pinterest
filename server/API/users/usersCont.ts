@@ -203,7 +203,7 @@ export async function getUserByCookie(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ok: false, error})
     }
-}
+} //!not work
 
 export async function AdminGetAllUsers(req: Request, res: Response) {
     try {      
