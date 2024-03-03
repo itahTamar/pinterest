@@ -56,7 +56,7 @@ export const AddPin = () => {
             <p>Choose a file or drag and drop it here</p>
           </div>
           <hr />
-          <button onClick={toggleShow}>
+          <button type="button" onClick={toggleShow}>
             *Save from URL
           </button>
           <div className="">{show && <AddInput/>}</div>

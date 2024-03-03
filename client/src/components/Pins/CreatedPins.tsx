@@ -11,8 +11,8 @@ const CreatedPins = () => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
     const navigate = useNavigate()
-    const user = useContext(UserContext)
-    const { otherSearch } = useContext(OtherPinsContext)
+    const {user} = useContext(UserContext)
+    const { otherPinsSearch } = useContext(OtherPinsContext)
     const { savedSearch } = useContext(SavedPinsContext)
 
     const handleGetAllUserCreatedPinsByUsername = async () => {
@@ -28,9 +28,9 @@ const CreatedPins = () => {
                 setPins(savedSearch)
                 setFilterPins(savedSearch)
             } else {
-                if (otherSearch) {
-                    setPins(otherSearch)
-                    setFilterPins(otherSearch) //?why i need that too?
+                if (otherPinsSearch) {
+                    setPins(otherPinsSearch)
+                    setFilterPins(otherPinsSearch) //?why i need that too?
                 } else {
                     //put the list in PinsState and filterPinsState
                     setPins(response)

@@ -98,6 +98,7 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
       </button>
       <div>
         <button
+      
           className="HomePageButton"
           onClick={() => {
             navigate(`/main/homePage`);
