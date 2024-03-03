@@ -38,7 +38,8 @@ const PinPage = () => {
 
   return (
     <>
-      <div className="back"
+      <div
+        className="back"
         onClick={() => {
           navigate(-1);
         }}
@@ -59,6 +60,10 @@ const PinPage = () => {
           <NavbarPin pin_id={pin_id} />
           <ChatBox />
         </div>
+      </div>
+      <div className="morePins">
+        <h3>More to explore</h3>
+        <div>more pins from same category</div>
       </div>
 
       {/* <div>

@@ -10,7 +10,6 @@
   justify-content: center;
   align-items: flex-start;
   margin-top: 8rem;
-  width: 70vw;
 
   .divL {
     width: 50%;
@@ -21,5 +20,13 @@
 
   .divR {
     width: 50%;
+  }
+}
+
+.morePins{
+  h3{
+    margin-top: 1.5vw;
+    font-weight: 600;
+    font-size: 1.5vw;
   }
 }

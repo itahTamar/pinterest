@@ -1,14 +1,23 @@
 .boards-container {
   display: flex;
   justify-content: center;
-  position: absolute;
-  top: 10vw;
+  position: relative;
+  top: 8rem;
   .board {
     padding: 1vw;
-    border: 0.2vw solid red;
-    border-radius: 1vw;
+    width: 13vw;
+    background-color: rgb(204, 204, 204);
+    border-radius: 7vw;
     margin: 0px 1vw;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(204, 204, 204, 0.466);
+    }
 
+    p {
+      font-weight: 700;
+      font-size: 1.2vw;
+    }
     h2 {
       font-size: 3vw;
       color: grey;
