@@ -28,7 +28,7 @@ export const handleGetUserByCookie = async () => {
     } catch (error) {
         console.error(error)
     }
-}
+} 
 
 export const updateUser = async (user_id:string ,field: string, update:string | number) => {
     try {

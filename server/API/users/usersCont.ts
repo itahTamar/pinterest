@@ -171,30 +171,25 @@ export async function getUserByCookie(req: Request, res: Response) {
         if (!secret) throw new Error("no secret")
         console.log("secret is:", secret)
        
-        let decodedId;
-        try {
-            // Decode token synchronously within a try-catch block
-            decodedId = jwt.decode(user, secret);
-        } catch (decodeError) {
-            throw new Error("Failed to decode user ID: " + decodeError.message);
-        } 
-        console.log("userId after decodedId:", decodedId)//!not see
-
-        const {userID} = decodedId;
-        if (!userID) throw new Error("no userID decoded");
-        console.log("userId after decoded:", userID)
+        const decodedId = jwt.decode(user, secret);
+      if (!decodedId)throw new Error("Failed to decode user ID");
 
         const { uid } = decodedId;
         console.log("UserID after decoding:", uid);
-        // console.log("userId after decoded:", userID.uid) //!not see
+        console.log("userId after decoded:", uid)
 
         const query = `SELECT * FROM users WHERE user_id = ${uid}`;
 
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-
-                res.send({ok: true, results: results[0]})
+                const resultToSend = {
+                    username: results[0].username ,
+                    firstName: results[0].first_name ,
+                    lastName: results[0].last_name ,
+                    userId: results[0].user_id}
+                console.log("results[0].username:",resultToSend)
+                res.send({ok: true, results: resultToSend })
             } catch (error) {
                 res.status(500).send({ok: false, error})
             }
@@ -203,7 +198,7 @@ export async function getUserByCookie(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ok: false, error})
     }
-} //!not work
+} //work ok
 
 export async function AdminGetAllUsers(req: Request, res: Response) {
     try {      

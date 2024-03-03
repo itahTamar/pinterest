@@ -18,7 +18,7 @@ import { Pin } from "../../../types/pin";
 import { DropDownOption } from "../../dropDownOption/DropDownOption";
 import { UserContext } from "../../../contexts/userContext";
 
-export const Navbar = () => {
+export const NavbarUserPage = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
@@ -27,7 +27,7 @@ export const Navbar = () => {
   const [openOption, setOpenOption] = useState(false);
   const { savedPinsSearch, setSavedPinsSearch } = useContext(SavedPinsContext);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const  user  = useContext(UserContext);
+  const  {user}  = useContext(UserContext);
 
   const handleDataFromChild = (data:string) => {
     setSearchOption(data)
@@ -39,10 +39,7 @@ export const Navbar = () => {
         if (!user) throw new Error("at handleSearchPins - no user in context");
         
         if (searchOption === "other") {
-          const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
-            user.username,
-            text
-          );
+          const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(user.username, text);
           console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
 
           if (!findAtOtherPins)

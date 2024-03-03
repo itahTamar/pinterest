@@ -3,9 +3,9 @@ import { User } from "../types/user";
 
 export const UserContext = createContext<User>({
   user: {
-    userFirstName: "", 
+    firstName: "", 
     userId: "",
-    userLastName: "",
+    lastName: "",
     username: "",
   },
   setUser: ({}: {}) => ({})

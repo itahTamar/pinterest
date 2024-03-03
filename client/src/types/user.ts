@@ -1,8 +1,8 @@
 export interface User {
   user: {
-    userFirstName: string;
+    firstName: string;
     userId: string;
-    userLastName: string;
+    lastName: string;
     username: string;
   };
   setUser: ({}) => {};
