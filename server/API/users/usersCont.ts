@@ -165,16 +165,18 @@ export async function getUserByCookie(req: Request, res: Response) {
     try {
         const {user} = req.cookies;
         if (!user) throw new Error("no user at cookie");
+        console.log("at getUserByCookie user at cookie:", user)
 
         const secret = process.env.SECRET
         if (!secret) throw new Error("no secret")
        
         const decodedId = jwt.decode(user, secret)
-        const {userID} = decodedId;
-        if (!userID) throw new Error("no userID decoded");
-        
+        console.log("at getUserByCookie decodedId:", decodedId)
 
-        const query = `SELECT * FROM users WHERE user_id = ${userID}`;
+        const {uid} = decodedId;
+        console.log("at getUserByCookie uid:", uid)
+
+        const query = `SELECT * FROM users WHERE user_id = ${uid}`;
 
         connection.query(query, (err, results) => {
             try {
@@ -189,7 +191,7 @@ export async function getUserByCookie(req: Request, res: Response) {
     } catch (error) {
         res.status(500).send({ok: false, error})
     }
-}
+} //work ok
 
 export async function AdminGetAllUsers(req: Request, res: Response) {
     try {      
