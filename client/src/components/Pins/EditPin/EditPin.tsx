@@ -13,7 +13,7 @@ export const EditPin = () => {
   const [board, setBoard] = useState<string>("")
 
   const handleEditPin = async () => {
- 
+    console.log("hello from handleEditPin")
     const { dataPin } = location.state; // Access all pin's data from location.stat
     console.log("at handleEditPin at editPin the dataPin is:", dataPin)
     if(!dataPin) throw new Error("No dataPin found in location.state at EditPin");
