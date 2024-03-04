@@ -24,11 +24,11 @@ const CreatedPins = () => {
             if (!response) throw new Error("No response from axios getAllUserCreatedPinsByUsername at CreatedPins");
             console.log("At CreatedPins/getAllUserCreatedPinsByUsername the response is:", response) //got it
 
-            if (savedSearch) {
+            if (savedSearch.length > 0) {
                 setPins(savedSearch)
                 setFilterPins(savedSearch)
             } else {
-                if (otherPinsSearch) {
+                if (otherPinsSearch.length > 0) {
                     setPins(otherPinsSearch)
                     setFilterPins(otherPinsSearch) //?why i need that too?
                 } else {
@@ -44,7 +44,7 @@ const CreatedPins = () => {
 
     useEffect(() => {
         handleGetAllUserCreatedPinsByUsername()
-    }, []) //only run this effect on the initial render
+    }, [user]) //only run this effect on the initial render
 
 
     return (
