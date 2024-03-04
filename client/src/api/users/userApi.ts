@@ -22,14 +22,13 @@ export const login = async (email: string, password: string) => {
     }
 } //work ok
 
-
 export const handleGetUserByCookie = async () => {
     try {
-        return await axios.post("/api/v1/users/getUserByCookie")
+        return await axios.get("/api/v1/users/getUserByCookie")
     } catch (error) {
         console.error(error)
     }
-} //!not working - server error 404 
+} 
 
 //!this for the edit user page
 export const updateUser = async (user_id:string ,field: string, update:string | number) => {

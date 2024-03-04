@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
-import "./Navbar.scss";
+// import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
@@ -10,24 +10,22 @@ import {
   findTitleAtUserSavedPinsByUserId,
 } from "../../../api/pins/pinsApi";
 import {
-  OtherPinsContext,
-  SavedPinsContext,
-  UserContext,
-} from "../../../contexts/userContext";
+  PinsContext,
+} from "../../../contexts/pinsContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
 import { Pin } from "../../../types/pin";
 import { DropDownOption } from "../../dropDownOption/DropDownOption";
+import { UserContext } from "../../../contexts/userContext";
 
-export const Navbar = () => {
+export const NavbarUserPage = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
   const [searchOption, setSearchOption] = useState("other")  //"other" || "saved" - use from chaild component
   const [openOption, setOpenOption] = useState(false);
-  const { savedPinsSearch, setSavedPinsSearch } = useContext(SavedPinsContext);
-  const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const { user } = useContext(UserContext);
+  const { PinsSearch, setPinsSearch } = useContext(PinsContext);
+  const  {user}  = useContext(UserContext);
 
   const handleDataFromChild = (data:string) => {
     setSearchOption(data)
@@ -39,17 +37,14 @@ export const Navbar = () => {
         if (!user) throw new Error("at handleSearchPins - no user in context");
         
         if (searchOption === "other") {
-          const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
-            user.username,
-            text
-          );
+          const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(user.username, text);
           console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
 
           if (!findAtOtherPins)
             throw new Error(
               "At Navbar->handleSearchPins: no other pins get from DB"
             );
-          setOtherPinsSearch(findAtOtherPins); 
+          setPinsSearch(findAtOtherPins); 
         }
 
         if (searchOption === "saved") {
@@ -62,7 +57,7 @@ export const Navbar = () => {
             throw new Error(
               "At Navbar->handleSearchPins: no saved pins get from DB"
             );
-          setSavedPinsSearch(findAtSaved);
+          setPinsSearch(findAtSaved);
         }
       } catch (error) {
         console.error(error);
@@ -77,12 +72,8 @@ export const Navbar = () => {
   }, [text]);
 
   useEffect(() => {
-    console.log(savedPinsSearch);
-  }, [savedPinsSearch]);
-
-  useEffect(() => {
-    console.log(otherPinsSearch);
-  }, [otherPinsSearch]);
+    console.log(PinsSearch);
+  }, [PinsSearch]);
 
   const handleIsAdmin = async () => {
     try {

@@ -12,7 +12,7 @@ export async function addPin(req: express.Request, res: express.Response) {
 
     const { user_id } = req.params;
     if (!user_id) throw new Error("at addPin no user_id in params");
-
+        console.log(user_id, title, image, description, link)
     const usernameQuery = `SELECT username FROM users WHERE user_id=${user_id};`;
     connection.query(usernameQuery, (err, results1) => {
       try {

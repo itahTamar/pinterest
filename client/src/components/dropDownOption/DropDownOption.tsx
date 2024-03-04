@@ -1,4 +1,4 @@
-import "./DropDownMenu.scss"
+// import "./DropDownMenu.scss"
 
 interface ChildProps {
   sendDataToParent: (data: string) => void;

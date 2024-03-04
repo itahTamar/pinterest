@@ -1,8 +1,8 @@
 export interface User {
   user: {
-    userFirstName: string;
+    firstName: string;
     userId: string;
-    userLastName: string;
+    lastName: string;
     username: string;
   };
   setUser: ({}) => {};
@@ -21,3 +21,12 @@ export interface DataAdmin {
   username: string;
   website: string;
 }
+
+// export interface User {
+
+//     userFirstName: string;
+//     userId: string;
+//     userLastName: string;
+//     username: string;
+
+// }

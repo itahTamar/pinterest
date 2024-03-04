@@ -3,25 +3,27 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
 import {
   findTitleAtOtherUsersPins,
 } from "../../../api/pins/pinsApi";
 import {
-  OtherPinsContext,
   UserContext,
 } from "../../../contexts/userContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
 import { Pin } from "../../../types/pin";
-
-export const Navbar = () => {
+import { OtherPinsContext } from "../../../contexts/pinsContext";
+interface NavbarProps {
+  setCheck: (value: string) => void;
+}
+export const Navbar: FC<NavbarProps> = ({setCheck}) => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const { user } = useContext(UserContext);
+  const  {user}  = useContext(UserContext);
 
   useEffect(() => {
     const handleSearchPins = async () => {
@@ -96,6 +98,7 @@ export const Navbar = () => {
       </button>
       <div>
         <button
+      
           className="HomePageButton"
           onClick={() => {
             navigate(`/main/homePage`);
@@ -131,6 +134,7 @@ export const Navbar = () => {
           className="icon"
           id="user"
           onClick={() => {
+            setCheck("someValue");
             navigate(`/main/userPage`);
           }}
         >

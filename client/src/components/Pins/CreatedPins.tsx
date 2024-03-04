@@ -1,17 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import { getAllUserCreatedPinsByUsername } from '../../api/pins/pinsApi'
-import { OtherPinsContext, SavedPinsContext, UserContext } from '../../contexts/userContext'
+import { UserContext } from '../../contexts/userContext'
 import { useContext, useEffect, useState } from 'react'
 import { Pin } from '../../types/pin'
-import PinCard from './PinCard'
+import SpecificPin from './SpecificPin'
+import { OtherPinsContext, SavedPinsContext } from '../../contexts/pinsContext'
 
 //work ok
 const CreatedPins = () => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
-    const { otherSearch } = useContext(OtherPinsContext)
+    const {user} = useContext(UserContext)
+    const { otherPinsSearch } = useContext(OtherPinsContext)
     const { savedSearch } = useContext(SavedPinsContext)
 
     const handleGetAllUserCreatedPinsByUsername = async () => {
@@ -27,9 +28,9 @@ const CreatedPins = () => {
                 setPins(savedSearch)
                 setFilterPins(savedSearch)
             } else {
-                if (otherSearch) {
-                    setPins(otherSearch)
-                    setFilterPins(otherSearch) //?why i need that too?
+                if (otherPinsSearch) {
+                    setPins(otherPinsSearch)
+                    setFilterPins(otherPinsSearch) //?why i need that too?
                 } else {
                     //put the list in PinsState and filterPinsState
                     setPins(response)
@@ -59,7 +60,7 @@ const CreatedPins = () => {
                         (filterPinsState.map((pin) => {
                             return (
                                 <div className='pin-card-cover' key={pin.title}>
-                                    <button onClick={() => { navigate(`/main/PageOfCreatedPin/${pin.pin_id}`) }}><PinCard pin={pin} /></button>
+                                    <button onClick={() => { navigate(`/main/PageOfCreatedPin/${pin.pin_id}`) }}><SpecificPin pin={pin} /></button>
                                 </div>
                             )
                         })) : (

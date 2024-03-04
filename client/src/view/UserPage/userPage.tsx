@@ -5,10 +5,12 @@ import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import "./userPage.scss"
 import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
+import RenderUserPageSearchPin from "../../components/Pins/RenderUserPageSearchPin";
 
 const UserPage = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);  //true is showing the saved-pins 
+  const [showSearch, setShowSearch] = useState(false)
   const { user } = useContext(UserContext);
 
   if (!user) throw new Error("At UserPage no user in context");
@@ -21,7 +23,7 @@ const UserPage = () => {
   }
 
   function toggleShow() {
-    setShow(!show);
+    setShowSearch(!showSearch);
   } 
 
 
@@ -40,7 +42,7 @@ const UserPage = () => {
           alt="jungle"
         />
         <h2>
-          {user.userFirstName} {user.userLastName}
+          {user.firstName} {user.lastName}
         </h2>
         <div className="divUsername">
           <img
@@ -64,11 +66,16 @@ const UserPage = () => {
         </div>
       </div>
 
-          <div>
-        <RenderUserBoards />
+      <div className="userSearch">   {/* here we render the search results of this page*/}
+          { showSearch  ? 
+          <RenderUserPageSearchPin/> : 
+          <div className="">{show ? <SavedPins /> : <CreatedPins />}</div> }
       </div>
 
-      <div className="">{show ? <SavedPins /> : <CreatedPins /> }</div>
+      <div>
+        <RenderUserBoards />
+      </div>
+      
     </div>
   );
 };
