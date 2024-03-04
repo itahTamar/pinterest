@@ -12,7 +12,7 @@ import { CreatePin } from "../view/CreatePinPage/CreatePin";
 import UserPage from "../view/UserPage/userPage";
 import AdminPage from "../view/AdminPage";
 import { EditPin } from "../components/Pins/EditPin/EditPin";
-import Layout from "../components/main/Layout";
+import Layout from "../components/main/Main";
 import PageOfCreatedPin from "../view/PageOfCreatedPin";
 
 export const router = createBrowserRouter([

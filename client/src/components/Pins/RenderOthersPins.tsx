@@ -18,7 +18,7 @@ const RenderOthersPins = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-  const handleGetAllOtherUsersPins = async () => {
+    const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId)
         throw new Error(
@@ -46,7 +46,7 @@ const RenderOthersPins = () => {
 
   useEffect(() => {
     handleGetAllOtherUsersPins();
-  }, []); //only run this effect on the initial render
+  }, [user]); //only run this effect on the initial render
 
   useEffect(() => {
     console.log("PinsState:", pinsState); //got it

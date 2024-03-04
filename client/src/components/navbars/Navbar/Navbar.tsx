@@ -24,7 +24,7 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
   const [key, setKey] = useState(true);
   const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
   const  {user}  = useContext(UserContext);
-
+  
   useEffect(() => {
     const handleSearchPins = async () => {
       try {
