@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getAllUserSavedPinsByUserId } from "../../api/pins/pinsApi";
 import { UserContext } from "../../contexts/userContext";
 import { Pin } from "../../types/pin";
-import SpecificPin from "./SpecificPin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import PinCard from "./PinCard";

@@ -1,5 +1,6 @@
 import express from 'express';
 import connection from '../../DB/database';
+import { Results } from '../interfaces/interfaces';
 
 export async function addPin(req: express.Request, res: express.Response) {
     try {
@@ -68,18 +69,17 @@ export async function deletePin(req, res) {
     }
 }
 
-export async function updatePin(req, res) {
+export async function editPin(req, res) {
     try {
         const { pin_id } = req.params;
         if (!pin_id) throw new Error("No Id provided on updatePin");
-        const { field, update } = req.body;
-        if (!field || !update) throw new Error("No field or update provided on updatePin");
-        const query = `UPDATE pins SET ${field} = '${update}' WHERE (pin_id = ${pin_id});`;
-
-        connection.query(query, (err, results) => {
+        const { title, description, link, board } = req.body;
+        console.log(title, description, link, board)
+        if (!title || !board) throw new Error("No data to update provided on EditPin");
+        const query = `UPDATE pins SET title = '${title}', description = '${description}', link = '${link}', category = '${board}' WHERE (pin_id = ${pin_id});`
+        connection.query(query, (err, results:Results) => {
             try {
                 if (err) throw err;
-                //@ts-ignore
                 if (results.changedRows) {
                     const query2 = `SELECT * from pins WHERE (pin_id = ${pin_id});`
                     connection.query(query2, (err2, results2) => {
@@ -103,18 +103,18 @@ export async function updatePin(req, res) {
         console.log(error)
         res.status(500).send({ ok: false, error })
     }
-}
+} //work ok
 
 export async function getAllUserSavedPinsByUserId(req: express.Request, res: express.Response) {
     try {
         const { user_id } = req.params
         if (!user_id) throw new Error("no user_id in params");
-        
+
         const query = `SELECT * FROM user_favorites_pins WHERE user_id = "${user_id}";`
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-                    console.log("save", results)
+                console.log("save", results)
                 res.send({ ok: true, results })
             } catch (error) {
                 console.log(error)
@@ -221,7 +221,7 @@ export async function getPinsByCategory(req: express.Request, res: express.Respo
 //!need to fix to be no doplication - 
 export async function savePinToUserByUserId(req: express.Request, res: express.Response) {
     try {
-        const {pin_id} = req.params
+        const { pin_id } = req.params
         console.log(pin_id)
         if (!pin_id || pin_id == undefined) throw new Error("at savePinToUserByUserId no pin_id in params or it's undefine");
 
@@ -230,32 +230,32 @@ export async function savePinToUserByUserId(req: express.Request, res: express.R
         if (!user_id) throw new Error("at savePinToUserByUserId no user_id in query");
 
         const query = `INSERT INTO user_favorites_pins IF NOT EXISTS (user_id, pin_id) VALUES (${user_id}, ${pin_id});`;
-                connection.query(query, (err, results) => {
-                    try {
-                        if (err) throw err;
-                        res.send({ ok: true, results })
-                    } catch (error) {
-                        res.status(500).send({ ok: false, error })
-                    }
-                })
+        connection.query(query, (err, results) => {
+            try {
+                if (err) throw err;
+                res.send({ ok: true, results })
+            } catch (error) {
+                res.status(500).send({ ok: false, error })
+            }
+        })
 
     } catch (error) {
         console.error(error)
     }
-    
+
 } //!not work
 
 //!need to fix in accordance to the new table of favorite
 export async function findTitleAtOtherUsersPins(req: express.Request, res: express.Response) {
     try {
-        const {user_id} = req.params
+        const { user_id } = req.params
         if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
         console.log("at findTitleAtOtherUsersPins at server side, user_id:", user_id)
 
-        const {text} = req.query
+        const { text } = req.query
         if (!text) throw new Error("no text at req.body");
         console.log("at findTitleAtOtherUsersPins at server side, text:", text)
-        
+
         const query = `SELECT * FROM pins WHERE title LIKE "%${text}%";`
         connection.query(query, (err, results) => {
             try {
@@ -276,10 +276,10 @@ export async function findTitleAtOtherUsersPins(req: express.Request, res: expre
 //!need to fix in accordance to the new table of favorite
 export async function findTitleAtUserSavedPinsByUserId(req: express.Request, res: express.Response) {
     try {
-        const {user_id} = req.params
+        const { user_id } = req.params
         if (!user_id) throw new Error("at getAllOtherUsersPins no user id in params");
 
-        const {title} = req.query 
+        const { title } = req.query
         if (!title) throw new Error("no title at req.body");
 
         const query = `SELECT * FROM pins WHERE user_id = "${user_id}" AND title LIKE "%${title}%";`

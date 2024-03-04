@@ -72,9 +72,9 @@ export const addPin = async (title:string, image: string,   description:string, 
     }
 }; //
 
-export const updatePinById = async (pin_id:string ,field: string, update:string | number) => {
+export const EditPinById = async (pin_id:string ,title: string, description:string, link: string, board: string) => {
     try {
-        const response = await axios.patch(`/api/v1/pin/"${pin_id}"`, {field, update});
+        const response = await axios.patch(`/api/v1/pin/"${pin_id}"`, {title, description, link, board});
         const { ok, results } = response.data;
 
         if (ok) {
@@ -85,7 +85,7 @@ export const updatePinById = async (pin_id:string ,field: string, update:string 
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
 
 //get all other users pin by username
 export const getAllOtherUsersPinsByUsername = async (username: string) => {
@@ -146,7 +146,7 @@ export const savePinToUserByUserId = async (pin_id: number | string |undefined, 
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-};
+}; //?work ok
 
 export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
     try {

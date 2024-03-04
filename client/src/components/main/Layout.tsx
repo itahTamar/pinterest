@@ -4,18 +4,18 @@ import { useContext, useEffect } from "react"
 import { UserContext } from "../../contexts/userContext"
 import { Navbar } from "../navbars/Navbar/Navbar"
 
-const Main = () => {
+const Layout = () => {
     const { user, setUser } = useContext(UserContext)
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const result = await handleGetUserByCookie()
-                if (!result) throw new Error("At main handleGetUserByCookie did't get result");
+                if (!result) throw new Error("At Layout handleGetUserByCookie did't get result");
 
                 const userData = result.data.userData
-                console.log("at getData in main the userData:", userData)
-                if (!userData) throw new Error("at gerData in main userData failed");
+                console.log("at getData in Layout the userData:", userData)
+                if (!userData) throw new Error("at gerData in Layout userData failed");
 
                 setUser(userData)
  
@@ -26,7 +26,7 @@ const Main = () => {
 
         getData()
 
-        console.log("user in context:", user)
+        console.log("at Layout, user in context:", user)
     }, [])
 
     return (
@@ -37,4 +37,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Layout
