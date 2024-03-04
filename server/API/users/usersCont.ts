@@ -165,24 +165,31 @@ export async function getUserByCookie(req: Request, res: Response) {
     try {
         const {user} = req.cookies;
         if (!user) throw new Error("no user at cookie");
-        console.log("at getUserByCookie user at cookie:", user)
+        console.log("user from cookie:", user)
 
         const secret = process.env.SECRET
         if (!secret) throw new Error("no secret")
+        console.log("secret is:", secret)
        
-        const decodedId = jwt.decode(user, secret)
-        console.log("at getUserByCookie decodedId:", decodedId)
+        const decodedId = jwt.decode(user, secret);
+      if (!decodedId)throw new Error("Failed to decode user ID");
 
-        const {uid} = decodedId;
-        console.log("at getUserByCookie uid:", uid)
+        const { uid } = decodedId;
+        console.log("UserID after decoding:", uid);
+        console.log("userId after decoded:", uid)
 
         const query = `SELECT * FROM users WHERE user_id = ${uid}`;
 
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err;
-
-                res.send({ok: true, results: results[0]})
+                const resultToSend = {
+                    username: results[0].username ,
+                    firstName: results[0].first_name ,
+                    lastName: results[0].last_name ,
+                    userId: results[0].user_id}
+                console.log("results[0].username:",resultToSend)
+                res.send({ok: true, results: resultToSend })
             } catch (error) {
                 res.status(500).send({ok: false, error})
             }
