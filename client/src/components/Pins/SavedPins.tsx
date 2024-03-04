@@ -1,3 +1,5 @@
+import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUserSavedPinsByUserId } from "../../api/pins/pinsApi";

@@ -1,8 +1,7 @@
 import express from "express"
 import { addPin, deletePin, getPinById, getAllOtherUsersPinsByUsername, getAllUserSavedPinsByUserId, getAllUserCreatedPinsByUsername, getPinsByCategory, savePinToUserByUserId, editPin } from "./pinCtrl"
 
-const router = express.Router()
-
+const router = express.Router();
 
 router
     .post("/:user_id", addPin)
@@ -15,5 +14,4 @@ router
     .patch("/:pin_id", editPin)  
     .delete("/:pin_id",deletePin)
 
-
-export default router
+export default router;

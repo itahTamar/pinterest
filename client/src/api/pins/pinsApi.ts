@@ -39,7 +39,7 @@ export const getPinById = async (pin_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //work ok
+}; //work ok work ok
 
 export const deletePin = async (pin_id: string) => {
     try {
@@ -146,14 +146,22 @@ export const savePinToUserByUserId = async (pin_id: number | string |undefined, 
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //?work ok
+}; //work ok
 
-export const findTitleAtOtherUsersPins = async (user_id: string, text: string) => {
+export const findTitleAtOtherUsersPins = async (username: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findOther/${user_id}/?${text}`);
+        console.log("at findTitleAtOtherUsersPins client-side the username:", username)
+        console.log("at findTitleAtOtherUsersPins client-side the text:", text)
+
+        const response = await axios.get(`/api/v1/pin/findOther/${username}/?text=${text}`);
+        console.log("at findTitleAtOtherUsersPins client-side the response:", response)
+        console.log("at findTitleAtOtherUsersPins client-side the response.data:", response.data)
+
         const { ok, results } = response.data;
 
         if (ok) {
+            console.log("at findTitleAtOtherUsersPins client-side the results:", results)
+
            return results
         } else {
             console.error("Error retrieving Pins:", response.data.error);
@@ -161,11 +169,11 @@ export const findTitleAtOtherUsersPins = async (user_id: string, text: string) =
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-};
+}; //work ok
 
 export const findTitleAtUserSavedPinsByUserId = async (user_id: string, text: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}/?${text}`);
+        const response = await axios.get(`/api/v1/pin/findSaved/${user_id}/?text=${text}`);
         const { ok, results } = response.data;
 
         if (ok) {
