@@ -75,10 +75,12 @@ export const addPin = async (title:string, image: string,   description:string, 
 export const EditPinById = async (pin_id:string ,title: string, description:string, link: string, board: string) => {
     try {
         const response = await axios.patch(`/api/v1/pin/"${pin_id}"`, {title, description, link, board});
-        const { ok, results } = response.data;
+        console.log("at pinapi EditPinById the response:", response)
+        console.log("at pinapi EditPinById the response.data:", response.data)
+        const { ok, results2 } = response.data;
 
         if (ok) {
-           return results
+           return results2
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }

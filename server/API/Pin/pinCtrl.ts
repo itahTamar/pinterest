@@ -78,7 +78,6 @@ export async function editPin(req, res) {
         if (!pin_id) throw new Error("No Id provided on updatePin");
         const { title, description, link, board } = req.body;
         console.log(title, description, link, board)
-        if (!title || !board) throw new Error("No data to update provided on EditPin");
         const query = `UPDATE pins SET title = '${title}', description = '${description}', link = '${link}', category = '${board}' WHERE (pin_id = ${pin_id});`
         connection.query(query, (err, results:Results) => {
             try {
