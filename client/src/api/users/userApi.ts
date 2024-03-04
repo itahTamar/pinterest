@@ -30,22 +30,22 @@ export const handleGetUserByCookie = async () => {
     }
 } 
 
-//!this for the edit user page
-export const updateUser = async (user_id:string ,field: string, update:string | number) => {
+export const updateUser = async (userId:string ,image: string, firstName: string, lastName: string, about: string, pronouns: string, website: string, username: string) => {
     try {
-        const response = await axios.patch(`/api/v1/users/update-user/"${user_id}"`, {field, update});
-        const { ok, results } = response.data;
+        console.log("image, firstName, lastName, about, pronouns, website, username = ", image, firstName, lastName, about, pronouns, website, username)
+        const response = await axios.patch(`/api/v1/users/updateUser/"${userId}"`, {image, firstName, lastName, about, pronouns, website, username});
+        console.log("response.data:", response.data)
+        const { ok } = response.data;
 
         if (ok) {
-           return results
+           return ok
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
-//!
+}; //work ok
 
 export const handleGetAllUsers = async () => {
     try {

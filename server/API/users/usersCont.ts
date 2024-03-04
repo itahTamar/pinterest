@@ -103,10 +103,10 @@ export async function updateUser(req: Request, res: Response) {
         const { userId } = req.params;
         if (!userId) throw new Error("No Id provided on updateUser");
 
-        const { field, update } = req.body;
-        if (!field || !update) throw new Error("No field or update provided on updateUser");
+        const { image, firstName, lastName, about, pronouns, website, username } = req.body;
+        console.log("data from body:",image, firstName, lastName, about, pronouns, website, username)
 
-        const query = `UPDATE users SET ${field} = '${update}' WHERE (user_id = ${userId});`;
+        const query = `UPDATE users SET photo = "${image}", first_name = '${firstName}', last_name = '${lastName}',about = '${about}',pronouns = '${pronouns}', website = '${website}', username = '${username}'  WHERE (user_id = ${userId});`;
         
         connection.query(query, (err, results: Results) => {
             try {
@@ -116,6 +116,7 @@ export async function updateUser(req: Request, res: Response) {
                     connection.query(queryUpdateUser, (err2, results2) => {
                         try {
                             if (err2) throw err2;
+                            console.log("results2 at updateUser:", results2)
                             res.send({ ok: true, results2 })
                         } catch (error) {
                             console.log(error)
@@ -187,7 +188,13 @@ export async function getUserByCookie(req: Request, res: Response) {
                     username: results[0].username ,
                     firstName: results[0].first_name ,
                     lastName: results[0].last_name ,
-                    userId: results[0].user_id}
+                    userId: results[0].user_id,
+                    image: results[0].photo,
+                    about: results[0].about,
+                    pronouns: results[0].pronouns,
+                    website: results[0].website    
+                }
+
                 console.log("results[0].username:",resultToSend)
                 res.send({ok: true, results: resultToSend })
             } catch (error) {

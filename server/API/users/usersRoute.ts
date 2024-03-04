@@ -8,7 +8,7 @@ router.post("/register", register)
       .post("/login" ,login)
       .get("/admin", isAdmin, AdminGetAllUsers)
       .get("/getUserByCookie", getUserByCookie)
-      .patch("/update-user/:userId", updateUser)
+      .patch("/updateUser/:userId", updateUser)
       .delete("/delete-user/:userId", deleteUser)
 
 export default router;

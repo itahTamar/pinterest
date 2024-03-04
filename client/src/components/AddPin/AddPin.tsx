@@ -23,7 +23,7 @@ export const AddPin = () => {
 
   if (!user) throw new Error("At UserPage no user in context");
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitAddPin = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
       console.log("at AddPin handleSubmit the states are:", title, description, link, board, image)
@@ -47,7 +47,7 @@ export const AddPin = () => {
 
   return (
     <div>
-      <form className="AddPin" onSubmit={handleSubmit}>
+      <form className="AddPin" onSubmit={handleSubmitAddPin}>
         <div className="AddPin_image">
           <div className="divimg">
             <FontAwesomeIcon className="icon" icon={faShareFromSquare} />
