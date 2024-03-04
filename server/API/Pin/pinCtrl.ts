@@ -4,16 +4,19 @@ import { Results } from '../interfaces/interfaces';
 
 export async function addPin(req: express.Request, res: express.Response) {
   try {
-    const { title, image, description, link } = req.body;
+    const { user_id } = req.params;
+    if (!user_id) throw new Error("at addPin no user_id in params");
+    
+    const { title, image, description, link, board } = req.body;
     if (!title || !image)
       throw new Error(
         "No title or image provided in FUNCTION addPin in FILE pinCtrl.ts"
       );
+        console.log(user_id, title, image, description, link, board)
 
-    const { user_id } = req.params;
-    if (!user_id) throw new Error("at addPin no user_id in params");
-        console.log(user_id, title, image, description, link)
     const usernameQuery = `SELECT username FROM users WHERE user_id=${user_id};`;
+    console.log("usernameQuery:", usernameQuery)
+
     connection.query(usernameQuery, (err, results1) => {
       try {
         if (err) throw err;
@@ -21,11 +24,8 @@ export async function addPin(req: express.Request, res: express.Response) {
         console.log(results1);
         const username1 = results1[0].username;
         console.log(username1);
-        const query = `INSERT INTO pins (title, image, description, link, username) VALUES (?, ?, ?, ?, ?, ?)`;
-        connection.query(
-          query,
-          [title, image, description, link, username1],
-          (err, results) => {
+        const query = `INSERT INTO pins (title, image, description, link, username, category) VALUES ("${title}", "${image}", "${description}", "${link}", "${username1}", "${board}")`;
+        connection.query(query, (err, results) => {
             try {
               if (err) throw err;
               res.send({ ok: true, results });
@@ -34,8 +34,6 @@ export async function addPin(req: express.Request, res: express.Response) {
             }
           }
         );
-
-        // res.send({ ok: true, results1 })
       } catch (error) {
         res.status(500).send({ ok: false, error });
       }
@@ -52,10 +50,9 @@ export async function deletePin(req, res) {
 
     const query = `DELETE FROM pins WHERE (pin_id = ${pin_id});`;
 
-    connection.query(query, (err, results) => {
+    connection.query(query, (err, results:Results) => {
       try {
         if (err) throw err;
-        //@ts-ignore
         if (results.affectedRows) {
           res.send({ ok: true, results });
         } else {
@@ -70,7 +67,7 @@ export async function deletePin(req, res) {
     console.log(error);
     res.status(500).send({ ok: false, error });
   }
-}
+} //work ok
 
 export async function editPin(req, res) {
     try {

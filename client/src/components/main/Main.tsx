@@ -6,7 +6,7 @@ import { User } from "../../types/user";
 import { Navbar } from "../navbars/Navbar/Navbar";
 import { NavbarUserPage } from "../navbars/NavbarUserPage/NavbarUserPage";
 
-const Main = () => {
+const Layout = () => {
   const [user, setUser] = useState<any>(null)
   const [thisUser, setCurrentUser] = useState()
   const [check, setCheck] = useState("home")
@@ -50,4 +50,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Layout;

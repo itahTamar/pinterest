@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { EditPinById } from "../../../api/pins/pinsApi";
-
+import { EditPinById, deletePin } from "../../../api/pins/pinsApi";
+//work ok
 export const EditPin = () => {
   const navigate = useNavigate();
 
@@ -46,14 +46,27 @@ export const EditPin = () => {
       console.log("At handleEditPin the response is:", response); //
 
       if (!response)
-        throw new Error("No response from axios EditPinById at EditPin"); //get this error
-      console.log("At handleEditPin the response is:", response); //
+        throw new Error("No response from axios EditPinById at EditPin"); 
+      console.log("At handleEditPin the response is:", response); 
       navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleDeletePin = async () => {
+    try {
+      const { dataPin } = location.state; // Access all pin's data from location.stat
+      console.log("at handleDeletePin at editPin the dataPin is:", dataPin);
+      if (!dataPin)
+      throw new Error("No dataPin found in location.state at EditPin");
+      const response = await deletePin(dataPin.pin_id)
+      if(!response) throw new Error("at handleDeletePin no response");
+      navigate('/main/userPage');
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <div>
       <h2>Edit Pin</h2>
@@ -94,6 +107,7 @@ export const EditPin = () => {
         <button type="reset">Reset</button>
         <button type="submit">Save</button>
       </form>
+      <button onClick={handleDeletePin}>Delete</button>
     </div>
   );
 };

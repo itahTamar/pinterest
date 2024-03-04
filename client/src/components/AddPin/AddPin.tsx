@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./AddPin.scss";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { addPin } from "../../api/pins/pinsApi";
 import { UserContext } from "../../contexts/userContext";
-import { useNavigate } from "react-router-dom";
 import { AddInput } from "./AddInput";
-// import { useNavigate } from "react-router-dom";
-
+import "./AddPin.scss";
+//work ok
 export const AddPin = () => {
-  // const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [link, setLink] = useState<string>("");
   const [board, setBoard] = useState<string>("");
-  const [pin, setPin] = useState(null);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [image, setImage] = useState("");
@@ -29,16 +26,17 @@ export const AddPin = () => {
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
+      console.log("at AddPin handleSubmit the states are:", title, description, link, board, image)
       const response = await addPin(
         title,
         image,
         description,
         link,
+        board,
         user.userId
       );
-      console.log(response);
+      console.log("at AddPin handleSubmit the response:",response);
 
-      setPin(response.data.results[0]);
       if (response) {
         navigate("/main/userPage");
       }
@@ -59,7 +57,7 @@ export const AddPin = () => {
           <button type="button" onClick={toggleShow}>
             *Save from URL
           </button>
-          <div className="">{show && <AddInput/>}</div>
+          <div className="">{show && <AddInput setImage={setImage}/>}</div>
         </div>
         <div className="AddPin_form">
           <p>*Title</p>
@@ -87,7 +85,7 @@ export const AddPin = () => {
             placeholder="Add a link"
           />
 
-          <p>Board</p>
+          <p>*Board</p>
           <input
             type="text"
             value={board}

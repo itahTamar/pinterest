@@ -1,9 +1,13 @@
-import React from 'react'
+import { FC } from 'react'
 
-export const AddInput = () => {
+interface ImgProp {
+  setImage: (image:string) => any
+}
+
+export const AddInput:FC<ImgProp> = ({setImage}) => {
   return (
     <div>
-        <input type="text" />
+        <input type="text" onInput={(ev) => setImage((ev.target as HTMLInputElement).value)}/>
     </div>
   )
 }

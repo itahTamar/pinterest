@@ -44,33 +44,35 @@ export const getPinById = async (pin_id: string) => {
 export const deletePin = async (pin_id: string) => {
     try {
         const response = await axios.delete(`/api/v1/pin/${pin_id}`);
-        const { ok, results } = response.data;
+        const { ok } = response.data;
 
         if (ok) {
           
-           return results
+           return ok
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
 
-export const addPin = async (title:string, image: string,   description:string, link:string, user_id: string) => {
+export const addPin = async (title:string, image: string, description:string, link:string, board: string, user_id: string) => {
     try {
-        const response = await axios.post(`/api/v1/pin/${user_id}`, {title, image,  description, link});
-        const { ok, results } = response.data;
+        console.log("at pinaApi addPin the data:", user_id, title, image, description, link, board)
+        const response = await axios.post(`/api/v1/pin/${user_id}`, {title, image, description, link, board});
+        console.log("at pinaApi addPin the response.data:", response.data)
+        const { ok } = response.data;
 
         if (ok) {
-           return results
+           return ok
         } else {
             console.error("Error retrieving Pins:", response.data.error);
         }
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-}; //
+}; //work ok
 
 export const EditPinById = async (pin_id:string ,title: string, description:string, link: string, board: string) => {
     try {

@@ -68,7 +68,7 @@ const CreatedPins = () => {
                         )}
                 </div>
             </div>
-            <button onClick={() => { navigate(`/createPin`) }}>Create Pin</button>
+            <button onClick={() => { navigate(`/main/createPin`) }}>Create Pin</button>
         </div>
     )
 }
