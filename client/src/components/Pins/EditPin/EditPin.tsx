@@ -15,6 +15,7 @@ export const EditPin = () => {
   const handleEditPin = async () => {
  
     const { dataPin } = location.state; // Access all pin's data from location.stat
+    console.log("at handleEditPin at editPin the dataPin is:", dataPin)
     if(!dataPin) throw new Error("No dataPin found in location.state at EditPin");
     setTitle(dataPin.title)
     setDescription(dataPin.description)

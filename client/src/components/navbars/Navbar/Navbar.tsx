@@ -20,43 +20,43 @@ interface NavbarProps {
 export const Navbar: FC<NavbarProps> = ({setCheck}) => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
-  const [text, setText] = useState("");
-  const [key, setKey] = useState(true);
-  const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  const  {user}  = useContext(UserContext);
+  // const [text, setText] = useState("");
+  // const [key, setKey] = useState(true);
+  // const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
+  // const  {user}  = useContext(UserContext);
   
-  useEffect(() => {
-    const handleSearchPins = async () => {
-      try {
-        if (!user) throw new Error("at handleSearchPins - no user in context");
+  // useEffect(() => {
+  //   const handleSearchPins = async () => {
+  //     try {
+  //       if (!user) throw new Error("at handleSearchPins - no user in context");
 
-        const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
-          user.username,
-          text
-        );
-        console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
+  //       const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
+  //         user.username,
+  //         text
+  //       );
+  //       console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
 
-        if (!findAtOtherPins)
-          throw new Error(
-            "At Navbar->handleSearchPins: no other pins get from DB"
-          );
-          setOtherPinsSearch(findAtOtherPins); //!need to add the rendering after search
+  //       if (!findAtOtherPins)
+  //         throw new Error(
+  //           "At Navbar->handleSearchPins: no other pins get from DB"
+  //         );
+  //         setOtherPinsSearch(findAtOtherPins); //!need to add the rendering after search
         
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    handleSearchPins();
-  }, [key]);
+  //   handleSearchPins();
+  // }, [key]);
 
-  useEffect(() => {
-    console.log(text);
-  }, [text]);
+  // useEffect(() => {
+  //   console.log(text);
+  // }, [text]);
 
-  useEffect(() => {
-    console.log(otherPinsSearch);
-  }, [otherPinsSearch]);
+  // useEffect(() => {
+  //   console.log(otherPinsSearch);
+  // }, [otherPinsSearch]);
 
   const handleIsAdmin = async () => {
     try {
@@ -80,12 +80,12 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
     }
   };
 
-  const handleKeyDown = (event: any) => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
-      setKey(!key)
-    }
-  };
+  // const handleKeyDown = (event: any) => {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
+  //     setKey(!key)
+  //   }
+  // };
 
   return (
     <div className="navbar">
@@ -123,10 +123,10 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
           className="search"
           type="text"
           placeholder="Search"
-          onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
-          onKeyDown={handleKeyDown} // Triggering button click on Enter key press
+          // onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
+          // onKeyDown={handleKeyDown} // Triggering button click on Enter key press
         />
-        <button onClick={() => setKey(!key)}>🔎</button>
+        {/* <button onClick={() => setKey(!key)}>🔎</button> */}
       </div>
 
       <div>
