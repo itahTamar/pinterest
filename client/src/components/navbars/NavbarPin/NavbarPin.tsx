@@ -27,11 +27,11 @@ export const NavbarPin: FC<pinProp> = ({pin_id}) => {
     <div className="navbarPin">
     <div className="navbarPin-icons">
       <FontAwesomeIcon className="icon" icon={faShareFromSquare} />
-      <FontAwesomeIcon icon={faEllipsis} />
+      <FontAwesomeIcon className="icon" icon={faEllipsis} />
     </div>
     <div className="navbarPin-btns">
-        <button>board <FontAwesomeIcon icon={faCaretDown} /></button>
-        <button onClick={handleSaveToFavorites}>save</button>
+        <div>board<FontAwesomeIcon icon={faCaretDown} /></div>
+        <div><button onClick={handleSaveToFavorites}>save</button></div>
     </div>
     </div>
   );

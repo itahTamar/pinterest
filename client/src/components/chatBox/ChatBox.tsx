@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../style/chatBox.scss";
+import "./ChatBox.scss";
 
 interface Message {
   text: string;
@@ -27,14 +27,17 @@ const ChatBox = () => {
         ))}
       </div>
       <div className="input-container">
-        <input
+        <div><h3>What do you think?</h3></div>
+        <div><input
+        className="text"
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type your message..."
+          placeholder="Add a comment"
           style={{ flex: 1, marginRight: "10px" }}
         />
         <button onClick={handleSendMessage}>Send</button>
+        </div>
       </div>
     </div>
   );
