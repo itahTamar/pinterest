@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { PinsContext } from "../../../contexts/pinsContext";
 import { Pin } from "../../../types/pin";
 import PinCard from "../PinCard/PinCard";
-import "./RenderOthersPins.scss";
 
 //
 
