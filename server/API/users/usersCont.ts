@@ -68,10 +68,14 @@ export async function login(req: Request, res: Response) {
                     if (!match) throw new Error("at login password incorrect!");
 
                     const userData = {
+                        username: results[0].username ,
+                        firstName: results[0].first_name ,
+                        lastName: results[0].last_name ,
                         userId: results[0].user_id,
-                        username: results[0].username,
-                        userFirstName: results[0].first_name,
-                        userLastName: results[0].last_name
+                        image: results[0].photo,
+                        about: results[0].about,
+                        pronouns: results[0].pronouns,
+                        website: results[0].website    
                     }
 
                     console.log("result userData:", userData)
