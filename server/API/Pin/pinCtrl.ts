@@ -254,7 +254,7 @@ export async function savePinToUserByUserId(
             if (err) throw err;
             console.log("results1:", results1);
             //@ts-ignore
-            if(results1.length == 0){  //meaning the pin tey to be saved
+            if(results1.length == 0){  //meaning the pin yet to be saved
                 const query = `INSERT INTO user_favorites_pins (user_id, pin_id) VALUES (${user_id}, ${pin_id});`;
                 connection.query(query, (err, results) => {
                 try {

@@ -1,23 +1,21 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
-import "./Navbar.scss";
-import { handleGetAllUsers } from "../../../api/users/userApi";
 import {
   findTitleAtOtherUsersPins,
 } from "../../../api/pins/pinsApi";
+import { handleGetAllUsers } from "../../../api/users/userApi";
+import { OtherPinsContext } from "../../../contexts/pinsContext";
 import {
   UserContext,
 } from "../../../contexts/userContext";
 import { Pin } from "../../../types/pin";
-import { OtherPinsContext } from "../../../contexts/pinsContext";
-interface NavbarProps {
-  setCheck: (value: string) => void;
-}
-export const Navbar: FC<NavbarProps> = ({setCheck}) => {
+import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
+import "./Navbar.scss";
+
+export const Navbar = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
@@ -43,7 +41,7 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
           throw new Error(
             "At Navbar->handleSearchPins: no other pins get from DB"
           );
-          setSearchedPins(findAtOtherPins); //!need to add the rendering after search
+          setSearchedPins(findAtOtherPins); 
         
       } catch (error) {
         console.error(error);
@@ -85,13 +83,6 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
     }
   };
 
-  const handleKeyDown = (event: any) => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
-      setKey(!key)
-    }
-  };
-
   return (
     <div className="navbar">
       <button onClick={handleIsAdmin}>
@@ -129,7 +120,6 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
           type="text"
           placeholder="Search"
           onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
-          // onKeyDown={handleKeyDown} // Triggering button click on Enter key press
         />
         <button onClick={() => setKey(!key)}>🔎</button>
       </div>
@@ -139,7 +129,6 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
           className="icon"
           id="user"
           onClick={() => {
-            setCheck("someValue");
             navigate(`/main/userPage`);
           }}
         >
