@@ -5,17 +5,17 @@ h3 {
   padding: 0px;
 }
 .profile-wrapper {
-  margin-top: vw ;
-  margin-left:0 ;
-  width: 50vw;
-  // display: flex; /* הגדרת Flexbox */
-  // justify-content: center; /* מרכוז על פי ציר ה-X */
-  // align-items: center; /* מרכוז על פי ציר ה-Y */
-  // flex-direction: column;
+  margin-top: 10rem ;
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
  
 
-  img {
+  .userImg {
     border-radius: 50%;
+    height: 10vw;
+    width: 10vw;
     margin: 0px;
   }
 }

@@ -5,16 +5,16 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
-  // width: 100%;
+  z-index: 1;
   background-color: white;
   padding: 1.5vw 1vw;
+  width: 100%;
   img {
     width: 2vw;
     margin-right: 1vw;
   }
   .search {
-    width: 77vw;
+    width: 70vw;
     height: 3.2vw;
     border-radius: 2vw;
     border-color: rgb(227, 228, 229);
@@ -22,12 +22,12 @@
 
     &::placeholder {
       font-size: 18px;
+      padding-left: 1vw;
     }
   }
 
   .HomePageButton {
     background-color: white;
-    color: black;
     border-radius: 2vw;
     height: 2.5vw;
     font-size: 1.1vw;
@@ -38,13 +38,17 @@
     font-size: 1.1vw;
     height: 2.5vw;
     margin-right: 0.5vw;
-}
+  }
 
-.CreateButton:active {
+  .CreateButton:focus {
     background-color: black;
-    color: white; /* Adding text color change on active state */
-}
+    color: white;
+  }
 
+  .HomePageButton:focus {
+    background-color: black;
+    color: white;
+  }
 
   .icon {
     font-size: 1.1vw;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./NavbarPin.scss";
+import "../NavbarPin/NavbarPin.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCaretDown, faEllipsis,faShareFromSquare, faStar,} from "@fortawesome/free-solid-svg-icons";
 import "../NavbarPin/NavbarPin.scss"

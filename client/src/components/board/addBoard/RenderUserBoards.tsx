@@ -37,7 +37,7 @@ export const RenderUserBoards = () => {
 
   return (
     <div>
-      render user boards:
+      {/* render user boards:
       
       <div className="boards-container">
         {filterBoardList && boardList.length > 0 ? (
@@ -49,7 +49,7 @@ export const RenderUserBoards = () => {
         ) : (
           <p>no boards</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

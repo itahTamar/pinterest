@@ -8,7 +8,11 @@ import SpecificPin from "./SpecificPin";
 import PinCard from "./PinCard";
 import "./RenderOthersPins.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faEllipsis,
+  faUpload,
+} from "@fortawesome/free-solid-svg-icons";
 
 //work ok
 
@@ -18,7 +22,7 @@ const RenderOthersPins = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-    const handleGetAllOtherUsersPins = async () => {
+  const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId)
         throw new Error(
@@ -62,27 +66,39 @@ const RenderOthersPins = () => {
         {filterPinsState && pinsState.length > 0 ? (
           filterPinsState.map((pin) => {
             return (
-              <div>
-                
-                <div className="pin-card-cover" key={pin.title}>
-                <div>
-                  <button>board</button>
-                  <button>save</button>
-                </div>
-                  {/* <NavbarPin pin_id={pin.pin_id} /> */}
-                  <button
-                    onClick={() => {
-                      navigate(`/main/pinPage/${pin.pin_id}`);
-                    }}
-                  >
-                    <PinCard pin={pin} />
-                  </button>
+              <div className="pin-card-cover" key={pin.title}>
+                <div className="btnTop">
                   <div>
-                  <button><FontAwesomeIcon icon={faUpload} /></button>
-                  <button><FontAwesomeIcon icon={faEllipsis} /></button>
+                    {/* <label>
+                      board <FontAwesomeIcon icon={faCaretDown} />
+                    </label> */}
+                  </div>
+                  <div>
+                    <button className="save">save</button>
+                  </div>
                 </div>
+                <div
+                  className="img-container"
+                  onClick={() => {
+                    navigate(`/main/pinPage/${pin.pin_id}`);
+                  }}
+                >
+                  <div className="img">
+                    <PinCard pin={pin} />
+                  </div>
+                  {/* <div className="btnBottom">
+                    <div>
+                      <button>
+                        <FontAwesomeIcon icon={faUpload} />
+                      </button>
+                    </div>
+                    <div>
+                      <button>
+                        <FontAwesomeIcon icon={faEllipsis} />
+                      </button>
+                    </div>
+                  </div> */}
                 </div>
-                
               </div>
             );
           })

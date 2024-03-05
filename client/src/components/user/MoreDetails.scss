@@ -1,58 +1,46 @@
-.moreDetailsForm{
-
-label{
-    background-color: white;
-}
-}
-
 .moreDetailsForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 20px;
-    width: 40vw;
-    // position: absolute;
-    // right: 0;
-   
-  
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  width: 40vw;
+  label {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5vw;
   }
-  
-   div {
-    margin-bottom: 20px; /* מרווח בין שדות הטופס */
+
+  div {
+    margin-bottom: 20px;
   }
-  
- p {
- 
+
+  p {
     display: block;
-    margin-bottom: 5px; /* מרווח בין התווית לשדה הקלט */
+    margin-bottom: 5px;
     font-weight: bold;
   }
-  
+
   input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px; /* מרווח מתחת לכל שדה קלט */
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
-  .moreDetailsForm button {
+
+  button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 10px; /* מרווח בין הכפתורים */
+    margin-right: 10px;
   }
-  
-  .moreDetailsForm button[type="submit"] {
-    background-color: #4CAF50; /* צבע רקע לכפתור השמירה */
+
+  button[type="submit"] {
+    background-color: #4caf50;
     color: white;
   }
-  
-  .moreDetailsForm button[type="reset"] {
-    background-color: #f44336; /* צבע רקע לכפתור האיפוס */
+
+  button[type="reset"] {
+    background-color: #f44336; 
     color: white;
   }
-  
+}
