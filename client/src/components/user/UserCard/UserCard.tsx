@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import { DataAdmin } from "../../types/user";
-import { deleteUser } from "../../api/users/userApi";
-
+import { DataAdmin } from "../../../types/user";
+import { deleteUser } from "../../../api/users/userApi";
+//for admin only
 interface DataProp {
   data: DataAdmin;
   onDelete: () => void; // Function to trigger parent component update

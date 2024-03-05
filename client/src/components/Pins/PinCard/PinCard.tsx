@@ -1,9 +1,7 @@
 import { FC } from "react";
-import { Pin } from "../../types/pin";
+import { Pin } from "../../../types/pin";
 import "./PinCard.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faUpload } from "@fortawesome/free-solid-svg-icons";
-
+//work ok
 interface PinCardProps {
   pin: Pin;
 }

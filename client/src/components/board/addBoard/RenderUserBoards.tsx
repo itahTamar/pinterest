@@ -34,7 +34,6 @@ export const RenderUserBoards = () => {
     handleGetAllUsersBoards()
   }, []) //only run this effect on the initial render
 
-
   return (
     <div>
       {/* render user boards:

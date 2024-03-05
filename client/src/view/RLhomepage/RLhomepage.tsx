@@ -1,6 +1,6 @@
 // import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Register from "../../components/user/Register";
+import Register from "../../components/user/register/Register";
 import "./RLhomepage.scss";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Navbar2 } from "../../components/navbars/Navbar2/Navbar2";

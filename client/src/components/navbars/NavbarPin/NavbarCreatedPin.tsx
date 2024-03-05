@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCaretDown, faEllipsis,faShareFromSquare,} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { Pin } from "../../../types/pin";
-// import { UserContext } from "../../../contexts/userContext";
+//for the user's created pin only
 interface pinProp {
   pin_id: number | string | undefined
   dataPin: Pin 

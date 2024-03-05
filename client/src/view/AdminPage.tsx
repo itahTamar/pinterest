@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DataAdmin } from "../types/user";
-import UserCard from "../components/user/UserCard";
+import UserCard from "../components/user/UserCard/UserCard";
 import { deleteUser } from "../api/users/userApi";
 
 const AdminPage = () => {

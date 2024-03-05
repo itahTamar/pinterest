@@ -38,7 +38,7 @@ const Layout = () => {
       console.log("at Main.tsx user in context:", user);
       console.log("at Main.tsx thisUser in state:", thisUser);
 
-    }, []);
+    }, [user]);
 
   return (
     <div>

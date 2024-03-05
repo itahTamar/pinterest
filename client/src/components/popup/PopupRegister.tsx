@@ -1,5 +1,5 @@
 import "./popup.scss";
-import Register from "../user/Register";
+import Register from "../user/register/Register";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 

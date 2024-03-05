@@ -7,6 +7,8 @@ const AddBoard = () => {
     const [title, setTitle] = useState("")
     const { user } = useContext(UserContext)
 
+    if (!user) throw new Error("at AddBoard there is no user in context");
+
     // Function to handle checkbox change
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
         setIsChecked(event.target.checked);
@@ -24,7 +26,6 @@ const AddBoard = () => {
         } catch (error) {
             console.error(error)
         }
-
     }
 
     return (

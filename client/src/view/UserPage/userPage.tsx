@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import SavedPins from "../../components/Pins/SavedPins";
-import CreatedPins from "../../components/Pins/CreatedPins";
-import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
-import "./userPage.scss"
-import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
-import RenderUserPageSearchPin from "../../components/Pins/RenderUserPageSearchPin";
+import CreatedPins from "../../components/Pins/CreatedPin/CreatedPins";
+import SavedPins from "../../components/Pins/SavedPins/SavedPins";
+import RenderUserPageSearchPin from "../../components/Pins/search/RenderUserPageSearchPin";
+import { UserContext } from "../../contexts/userContext";
+import "./userPage.scss";
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -70,10 +69,6 @@ const UserPage = () => {
           { showSearch  ? 
           <RenderUserPageSearchPin/> : 
           <div className="">{show ? <SavedPins /> : <CreatedPins />}</div> }
-      </div>
-
-      <div>
-        <RenderUserBoards />
       </div>
       
     </div>

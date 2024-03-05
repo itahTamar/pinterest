@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { Pin } from "../types/pin";
-
+//for the search only
 export const PinsContext = createContext<{
     PinsSearch: Pin[]; // Assuming savedPins is an array of Pin objects
     setPinsSearch: React.Dispatch<React.SetStateAction<Pin[]>>;

@@ -1,12 +1,8 @@
-// import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
-import "../Navbar2/Navbar2.scss";
 import { useState } from "react";
 import PopupLogin from "../../popup/PopupLogin";
 import PopupRegister from "../../popup/PopupRegister";
-
+import "../Navbar2/Navbar2.scss";
+//for the LRhomepage
 export const Navbar2 = () => {
   const [showPopupLogin, setShowPopupLogin] = useState(false);
   const [showPopupRegister, setShowPopupRegister] = useState(false);

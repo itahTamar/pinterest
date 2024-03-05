@@ -1,4 +1,4 @@
-import { AddPin } from "../../components/AddPin/AddPin";
+import { AddPin } from "../../components/Pins/AddPin/AddPin";
 import "./CreatePin.scss";
 import { Navbar } from "../../components/navbars/Navbar/Navbar";
 import { useState } from "react";

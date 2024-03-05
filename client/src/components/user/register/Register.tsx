@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './login/login.scss'
-import MoreDetails from './MoreDetails'
+import MoreDetails from '../MoreDetails/MoreDetails'
 
 //work ok
 

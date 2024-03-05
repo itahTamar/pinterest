@@ -1,20 +1,10 @@
-import { useParams } from 'react-router-dom'
-import SavedPins from '../components/Pins/SavedPins'
-import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin'
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import RenderPinImg from '../components/Pins/RenderPinImg';
+import RenderSuggestedPin from '../components/Pins/RenderSuggestedPin';
 
 const BoardPage = () => {
-  const [count, setcount] = useState(0)
-  const { boardName } = useParams();
+  const { boardName } = useParams<string>();
   console.log("at board page the board name:",boardName)
-
-  const countPin = async () => {
-
-  }
-
-  useEffect(()=>{
-    countPin()
-  },[])
 
   return (
     <div>boardPage
@@ -31,7 +21,9 @@ const BoardPage = () => {
          <h4>num of pin at the page </h4> {/*(adjacent to the left) */}
          <button>options icon </button> {/*(adjacent to the right) */}
       </div>
-      <div><SavedPins/></div>
+{/* @ts-ignore */}
+      <div><RenderPinImg category={boardName}/></div>
+      
       <div>find some ideas for this boars:  {/* (div box with more pin in that category of other users that he yet saved) */}
        {boardName !== undefined ? <RenderSuggestedPin category={boardName}/>: <p>undefined category</p>}
       </div>

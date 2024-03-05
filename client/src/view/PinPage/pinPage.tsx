@@ -2,15 +2,16 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPinById } from "../api/pins/pinsApi";
-import ChatBox from "../components/chatBox/ChatBox";
-import { Pin } from "../types/pin";
+import { getPinById } from "../../api/pins/pinsApi";
+import ChatBox from "../../components/chatBox/ChatBox";
+import { NavbarPin } from "../../components/navbars/NavbarPin/NavbarPin";
+import { Pin } from "../../types/pin";
 import "./pinPage.scss";
-import SpecificPin from "../components/Pins/SpecificPin";
-import { NavbarCreatedPin } from "../components/navbars/NavbarPin/NavbarCreatedPin";
+import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
+import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin";
 
 //rendering the SpecificPin component
-const PageOfCreatedPin = () => {
+const PinPage = () => {
   const [dataPin, setDataPin] = useState<Pin | null>(null);
   let { pin_id } = useParams();
   const navigate = useNavigate();
@@ -37,13 +38,14 @@ const PageOfCreatedPin = () => {
 
   return (
     <>
-      <button
+      <div
+        className="back"
         onClick={() => {
           navigate(-1);
         }}
       >
         <FontAwesomeIcon icon={faArrowLeft} />
-      </button>
+      </div>
       <div className="mainPP">
         <div>
           {dataPin != null ? (
@@ -54,16 +56,25 @@ const PageOfCreatedPin = () => {
             <p>Pin not found </p>
           )}
         </div>
-        {dataPin ?
-          <div>
-            <NavbarCreatedPin pin_id={pin_id} dataPin={dataPin} />
-            <ChatBox />
-          </div> :
-          <p>no data pin</p>
-        }
+        <div>
+          <NavbarPin pin_id={pin_id} />
+          <ChatBox />
+        </div>
+      </div>
+      <div className="morePins">
+        <h3>More to explore</h3>
+        <div>more pins from same category</div>
+      </div>
+
+      <div>
+        {dataPin != null ? (
+          <RenderSuggestedPin category={dataPin.category} />
+        ) : (
+          <p>Pin not found</p>
+        )}
       </div>
     </>
   );
 };
 
-export default PageOfCreatedPin;
+export default PinPage;

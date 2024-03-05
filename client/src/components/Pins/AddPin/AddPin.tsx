@@ -2,8 +2,8 @@ import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addPin } from "../../api/pins/pinsApi";
-import { UserContext } from "../../contexts/userContext";
+import { addPin } from "../../../api/pins/pinsApi";
+import { UserContext } from "../../../contexts/userContext";
 import { AddInput } from "./AddInput";
 import "./AddPin.scss";
 //work ok

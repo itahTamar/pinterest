@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { Pin } from "../../../types/pin";
-import { UserContext } from "../../../contexts/userContext";
-import { getPinsByCategory } from "../../../api/pins/pinsApi";
+import { Pin } from "../../types/pin";
+import { UserContext } from "../../contexts/userContext";
+import { getPinsByCategory } from "../../api/pins/pinsApi";
 
 //work ok
 interface PinProp {
@@ -13,6 +13,8 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const { user } = useContext(UserContext);
 
+  if (!user) throw new Error("at RenderPinImg there is no user in context");
+  
   const handleGetPinsByCategory = async () => {
     try {
       if (!category)
@@ -38,7 +40,7 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
 
   useEffect(() => {
     handleGetPinsByCategory();
-  }, []); //only run this effect on the initial render
+  }, [user]); 
 
   useEffect(() => {
     console.log("PinsState:", pinsState); //got it

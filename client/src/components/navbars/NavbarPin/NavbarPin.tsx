@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCaretDown, faEllipsis,faShareFromSquare,} from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../contexts/userContext";
 import { savePinToUserByUserId } from "../../../api/pins/pinsApi";
+
+//for pin that not created by the user so he can save them
 interface pinProp {
   pin_id: number | string | undefined 
 }

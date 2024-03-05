@@ -2,20 +2,22 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Pin } from '../../types/pin'
 import { getPinsByCategory } from '../../api/pins/pinsApi'
-import PinCard from './PinCard'
+import PinCard from './PinCard/PinCard'
 import { UserContext } from '../../contexts/userContext'
 
 //work ok
 interface PinProp {
     category: string
 }
-
+//for the pin-page
 const RenderSuggestedPin: FC<PinProp> = ({ category }) => {
     const [pinsState, setPins] = useState<Pin[]>([])
     const [filterPinsState, setFilterPins] = useState<Pin[]>([])
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
 
+    if (!user) throw new Error("at RenderSuggestedPin no user in context");
+    
     const handleGetPinsByCategory = async () => {
         try {
             if (!category) throw new Error("at handleGetPinsByCategory there is no category in props");

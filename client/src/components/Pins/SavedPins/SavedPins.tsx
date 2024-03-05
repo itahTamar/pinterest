@@ -2,10 +2,10 @@ import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllUserSavedPinsByUserId } from "../../api/pins/pinsApi";
-import { UserContext } from "../../contexts/userContext";
-import { Pin } from "../../types/pin";
-import PinCard from "./PinCard";
+import { getAllUserSavedPinsByUserId } from "../../../api/pins/pinsApi";
+import { UserContext } from "../../../contexts/userContext";
+import { Pin } from "../../../types/pin";
+import PinCard from "../PinCard/PinCard";
 import "./savedPins.scss";
 
 //work ok
@@ -14,7 +14,7 @@ const SavedPins = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-
+  
   const handleGetAllUserSavedPins = async () => {
     try {
       if (!user.userId)
@@ -45,7 +45,7 @@ const SavedPins = () => {
 
   useEffect(() => {
     handleGetAllUserSavedPins();
-  }, []); //only run this effect on the initial render
+  }, [user]); //only run this effect on the initial render when there is user in context
 
   useEffect(() => {
     console.log("PinsState lime 41:", pinsState);

@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { register } from "../../api/users/userApi";
+import { register } from "../../../api/users/userApi";
 import { useNavigate } from "react-router-dom";
 import "./MoreDetails.scss";
 

@@ -1,19 +1,19 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
-import "./Navbar.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FC, useContext, useEffect, useState } from "react";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
-import {
-  findTitleAtOtherUsersPins,
-} from "../../../api/pins/pinsApi";
-import {
-  UserContext,
-} from "../../../contexts/userContext";
+import "./Navbar.scss";
 import { handleGetAllUsers } from "../../../api/users/userApi";
-import { Pin } from "../../../types/pin";
-import { OtherPinsContext } from "../../../contexts/pinsContext";
+// import {
+//   findTitleAtOtherUsersPins,
+// } from "../../../api/pins/pinsApi";
+// import {
+//   UserContext,
+// } from "../../../contexts/userContext";
+// import { Pin } from "../../../types/pin";
+// import { OtherPinsContext } from "../../../contexts/pinsContext";
 interface NavbarProps {
   setCheck: (value: string) => void;
 }

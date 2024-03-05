@@ -1,18 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllOtherUsersPinsByUsername } from "../../api/pins/pinsApi";
-import { UserContext } from "../../contexts/userContext";
-import { Pin } from "../../types/pin";
-import { NavbarPin } from "../navbars/NavbarPin/NavbarPin";
-import SpecificPin from "./SpecificPin";
-import PinCard from "./PinCard";
+import { getAllOtherUsersPinsByUsername } from "../../../api/pins/pinsApi";
+import { UserContext } from "../../../contexts/userContext";
+import { Pin } from "../../../types/pin";
+import PinCard from "../PinCard/PinCard";
 import "./RenderOthersPins.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretDown,
-  faEllipsis,
-  faUpload,
-} from "@fortawesome/free-solid-svg-icons";
 
 //work ok
 
@@ -86,18 +78,6 @@ const RenderOthersPins = () => {
                   <div className="img">
                     <PinCard pin={pin} />
                   </div>
-                  {/* <div className="btnBottom">
-                    <div>
-                      <button>
-                        <FontAwesomeIcon icon={faUpload} />
-                      </button>
-                    </div>
-                    <div>
-                      <button>
-                        <FontAwesomeIcon icon={faEllipsis} />
-                      </button>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             );

@@ -26,9 +26,9 @@ export const EditPin = () => {
       if (!dataPin)
         throw new Error("No dataPin found in location.state at EditPin");
       if (title === "") setTitle(dataPin.title);
-      if (description === "")setDescription(dataPin.description);
-      if (link === "")setLink(dataPin.link);
-      if (board === "")setBoard(dataPin.category);
+      if (description === "") setDescription(dataPin.description);
+      if (link === "") setLink(dataPin.link);
+      if (board === "") setBoard(dataPin.category);
 
       console.log("handleEditPin title2 at state", title);    
       console.log("handleEditPin description2 at state", description);    

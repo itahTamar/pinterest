@@ -1,22 +1,22 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Pin } from "../../types/pin";
-import PinCard from "./PinCard";
+import { PinsContext } from "../../../contexts/pinsContext";
+import { Pin } from "../../../types/pin";
+import PinCard from "../PinCard/PinCard";
 import "./RenderOthersPins.scss";
-import { OtherPinsContext } from "../../contexts/pinsContext";
 
 //
 
-const RenderOtherSearchPin = () => {
-  const { otherPinsSearch } = useContext(OtherPinsContext);
-  const [filterPinsState] = useState<Pin[]>(otherPinsSearch);
+const RenderUserPageSearchPin = () => {
+  const { PinsSearch } = useContext(PinsContext);
+
+  const [filterPinsState] = useState<Pin[]>(PinsSearch);
   const navigate = useNavigate();
 
   return (
     <>
       <div className="pins-container">
-        {filterPinsState && otherPinsSearch.length > 0 ? (
+        {filterPinsState && PinsSearch.length > 0 ? (
           filterPinsState.map((pin) => {
             return (
               <div className="pin-card-cover" key={pin.title}>
@@ -38,4 +38,4 @@ const RenderOtherSearchPin = () => {
   );
 };
 
-export default RenderOtherSearchPin;
+export default RenderUserPageSearchPin;

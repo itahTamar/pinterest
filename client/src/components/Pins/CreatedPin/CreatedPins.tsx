@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { getAllUserCreatedPinsByUsername } from "../../api/pins/pinsApi";
-import { UserContext } from "../../contexts/userContext";
 import { useContext, useEffect, useState } from "react";
-import { Pin } from "../../types/pin";
-import SpecificPin from "./SpecificPin";
-import { OtherPinsContext, SavedPinsContext } from "../../contexts/pinsContext";
-import PinCard from "./PinCard";
+import { useNavigate } from "react-router-dom";
+import { getAllUserCreatedPinsByUsername } from "../../../api/pins/pinsApi";
+import { OtherPinsContext, SavedPinsContext } from "../../../contexts/pinsContext";
+import { UserContext } from "../../../contexts/userContext";
+import { Pin } from "../../../types/pin";
+import PinCard from "../PinCard/PinCard";
 
 //work ok
 const CreatedPins = () => {
@@ -59,7 +58,6 @@ const CreatedPins = () => {
   return (
     <div id="renderCreated" className="renderCreated">
       <div className="navbar3">
-        {/* <Navbar3/> sort at left / add at right */}
       </div>
 
       <div className="user-created-pins">

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllUsersBoards } from "../../../api/boards/boardApi";
-import { UserContext } from "../../../contexts/userContext";
-import { Board } from "../../../types/board";
-import RenderPinImg from "./RenderPinImg";
+import { getAllUsersBoards } from "../../../../api/boards/boardApi";
+import { UserContext } from "../../../../contexts/userContext";
+import { Board } from "../../../../types/board";
 import "./RenderSuggestedBoards.scss";
 
 //work ok
@@ -13,14 +12,15 @@ export const RenderSuggestedBoards = () => {
   const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
-
+  if (!user) throw new Error("at RenderSuggestedBoards there is no user in context");
+  
   const handleGetAllOtherBoardsByTitle = async () => {
     try {
       if (!user.userId)
         throw new Error(
           "at handleGetAllUserSavedPins there is no userId in context"
         );
-
+      console.log("at renderSuggestedBoard the user.useId:", user.useId)
       //use axios to get all other users pin by category
       const response = await getAllUsersBoards(user.userId);
       if (!response)
@@ -38,7 +38,7 @@ export const RenderSuggestedBoards = () => {
 
   useEffect(() => {
     handleGetAllOtherBoardsByTitle();
-  }, []); //only run this effect on the initial render
+  }, [user]); //only run this effect on the initial render
 
   return (
     <div>

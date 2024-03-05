@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import RLhomepage from "../view/RLhomepage/RLhomepage";
 import Login from "../components/user/login/Login";
-import Register from "../components/user/Register";
+import Register from "../components/user/register/Register";
 import { HomePage } from "../view/HomePage/HomePage";
-import SavedPins from "../components/Pins/SavedPins";
-import PinPage from "../view/pinPage";
+import SavedPins from "../components/Pins/SavedPins/SavedPins";
+import PinPage from "../view/PinPage/pinPage";
 import BoardCard from "../components/board/addBoard/BoardCard";
 import BoardPage from "../view/boardPage";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";

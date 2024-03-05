@@ -16,7 +16,7 @@ import { handleGetAllUsers } from "../../../api/users/userApi";
 import { Pin } from "../../../types/pin";
 import { DropDownOption } from "../../dropDownOption/DropDownOption";
 import { UserContext } from "../../../contexts/userContext";
-
+ //for the userPage search only
 export const NavbarUserPage = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);

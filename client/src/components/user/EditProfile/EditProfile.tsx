@@ -2,12 +2,13 @@ import React, { useContext, useEffect } from "react";
 import "./EditProfile.scss";
 import { Navbar } from "../../navbars/Navbar/Navbar";
 import { useState } from "react";
-import { AddInput } from "../../AddPin/AddInput";
+import { AddInput } from "../../Pins/AddPin/AddInput";
 import { updateUser } from "../../../api/users/userApi";
 import { UserContext } from "../../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
 export const EditProfile = () => {
+  const { user } = useContext(UserContext);
   const [check, setCheck] = useState("home");
   const [show, setShow] = useState(false);
   const [image, setImage] = useState("");
@@ -17,7 +18,7 @@ export const EditProfile = () => {
   const [website, setWebsite] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [username, setUsername] = useState("");
-  const { user } = useContext(UserContext);
+  
   const navigate = useNavigate();
   
   function toggleShow() {
@@ -28,18 +29,21 @@ export const EditProfile = () => {
   throw new Error("at handleSubmitEditProfile no user at context");
   console.log("handleSubmitEditProfile user:", user);    
   console.log("handleSubmitEditProfile user.userId:", user.userId);    
-  
+  setFirstName(user.firstName)
+  setLastName(user.lastName)
+  setUsername(user.username)
+
   const handleSubmitEditProfile = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault(); 
-      if (image === "" && user.image !== "") {setImage(user.image) } else {setImage(" ")}
-      if (firstName === "" && user.firstName !== "") {setFirstName(user.firstName)} else {setFirstName(" ")}
-      if (lastName === "" && user.lastName !== "") {setLastName(user.lastName)} else {setLastName(" ")}
-      if (about === "" && user.about !== "") {setAbout(user.about)} else {setAbout(" ")}
-      if (pronouns === "" && user.pronouns !== "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
-      if (website === "" && user.website !== "") {setWebsite(user.website)} else {setWebsite(" ")}
-      if (username === "" && user.username !== "") {setUsername(user.username)} else {setUsername(" ")}
-
+      // if (image === "" && user.image === "") {setImage(user.image) } else {setImage(" ")}      
+      // if (about === "" && user.about === "") {setAbout(user.about)} else {setAbout(" ")}
+      // if (pronouns === "" && user.pronouns === "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
+      // if (website === "" && user.website === "") {setWebsite(user.website)} else {setWebsite(" ")}
+      if (image === "") {setImage(user.image) } else {setImage(" ")}      
+      if (about === "") {setAbout(user.about)} else {setAbout(" ")}
+      if (pronouns === "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
+      if (website === "") {setWebsite(user.website)} else {setWebsite(" ")}
       console.log("suspension")
       console.log(
         "at EditProfile handleSubmitEditProfile the states are:",
@@ -96,7 +100,7 @@ export const EditProfile = () => {
               <p>First name</p>
               <input
                 type="text"
-                value={firstName}
+                value={user.firstName}
                 onInput={(ev) =>
                   setFirstName((ev.target as HTMLInputElement).value)
                 }
@@ -106,7 +110,7 @@ export const EditProfile = () => {
               <p>Last name</p>
               <input
                 type="text"
-                value={lastName}
+                value={user.lastName}
                 onInput={(ev) =>
                   setLastName((ev.target as HTMLInputElement).value)
                 }
@@ -139,7 +143,7 @@ export const EditProfile = () => {
           <input
             className="website"
             type="text"
-            placeholder="Add your pronouns"
+            placeholder="Add a link to drive traffic to your site"
             value={website}
             onInput={(ev) =>
               setWebsite((ev.target as HTMLInputElement).value)
@@ -149,11 +153,12 @@ export const EditProfile = () => {
           <input
             className="Pronouns"
             type="text"
-            placeholder="Add your pronouns"
-            value={username}
+            value={user.username}
             onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
           />
-
+          <p>
+            www.pinterest.com/${user.username}
+          </p>
           <div className="button-container">
             <button type="submit">Save</button>
             <button type="reset">reset</button>
