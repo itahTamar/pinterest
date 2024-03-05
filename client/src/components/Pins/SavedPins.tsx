@@ -77,10 +77,10 @@ const SavedPins = () => {
             filterPinsState.map((pin) => {
               return (
                 <div className="pin-card-cover" key={pin.title}>
-                  <button
+                  <div
                     onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }} >
                     <PinCard pin={pin} />
-                  </button>
+                  </div>
                 </div>
               );
             })

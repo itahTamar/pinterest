@@ -22,7 +22,7 @@ const RenderOthersPins = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-    const handleGetAllOtherUsersPins = async () => {
+  const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId)
         throw new Error(
@@ -68,22 +68,21 @@ const RenderOthersPins = () => {
             return (
               <div className="pin-card-cover" key={pin.title}>
                 <div className="btnTop">
-                    <div>
-                      <label>
-                        board <FontAwesomeIcon icon={faCaretDown} />
-                      </label>
-                    </div>
-                    <div>
-                      <button className="save">save</button>
-                    </div>
+                  <div>
+                    {/* <label>
+                      board <FontAwesomeIcon icon={faCaretDown} />
+                    </label> */}
                   </div>
+                  <div>
+                    <button className="save">save</button>
+                  </div>
+                </div>
                 <div
                   className="img-container"
                   onClick={() => {
                     navigate(`/main/pinPage/${pin.pin_id}`);
                   }}
                 >
-                  
                   <div className="img">
                     <PinCard pin={pin} />
                   </div>
