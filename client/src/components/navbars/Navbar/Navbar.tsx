@@ -1,62 +1,67 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
 import "./Navbar.scss";
 import { handleGetAllUsers } from "../../../api/users/userApi";
-// import {
-//   findTitleAtOtherUsersPins,
-// } from "../../../api/pins/pinsApi";
-// import {
-//   UserContext,
-// } from "../../../contexts/userContext";
-// import { Pin } from "../../../types/pin";
-// import { OtherPinsContext } from "../../../contexts/pinsContext";
+import {
+  findTitleAtOtherUsersPins,
+} from "../../../api/pins/pinsApi";
+import {
+  UserContext,
+} from "../../../contexts/userContext";
+import { Pin } from "../../../types/pin";
+import { OtherPinsContext } from "../../../contexts/pinsContext";
 interface NavbarProps {
   setCheck: (value: string) => void;
 }
 export const Navbar: FC<NavbarProps> = ({setCheck}) => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
-  // const [text, setText] = useState("");
-  // const [key, setKey] = useState(true);
-  // const { otherPinsSearch, setOtherPinsSearch } = useContext(OtherPinsContext);
-  // const  {user}  = useContext(UserContext);
+  const [text, setText] = useState("");
+  const [key, setKey] = useState(true);
+  const { searchedPins, setSearchedPins } = useContext(OtherPinsContext);
+  const  {user}  = useContext(UserContext);
   
-  // useEffect(() => {
-  //   const handleSearchPins = async () => {
-  //     try {
-  //       if (!user) throw new Error("at handleSearchPins - no user in context");
+  useEffect(() => {
+    const handleSearchPins = async () => {
+      try {
+        if (!user) throw new Error("at handleSearchPins - no user in context");
+        if (!text) {
+          setSearchedPins([])
+          return
+        }
+        const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
+          user.username,
+          text
+        );
+        console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
 
-  //       const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
-  //         user.username,
-  //         text
-  //       );
-  //       console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
-
-  //       if (!findAtOtherPins)
-  //         throw new Error(
-  //           "At Navbar->handleSearchPins: no other pins get from DB"
-  //         );
-  //         setOtherPinsSearch(findAtOtherPins); //!need to add the rendering after search
+        if (!findAtOtherPins)
+          throw new Error(
+            "At Navbar->handleSearchPins: no other pins get from DB"
+          );
+          setSearchedPins(findAtOtherPins); //!need to add the rendering after search
         
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   handleSearchPins();
-  // }, [key]);
+    handleSearchPins();
+  }, [key]);
 
-  // useEffect(() => {
-  //   console.log(text);
-  // }, [text]);
+  useEffect(() => {
+    if (!text) {
+    setSearchedPins([])
+    }
+  }, [text]);
 
-  // useEffect(() => {
-  //   console.log(otherPinsSearch);
-  // }, [otherPinsSearch]);
+  useEffect(() => {
+    console.log(searchedPins);
+  }, [searchedPins]);
 
   const handleIsAdmin = async () => {
     try {
@@ -80,12 +85,12 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
     }
   };
 
-  // const handleKeyDown = (event: any) => {
-  //   if (event.key === "Enter") {
-  //     event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
-  //     setKey(!key)
-  //   }
-  // };
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Preventing the default behavior of the Enter key (form submission)
+      setKey(!key)
+    }
+  };
 
   return (
     <div className="navbar">
@@ -123,10 +128,10 @@ export const Navbar: FC<NavbarProps> = ({setCheck}) => {
           className="search"
           type="text"
           placeholder="Search"
-          // onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
+          onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
           // onKeyDown={handleKeyDown} // Triggering button click on Enter key press
         />
-        {/* <button onClick={() => setKey(!key)}>🔎</button> */}
+        <button onClick={() => setKey(!key)}>🔎</button>
       </div>
 
       <div>

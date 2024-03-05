@@ -7,14 +7,14 @@ import { OtherPinsContext } from "../../../contexts/pinsContext";
 //
 
 const RenderOtherSearchPin = () => {
-  const { otherPinsSearch } = useContext(OtherPinsContext);
-  const [filterPinsState] = useState<Pin[]>(otherPinsSearch);
+  const { searchedPins } = useContext(OtherPinsContext);
+  const [filterPinsState] = useState<Pin[]>(searchedPins);
   const navigate = useNavigate();
 
   return (
     <>
       <div className="pins-container">
-        {filterPinsState && otherPinsSearch.length > 0 ? (
+        {filterPinsState && searchedPins.length > 0 ? (
           filterPinsState.map((pin) => {
             return (
               <div className="pin-card-cover" key={pin.title}>

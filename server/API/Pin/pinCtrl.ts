@@ -275,37 +275,37 @@ export async function savePinToUserByUserId(
   }
 } //work ok
 
-export async function findTitleAtUserSavedPinsByUserId(
-  req: express.Request,
-  res: express.Response
-) {
-  try {
-    const { user_id } = req.params;
-    if (!user_id)
-      throw new Error("at getAllOtherUsersPins no user id in params");
+// export async function findTitleAtUserSavedPinsByUserId(
+//   req: express.Request,
+//   res: express.Response
+// ) {
+//   try {
+//     const { user_id } = req.params;
+//     if (!user_id)
+//       throw new Error("at getAllOtherUsersPins no user id in params");
 
-    const { text } = req.query;
-    if (!text) throw new Error("no text at req.query");
+//     const { text } = req.query;
+//     if (!text) throw new Error("no text at req.query");
 
-    const query = `SELECT * FROM pins 
-        JOIN user_favorites_pins
-        ON pins.pin_id  = user_favorites_pins.pin_id
-        WHERE user_favorites_pins.user_id = ${user_id}
-        AND title like "%${text}%";`;
-    connection.query(query, (err, results) => {
-      try {
-        if (err) throw err;
-        res.send({ ok: true, results });
-      } catch (error) {
-        console.log(error);
-        res.status(500).send({ ok: false, error });
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ ok: false, error });
-  }
-} //work ok
+//     const query = `SELECT * FROM pins 
+//         JOIN user_favorites_pins
+//         ON pins.pin_id  = user_favorites_pins.pin_id
+//         WHERE user_favorites_pins.user_id = ${user_id}
+//         AND title like "%${text}%";`;
+//     connection.query(query, (err, results) => {
+//       try {
+//         if (err) throw err;
+//         res.send({ ok: true, results });
+//       } catch (error) {
+//         console.log(error);
+//         res.status(500).send({ ok: false, error });
+//       }
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({ ok: false, error });
+//   }
+// } //work ok
 
 export async function findTitleAtOtherUsersPinsByUsername(
   req: express.Request,

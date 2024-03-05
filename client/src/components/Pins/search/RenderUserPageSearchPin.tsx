@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PinsContext } from "../../../contexts/pinsContext";
+// import { PinsContext } from "../../../contexts/pinsContext";
 import { Pin } from "../../../types/pin";
 import PinCard from "../PinCard/PinCard";
 
 //
 
 const RenderUserPageSearchPin = () => {
-  const { PinsSearch } = useContext(PinsContext);
+  // const { PinsSearch } = useContext(PinsContext);
 
-  const [filterPinsState] = useState<Pin[]>(PinsSearch);
+  // const [filterPinsState] = useState<Pin[]>(PinsSearch);
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="pins-container">
+      {/* <div className="pins-container">
         {filterPinsState && PinsSearch.length > 0 ? (
           filterPinsState.map((pin) => {
             return (
@@ -32,7 +32,7 @@ const RenderUserPageSearchPin = () => {
         ) : (
           <p>no pin found</p>
         )}
-      </div>
+      </div> */}
     </>
   );
 };

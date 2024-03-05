@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { handleGetUserByCookie } from "../../api/users/userApi";
 import { UserContext } from "../../contexts/userContext";
@@ -7,7 +7,8 @@ import { Navbar } from "../navbars/Navbar/Navbar";
 import { NavbarUserPage } from "../navbars/NavbarUserPage/NavbarUserPage";
 
 const Layout = () => {
-  const [user, setUser] = useState<any>(null)
+  // const [user, setUser] = useState<any>(null)
+  const {user, setUser} = useContext(UserContext)
   const [thisUser, setCurrentUser] = useState()
   const [check, setCheck] = useState("home")
   // const [key, setKey] = useState(false)
@@ -34,18 +35,19 @@ const Layout = () => {
     };
 
     useEffect(() => {
-      getData();
-      console.log("at Main.tsx user in context:", user);
-      console.log("at Main.tsx thisUser in state:", thisUser);
-
-    }, [user]);
+      if (!user) {
+        getData();
+      }
+    }, []);
 
   return (
     <div>
-      <UserContext.Provider value={{user, setUser}}>
-       { check === "home" ? <Navbar setCheck={setCheck}/> : <NavbarUserPage/>}
+      {/* <UserContext.Provider value={{user, setUser}}> */}
+       {/* { check === "home" ?  */}
+       <Navbar setCheck={setCheck}/> 
+        {/* : <NavbarUserPage/>} */}
         <Outlet />
-      </UserContext.Provider>
+      {/* </UserContext.Provider> */}
     </div>
   );
 };

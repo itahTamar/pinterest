@@ -1,21 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import "./Navbar.scss";
-import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
+import { useNavigate } from "react-router-dom";
 import {
   findTitleAtOtherUsersPins,
   findTitleAtUserSavedPinsByUserId,
 } from "../../../api/pins/pinsApi";
-import {
-  PinsContext,
-} from "../../../contexts/pinsContext";
 import { handleGetAllUsers } from "../../../api/users/userApi";
-import { Pin } from "../../../types/pin";
-import { DropDownOption } from "../../dropDownOption/DropDownOption";
+// import {
+//   PinsContext,
+// } from "../../../contexts/pinsContext";
 import { UserContext } from "../../../contexts/userContext";
+import { Pin } from "../../../types/pin";
+import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
+import { DropDownOption } from "../../dropDownOption/DropDownOption";
  //for the userPage search only
 export const NavbarUserPage = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const NavbarUserPage = () => {
   const [key, setKey] = useState(true);
   const [searchOption, setSearchOption] = useState("other")  //"other" || "saved" - use from chaild component
   const [openOption, setOpenOption] = useState(false);
-  const { PinsSearch, setPinsSearch } = useContext(PinsContext);
+  // const { PinsSearch, setPinsSearch } = useContext(PinsContext);
   const  {user}  = useContext(UserContext);
 
   const handleDataFromChild = (data:string) => {
@@ -47,18 +47,18 @@ export const NavbarUserPage = () => {
           setPinsSearch(findAtOtherPins); 
         }
 
-        if (searchOption === "saved") {
-          const findAtSaved = await findTitleAtUserSavedPinsByUserId(
-            user.userId,
-            text
-          );
+        // if (searchOption === "saved") {
+        //   const findAtSaved = await findTitleAtUserSavedPinsByUserId(
+        //     user.userId,
+        //     text
+        //   );
 
-          if (!findAtSaved)
-            throw new Error(
-              "At Navbar->handleSearchPins: no saved pins get from DB"
-            );
-          setPinsSearch(findAtSaved);
-        }
+          // if (!findAtSaved)
+          //   throw new Error(
+          //     "At Navbar->handleSearchPins: no saved pins get from DB"
+          //   );
+          // setPinsSearch(findAtSaved);
+        // }
       } catch (error) {
         console.error(error);
       }

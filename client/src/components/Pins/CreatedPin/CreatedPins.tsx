@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUserCreatedPinsByUsername } from "../../../api/pins/pinsApi";
-import { OtherPinsContext, SavedPinsContext } from "../../../contexts/pinsContext";
+import { OtherPinsContext,
+  //  SavedPinsContext 
+  } from "../../../contexts/pinsContext";
 import { UserContext } from "../../../contexts/userContext";
 import { Pin } from "../../../types/pin";
 import PinCard from "../PinCard/PinCard";
@@ -12,8 +14,8 @@ const CreatedPins = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { otherPinsSearch } = useContext(OtherPinsContext);
-  const { savedSearch } = useContext(SavedPinsContext);
+  const { searchedPins } = useContext(OtherPinsContext);
+  // const { savedSearch } = useContext(SavedPinsContext);
 
   const handleGetAllUserCreatedPinsByUsername = async () => {
     try {
@@ -33,19 +35,19 @@ const CreatedPins = () => {
         response
       ); //got it
 
-      if (savedSearch.length > 0) {
-        setPins(savedSearch);
-        setFilterPins(savedSearch);
-      } else {
-        if (otherPinsSearch.length > 0) {
-          setPins(otherPinsSearch);
-          setFilterPins(otherPinsSearch); //?why i need that too?
+      // if (savedSearch.length > 0) {
+      //   setPins(savedSearch);
+      //   setFilterPins(savedSearch);
+      // } else {
+        if (searchedPins.length > 0) {
+          setPins(searchedPins);
+          setFilterPins(searchedPins); //?why i need that too?
         } else {
           //put the list in PinsState and filterPinsState
           setPins(response);
           setFilterPins(response);
         }
-      }
+      // }
     } catch (error) {
       console.error(error);
     }

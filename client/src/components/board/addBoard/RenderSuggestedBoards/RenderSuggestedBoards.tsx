@@ -12,7 +12,6 @@ export const RenderSuggestedBoards = () => {
   const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
-  if (!user) throw new Error("at RenderSuggestedBoards there is no user in context");
   
   const handleGetAllOtherBoardsByTitle = async () => {
     try {
@@ -37,7 +36,9 @@ export const RenderSuggestedBoards = () => {
   };
 
   useEffect(() => {
-    handleGetAllOtherBoardsByTitle();
+    if (user) {
+      handleGetAllOtherBoardsByTitle();
+    }
   }, [user]); //only run this effect on the initial render
 
   return (

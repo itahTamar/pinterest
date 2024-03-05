@@ -1,20 +1,21 @@
-import { useContext } from 'react';
-import { RenderSuggestedBoards } from '../../components/board/addBoard/RenderSuggestedBoards/RenderSuggestedBoards'
-import RenderOthersPins from '../../components/Pins/RenderOthersPins/RenderOthersPins'
-import { OtherPinsContext } from '../../contexts/pinsContext';
-import RenderOtherSearchPin from '../../components/Pins/search/RenderOtherSearchPin';
+import { useContext } from "react";
+import RenderOthersPins from "../../components/Pins/RenderOthersPins/RenderOthersPins";
+import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearchPin";
+import { RenderSuggestedBoards } from "../../components/board/addBoard/RenderSuggestedBoards/RenderSuggestedBoards";
+import { OtherPinsContext } from "../../contexts/pinsContext";
 
 export const HomePage = () => {
-  const { otherPinsSearch } = useContext(OtherPinsContext);
+  const { searchedPins } = useContext(OtherPinsContext);
 
   return (
     <div>
-     
       <RenderSuggestedBoards />
 
-      {otherPinsSearch.length>0 ? <RenderOtherSearchPin/> :<RenderOthersPins /> }
-      
-
-    </div >
-  )
-}
+      {searchedPins && searchedPins.length > 0 ? (
+        <RenderOtherSearchPin />
+      ) : (
+        <RenderOthersPins />
+      )}
+    </div>
+  );
+};
