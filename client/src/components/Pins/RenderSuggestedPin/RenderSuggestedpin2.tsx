@@ -1,32 +1,30 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Pin } from "../../../types/pin";
-import { getPinsByCategory } from "../../../api/pins/pinsApi";
+import { getPinsByCategory2 } from "../../../api/pins/pinsApi";
 import PinCard from "../PinCard/PinCard";
 import { UserContext } from "../../../contexts/userContext";
 
 //work ok
 interface PinProp {
   category: string;
-  pin_id: string | undefined
 }
 //for the pin-page
-const RenderSuggestedPin: FC<PinProp> = ({ category, pin_id }) => {
+const RenderSuggestedPin2: FC<PinProp> = ({ category }) => {
   const [pinsState, setPins] = useState<Pin[]>([]);
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-  const handleGetPinsByCategory = async (pin_id:string | undefined) => {
+  const handleGetPinsByCategory = async () => {
     try {
       if (!category)
         throw new Error(
           "at handleGetPinsByCategory there is no category in props"
         );
-      if (pin_id === undefined) throw new Error("at handleGetPinsByCategory pin_id undefined");
     
       //use axios to get the Pin list by userId from DB
-      const response = await getPinsByCategory(category, user.username, pin_id);
+      const response = await getPinsByCategory2(category, user.username);
       if (!response)
         throw new Error(
           "No response from axios getPinsByCategory at render suggested pins"
@@ -43,7 +41,7 @@ const RenderSuggestedPin: FC<PinProp> = ({ category, pin_id }) => {
 
   useEffect(() => {
     if (user) {
-      handleGetPinsByCategory(pin_id);
+      handleGetPinsByCategory();
     }
   }, [user]); 
 
@@ -80,4 +78,4 @@ const RenderSuggestedPin: FC<PinProp> = ({ category, pin_id }) => {
   );
 };
 
-export default RenderSuggestedPin;
+export default RenderSuggestedPin2;

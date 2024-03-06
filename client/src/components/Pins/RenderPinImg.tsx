@@ -12,9 +12,7 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
   const [pinsState, setPins] = useState<Pin[]>([]);
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const { user } = useContext(UserContext);
-
-  if (!user) throw new Error("at RenderPinImg there is no user in context");
-  
+ 
   const handleGetPinsByCategory = async () => {
     try {
       if (!category)
@@ -39,7 +37,9 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
   };
 
   useEffect(() => {
-    handleGetPinsByCategory();
+    if (user) {
+      handleGetPinsByCategory();   
+    }
   }, [user]); 
 
   useEffect(() => {

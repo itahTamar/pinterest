@@ -1,16 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { login } from "../../../api/users/userApi";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.scss";
-import { User } from "../../../types/user";
+import { login } from "../../../api/users/userApi";
 import { UserContext } from "../../../contexts/userContext";
+import "./login.scss";
 
 //work ok
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
-  // const [user, setUser] = useState<User>();
   const { setUser } = useContext(UserContext);
 
   const handleSubmitLogin = async (ev: React.FormEvent<HTMLFormElement>) => {
@@ -41,12 +39,6 @@ const Login = () => {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   console.log("at Login.tsx the userData:", user);
-  //   const UserContext = createContext(user)
-  //   console.log("at Login.tsx the UserContext:", UserContext);
-  // }, [user]);
 
   return (
     <div className="login-container">

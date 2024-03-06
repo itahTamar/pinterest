@@ -54,7 +54,9 @@ const CreatedPins = () => {
   };
 
   useEffect(() => {
-    handleGetAllUserCreatedPinsByUsername();
+    if(user){
+      handleGetAllUserCreatedPinsByUsername();
+    }
   }, [user]); //only run this effect on the initial render
 
   return (

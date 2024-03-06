@@ -57,7 +57,7 @@ const PinPage = () => {
           )}
         </div>
         <div>
-          <NavbarPin pin_id={pin_id} />
+          <NavbarPin pin={dataPin} />
           <ChatBox />
         </div>
       </div>
@@ -67,7 +67,7 @@ const PinPage = () => {
 
       <div>
         {dataPin != null ? (
-          <RenderSuggestedPin category={dataPin.category} />
+          <RenderSuggestedPin category={dataPin.category} pin_id={pin_id} />
         ) : (
           <p>Pin not found</p>
         )}

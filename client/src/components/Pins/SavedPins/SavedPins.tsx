@@ -14,7 +14,7 @@ const SavedPins = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  
+
   const handleGetAllUserSavedPins = async () => {
     try {
       if (!user.userId)
@@ -44,8 +44,10 @@ const SavedPins = () => {
   };
 
   useEffect(() => {
-    handleGetAllUserSavedPins();
-  }, [user]); //only run this effect on the initial render when there is user in context
+    if (user) {
+      handleGetAllUserSavedPins();
+    }
+  }, [user]); 
 
   useEffect(() => {
     console.log("PinsState lime 41:", pinsState);
@@ -68,28 +70,28 @@ const SavedPins = () => {
 
       <div className="boards"></div>
 
-      <div className="user-saved-pins">
-        
-        </div>
-        {/* render all user's saved pins (the one he likes) */}
-        <div className="pins-container">
-          {filterPinsState && pinsState.length > 0 ? (
-            filterPinsState.map((pin) => {
-              return (
-                <div className="pin-card-cover" key={pin.title}>
-                  <div
-                    onClick={() => { navigate(`/main/pinPage/${pin.pin_id}`) }} >
-                    <PinCard pin={pin} />
-                  </div>
+      <div className="user-saved-pins"></div>
+      {/* render all user's saved pins (the one he likes) */}
+      <div className="pins-container">
+        {filterPinsState && pinsState.length > 0 ? (
+          filterPinsState.map((pin) => {
+            return (
+              <div className="pin-card-cover" key={pin.title}>
+                <div
+                  onClick={() => {
+                    navigate(`/main/pinPage/${pin.pin_id}`);
+                  }}
+                >
+                  <PinCard pin={pin} />
                 </div>
-              );
-            })
-          ) : (
-            <p>no pin found</p>
-          )}
-        </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>no pin found</p>
+        )}
       </div>
-
+    </div>
   );
 };
 

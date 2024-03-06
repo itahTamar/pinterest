@@ -21,24 +21,31 @@ export const AddPin = () => {
     setShow(!show);
   }
 
-  if (!user) throw new Error("At UserPage no user in context");
-
   const handleSubmitAddPin = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
-      console.log("at AddPin handleSubmit the states are:", title, description, link, board, image)
-      const response = await addPin(
+      console.log(
+        "at AddPin handleSubmit the states are:",
         title,
-        image,
         description,
         link,
         board,
-        user.userId
+        image
       );
-      console.log("at AddPin handleSubmit the response:",response);
+      if (user) {
+        const response = await addPin(
+          title,
+          image,
+          description,
+          link,
+          board,
+          user.userId
+        );
+        console.log("at AddPin handleSubmit the response:", response);
 
-      if (response) {
-        navigate("/main/userPage");
+        if (response) {
+          navigate("/main/userPage");
+        }
       }
     } catch (error) {
       console.error(error);
@@ -57,7 +64,7 @@ export const AddPin = () => {
           <button type="button" onClick={toggleShow}>
             *Save from URL
           </button>
-          <div className="">{show && <AddInput setImage={setImage}/>}</div>
+          <div className="">{show && <AddInput setImage={setImage} />}</div>
         </div>
         <div className="AddPin_form">
           <p>*Title</p>
@@ -84,7 +91,6 @@ export const AddPin = () => {
             onInput={(ev) => setLink((ev.target as HTMLInputElement).value)}
             placeholder="Add a link"
           />
-
           <p>*Board</p>
           <input
             type="text"

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import RenderPinImg from "../../components/Pins/RenderPinImg";
-import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
+import RenderSuggestedPin2 from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsis,
@@ -46,7 +46,7 @@ const BoardPage = () => {
         {/* find some ideas for this boars:{" "} */}
         {/* (div box with more pin in that category of other users that he yet saved) */}
         {boardName !== undefined ? (
-          <RenderSuggestedPin category={boardName} />
+          <RenderSuggestedPin2 category={boardName} pin_id={undefined} />
         ) : (
           <p>undefined category</p>
         )}

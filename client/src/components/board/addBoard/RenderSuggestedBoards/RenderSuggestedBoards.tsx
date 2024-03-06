@@ -39,7 +39,7 @@ export const RenderSuggestedBoards = () => {
     if (user) {
       handleGetAllOtherBoardsByTitle();
     }
-  }, [user]); //only run this effect on the initial render
+  }, [user]); 
 
   return (
     <div>

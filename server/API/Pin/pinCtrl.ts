@@ -213,6 +213,41 @@ export async function getPinsByCategory(
     const username = req.query.username;
     console.log(username);
     if (!username) throw new Error("at getPinsByCategory no user id in query");
+
+    const pin_id = req.query.pin_id
+    if (!pin_id) throw new Error("at getPinsByCategory no pin_id in query");
+
+    const query = `SELECT * FROM pins WHERE username != "${username}" AND category = "${category}" AND pin_id != ${pin_id};`;
+
+    connection.query(query, (err, results) => {
+      try {
+        if (err) throw err;
+        res.send({ ok: true, results });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({ ok: false, error });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ ok: false, error });
+  }
+} //work ok
+
+export async function getPinsByCategory2(
+  req: express.Request,
+  res: express.Response
+) {
+  try {
+    const category = req.params.category;
+    console.log(category);
+    if (!category)
+      throw new Error("at getPinsByCategory no category in params");
+
+    const username = req.query.username;
+    console.log(username);
+    if (!username) throw new Error("at getPinsByCategory no user id in query");
+
     const query = `SELECT * FROM pins WHERE username != "${username}" AND category = "${category}";`;
 
     connection.query(query, (err, results) => {

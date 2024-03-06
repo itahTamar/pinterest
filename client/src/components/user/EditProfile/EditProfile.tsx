@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 export const EditProfile = () => {
   const { user } = useContext(UserContext);
-  const [check, setCheck] = useState("home");
   const [show, setShow] = useState(false);
   const [image, setImage] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -18,33 +17,54 @@ export const EditProfile = () => {
   const [website, setWebsite] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [username, setUsername] = useState("");
-  
+
   const navigate = useNavigate();
-  
+
   function toggleShow() {
     setShow(!show);
   }
-  
-  if (!user)
-  throw new Error("at handleSubmitEditProfile no user at context");
-  console.log("handleSubmitEditProfile user:", user);    
-  console.log("handleSubmitEditProfile user.userId:", user.userId);    
-  setFirstName(user.firstName)
-  setLastName(user.lastName)
-  setUsername(user.username)
 
-  const handleSubmitEditProfile = async (ev: React.FormEvent<HTMLFormElement>) => {
+  console.log("handleSubmitEditProfile user:", user);
+  console.log("handleSubmitEditProfile user.userId:", user.userId);
+
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.firstName);
+      setLastName(user.lastName);
+      setUsername(user.username);
+    }
+  }, [user]);
+
+  const handleSubmitEditProfile = async (
+    ev: React.FormEvent<HTMLFormElement>
+  ) => {
     try {
-      ev.preventDefault(); 
-      // if (image === "" && user.image === "") {setImage(user.image) } else {setImage(" ")}      
+      ev.preventDefault();
+      // if (image === "" && user.image === "") {setImage(user.image) } else {setImage(" ")}
       // if (about === "" && user.about === "") {setAbout(user.about)} else {setAbout(" ")}
       // if (pronouns === "" && user.pronouns === "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
       // if (website === "" && user.website === "") {setWebsite(user.website)} else {setWebsite(" ")}
-      if (image === "") {setImage(user.image) } else {setImage(" ")}      
-      if (about === "") {setAbout(user.about)} else {setAbout(" ")}
-      if (pronouns === "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
-      if (website === "") {setWebsite(user.website)} else {setWebsite(" ")}
-      console.log("suspension")
+      if (image === "") {
+        setImage(user.image);
+      } else {
+        setImage(" ");
+      }
+      if (about === "") {
+        setAbout(user.about);
+      } else {
+        setAbout(" ");
+      }
+      if (pronouns === "") {
+        setPronouns(user.pronouns);
+      } else {
+        setPronouns(" ");
+      }
+      if (website === "") {
+        setWebsite(user.website);
+      } else {
+        setWebsite(" ");
+      }
+      console.log("suspension");
       console.log(
         "at EditProfile handleSubmitEditProfile the states are:",
         image,
@@ -66,7 +86,10 @@ export const EditProfile = () => {
         website,
         username
       );
-      console.log("at EditProfile handleSubmitEditProfile the response:", response);
+      console.log(
+        "at EditProfile handleSubmitEditProfile the response:",
+        response
+      );
 
       if (response) {
         navigate("/main/userPage");
@@ -78,7 +101,7 @@ export const EditProfile = () => {
 
   return (
     <div>
-      <Navbar setCheck={setCheck} />
+      <Navbar />
       <div className="profile-edit">
         <h2>Edit Profile</h2>
         <h3>
@@ -90,7 +113,7 @@ export const EditProfile = () => {
           <div className="imgdiv">
             <img
               src="https://th.bing.com/th/id/OIP.ONfngQFEugONLEQvUQV4vwHaE7?w=253&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-              alt=""
+              alt="profile image"
             />
             <button onClick={toggleShow}>Change</button>
             <div className="">{show && <AddInput setImage={setImage} />}</div>
@@ -122,7 +145,7 @@ export const EditProfile = () => {
             className="About"
             type="text"
             placeholder="Tell your story"
-            value={about}
+            value={user.about}
             onInput={(ev) => setAbout((ev.target as HTMLInputElement).value)}
           />
           <p>Pronouns</p>
@@ -130,10 +153,8 @@ export const EditProfile = () => {
             className="Pronouns"
             type="text"
             placeholder="Add your pronouns"
-            value={pronouns}
-            onInput={(ev) =>
-              setPronouns((ev.target as HTMLInputElement).value)
-            }
+            value={user.pronouns}
+            onInput={(ev) => setPronouns((ev.target as HTMLInputElement).value)}
           />
           <p>
             Choose up to 2 sets of pronouns to appear on your profile so others
@@ -144,10 +165,8 @@ export const EditProfile = () => {
             className="website"
             type="text"
             placeholder="Add a link to drive traffic to your site"
-            value={website}
-            onInput={(ev) =>
-              setWebsite((ev.target as HTMLInputElement).value)
-            }
+            value={user.website}
+            onInput={(ev) => setWebsite((ev.target as HTMLInputElement).value)}
           />
           <p>Username</p>
           <input
@@ -156,9 +175,7 @@ export const EditProfile = () => {
             value={user.username}
             onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
           />
-          <p>
-            www.pinterest.com/${user.username}
-          </p>
+          <p>www.pinterest.com/${user.username}</p>
           <div className="button-container">
             <button type="submit">Save</button>
             <button type="reset">reset</button>

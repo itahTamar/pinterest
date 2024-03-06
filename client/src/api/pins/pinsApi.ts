@@ -122,9 +122,24 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
     }
 }; //work ok
 
-export const getPinsByCategory = async (category: string, username: string) => {
+export const getPinsByCategory = async (category: string, username: string, pin_id: string) => {
     try {
-        const response = await axios.get(`/api/v1/pin/category/${category}?username=${username}`);
+        const response = await axios.get(`/api/v1/pin/category/${category}?username=${username}&pin_id=${pin_id}`);
+        const { ok, results } = response.data;
+
+        if (ok) {
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+}; //work ok
+
+export const getPinsByCategory2 = async (category: string, username: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/category2/${category}?username=${username}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -141,7 +156,7 @@ export const savePinToUserByUserId = async (pin_id: number | string |undefined, 
     try {
         const response = await axios.post(`/api/v1/pin/favorite/${pin_id}?user_id=${user_id}`);
         const { ok, results } = response.data;
-
+        console.log("at savePin the response.data:", response.data)
         if (ok) {
            return results
         } else {

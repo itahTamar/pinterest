@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllOtherUsersPinsByUsername } from "../../../api/pins/pinsApi";
+import { getAllOtherUsersPinsByUsername, savePinToUserByUserId } from "../../../api/pins/pinsApi";
 import { UserContext } from "../../../contexts/userContext";
 import { Pin } from "../../../types/pin";
 import PinCard from "../PinCard/PinCard";
@@ -13,7 +13,7 @@ const RenderOthersPins = () => {
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-
+ 
   const handleGetAllOtherUsersPins = async () => {
     try {
       if (!user.userId)
@@ -41,17 +41,21 @@ const RenderOthersPins = () => {
   };
 
   useEffect(() => {
-    handleGetAllOtherUsersPins();
-  }, [user]); //only run this effect on the initial render
-
-  useEffect(() => {
-    console.log("PinsState:", pinsState); //got it
-  }, [pinsState]);
-
-  useEffect(() => {
-    console.log("filterPinsState:", filterPinsState); //got it
-  }, [filterPinsState]);
-
+    if (user) {
+      handleGetAllOtherUsersPins();
+    }
+  }, [user]); 
+  
+  const SaveToFavorites = async (pin_id:number) => {
+    try {
+      if (!user) throw new Error("no user in context");
+      if(!pin_id) throw new Error("no pin_id at RenderOthersPins->handleSaveToUser");
+      const response = await savePinToUserByUserId(pin_id, user.userId)
+      if (!response) throw new Error("No response from axios savePinToUserByUserId at NavbarPin");
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <>
       <div className="pins-container">
@@ -61,12 +65,12 @@ const RenderOthersPins = () => {
               <div className="pin-card-cover" key={pin.title}>
                 <div className="btnTop">
                   <div>
-                    {/* <label>
-                      board <FontAwesomeIcon icon={faCaretDown} />
-                    </label> */}
+                    <label>
+                      {pin.category}
+                    </label>
                   </div>
                   <div>
-                    <button className="save">save</button>
+                    <button className="save" onClick={()=> SaveToFavorites(pin.pin_id)}>save</button>
                   </div>
                 </div>
                 <div

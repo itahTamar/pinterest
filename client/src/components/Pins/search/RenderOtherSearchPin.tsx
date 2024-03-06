@@ -4,8 +4,7 @@ import { Pin } from "../../../types/pin";
 import PinCard from "../PinCard/PinCard";
 import { OtherPinsContext } from "../../../contexts/pinsContext";
 
-//
-
+//work ok
 const RenderOtherSearchPin = () => {
   const { searchedPins } = useContext(OtherPinsContext);
   const [filterPinsState] = useState<Pin[]>(searchedPins);

@@ -1,13 +1,11 @@
 import { AddPin } from "../../components/Pins/AddPin/AddPin";
-import "./CreatePin.scss";
 import { Navbar } from "../../components/navbars/Navbar/Navbar";
-import { useState } from "react";
+import "./CreatePin.scss";
 
 export const CreatePin = () => {
-  const [check, setCheck] = useState("home")
   return (
     <div>
-      <Navbar setCheck={setCheck}/>
+      <Navbar/>
       <h1>Create Pin</h1>
       <div>
         <AddPin />
