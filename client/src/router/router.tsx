@@ -12,13 +12,14 @@ import { HomePage } from "../view/HomePage/HomePage";
 import PinPage from "../view/PinPage/pinPage";
 import RLhomepage from "../view/RLhomepage/RLhomepage";
 import UserPage from "../view/UserPage/userPage";
-import BoardPage from "../view/boardPage";
+import BoardPage from "../view/boardPage/boardPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/main",
+  {
+    path: "/main",
     element: <Layout />,
     children: [
       { path: "homePage", element: <HomePage /> },
@@ -35,5 +36,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {path: "/admin", element: <AdminPage />}
+  { path: "/admin", element: <AdminPage /> },
 ]);

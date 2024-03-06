@@ -1,0 +1,60 @@
+.boardPage {
+  position: relative;
+  top: 8rem;
+
+  .boardName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      font-size: 3vw;
+      margin-right: 1vw;
+    }
+    font-size: 2vw;
+
+    .iconoption {
+      background-color: rgb(233, 233, 233);
+      padding: 0.5vw;
+      border-radius: 50%;
+    }
+  }
+
+  .boardIcons {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+
+    .icon {
+      margin: 0.5vw;
+
+      &-icon {
+        font-size: 2vw;
+        background-color: rgb(233, 233, 233);
+        padding: 2vw;
+        border-radius: 1.5vw;
+      }
+
+      p {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .buttons {
+    position: fixed;
+    bottom: 2rem;
+    right: 0;
+    display: flex;
+
+    div {
+      width: 6rem;
+      height: 6rem;
+      font-size: 3vw;
+      font-weight: 700;
+      border-radius: 50%;
+      background-color: rgb(233, 233, 233);
+      margin-left: 58rem;
+    }
+  }
+}

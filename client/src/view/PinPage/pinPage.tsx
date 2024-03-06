@@ -8,7 +8,7 @@ import { NavbarPin } from "../../components/navbars/NavbarPin/NavbarPin";
 import { Pin } from "../../types/pin";
 import "./pinPage.scss";
 import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
-import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin";
+import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
 
 //rendering the SpecificPin component
 const PinPage = () => {
@@ -63,7 +63,6 @@ const PinPage = () => {
       </div>
       <div className="morePins">
         <h3>More to explore</h3>
-        <div>more pins from same category</div>
       </div>
 
       <div>
