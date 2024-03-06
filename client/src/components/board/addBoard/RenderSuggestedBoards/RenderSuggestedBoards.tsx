@@ -51,7 +51,6 @@ export const RenderSuggestedBoards = () => {
               <div className="board" key={board.name}>
                 <div
                   onClick={() => {
-                    // handleGetAllPinByCategory3(board.name);
                     navigate(`/main/boardPage/${board.name}`);
                   }}
                 >
