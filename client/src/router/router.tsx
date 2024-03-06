@@ -13,6 +13,7 @@ import PinPage from "../view/PinPage/pinPage";
 import RLhomepage from "../view/RLhomepage/RLhomepage";
 import UserPage from "../view/UserPage/userPage";
 import BoardPage from "../view/boardPage/boardPage";
+import PageOfCreatedPin from "../view/PageOfCreatedPin";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
         path: "boardCard/:board.name",
         element: <BoardCard board={undefined} />,
       },
+      { path: "PageOfCreatedPin/:pin_id", element: <PageOfCreatedPin /> },
     ],
   },
   { path: "/admin", element: <AdminPage /> },

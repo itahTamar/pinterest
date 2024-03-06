@@ -6,35 +6,19 @@ export const EditPin = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
+  const { dataPin } = location.state; // Access all pin's data from location.stat
+  console.log("at handleEditPin at editPin the dataPin is:", dataPin);
+  if (!dataPin)
+    throw new Error("No dataPin found in location.state at EditPin");
 
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [link, setLink] = useState<string>("");
-  const [board, setBoard] = useState<string>("");
+  const [title, setTitle] = useState<string>(dataPin.title);
+  const [description, setDescription] = useState<string>(dataPin.description);
+  const [link, setLink] = useState<string>(dataPin.link);
+  const [board, setBoard] = useState<string>(dataPin.category);
 
   const handleEditPin = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
-      console.log("hello from handleEditPin");
-      console.log("handleEditPin title at state", title);    
-      console.log("handleEditPin description at state", description);    
-      console.log("handleEditPin link at state", link);    
-      console.log("handleEditPin board at state", board);    
-      
-      const { dataPin } = location.state; // Access all pin's data from location.stat
-      console.log("at handleEditPin at editPin the dataPin is:", dataPin);
-      if (!dataPin)
-        throw new Error("No dataPin found in location.state at EditPin");
-      if (title === "") setTitle(dataPin.title);
-      if (description === "") setDescription(dataPin.description);
-      if (link === "") setLink(dataPin.link);
-      if (board === "") setBoard(dataPin.category);
-
-      console.log("handleEditPin title2 at state", title);    
-      console.log("handleEditPin description2 at state", description);    
-      console.log("handleEditPin link2 at state", link);    
-      console.log("handleEditPin board2 at state", board);
-
       const response = await EditPinById(
         dataPin.pin_id,
         title,

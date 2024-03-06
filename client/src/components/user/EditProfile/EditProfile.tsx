@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const EditProfile = () => {
   const { user } = useContext(UserContext);
   const [show, setShow] = useState(false);
+
   const [image, setImage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -29,53 +30,19 @@ export const EditProfile = () => {
 
   useEffect(() => {
     if (user) {
+      setImage(user.photo)
       setFirstName(user.firstName);
       setLastName(user.lastName);
+      setAbout(user.about)
+      setWebsite(user.website)
+      setPronouns(user.pronouns)
       setUsername(user.username);
     }
   }, [user]);
 
-  const handleSubmitEditProfile = async (
-    ev: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmitEditProfile = async (ev: React.FormEvent<HTMLFormElement>) => {
     try {
       ev.preventDefault();
-      // if (image === "" && user.image === "") {setImage(user.image) } else {setImage(" ")}
-      // if (about === "" && user.about === "") {setAbout(user.about)} else {setAbout(" ")}
-      // if (pronouns === "" && user.pronouns === "") {setPronouns(user.pronouns)} else {setPronouns(" ")}
-      // if (website === "" && user.website === "") {setWebsite(user.website)} else {setWebsite(" ")}
-      if (image === "") {
-        setImage(user.image);
-      } else {
-        setImage(" ");
-      }
-      if (about === "") {
-        setAbout(user.about);
-      } else {
-        setAbout(" ");
-      }
-      if (pronouns === "") {
-        setPronouns(user.pronouns);
-      } else {
-        setPronouns(" ");
-      }
-      if (website === "") {
-        setWebsite(user.website);
-      } else {
-        setWebsite(" ");
-      }
-      console.log("suspension");
-      console.log(
-        "at EditProfile handleSubmitEditProfile the states are:",
-        image,
-        firstName,
-        lastName,
-        about,
-        pronouns,
-        website,
-        username
-      );
-
       const response = await updateUser(
         user.userId,
         image,
@@ -86,10 +53,7 @@ export const EditProfile = () => {
         website,
         username
       );
-      console.log(
-        "at EditProfile handleSubmitEditProfile the response:",
-        response
-      );
+      console.log("at EditProfile handleSubmitEditProfile the response:",response);
 
       if (response) {
         navigate("/main/userPage");
