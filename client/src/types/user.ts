@@ -22,11 +22,13 @@ export interface DataAdmin {
   website: string;
 }
 
-// export interface User {
-
-//     userFirstName: string;
-//     userId: string;
-//     userLastName: string;
-//     username: string;
-
+// export interface userData {
+//   username: string ,
+//   firstName: string ,
+//   lastName: string ,
+//   userId: number,
+//   image: string,
+//   about: string,
+//   pronouns: string,
+//   website: string    
 // }

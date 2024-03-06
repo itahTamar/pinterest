@@ -5,23 +5,25 @@ import { UserContext } from "../../../../contexts/userContext";
 import { Board } from "../../../../types/board";
 import "./RenderSuggestedBoards.scss";
 import RenderPinImg from "../../../Pins/RenderPinImg";
+import { Pin } from "../../../../types/pin";
+import { getPinsByCategory2 } from "../../../../api/pins/pinsApi";
 
 //work ok
 export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
-  const [count, setCount] = useState(0)
+  const [pinsByCategory, setPinByCategory] = useState<Pin[]>([]);
 
   const navigate = useNavigate();
-  
+
   const handleGetAllOtherBoardsByTitle = async () => {
     try {
       if (!user.userId)
         throw new Error(
           "at handleGetAllUserSavedPins there is no userId in context"
         );
-      console.log("at renderSuggestedBoard the user.useId:", user.useId)
+      console.log("at renderSuggestedBoard the user.useId:", user.useId);
       //use axios to get all other users pin by category
       const response = await getAllUsersBoards(user.userId);
       if (!response)
@@ -37,11 +39,24 @@ export const RenderSuggestedBoards = () => {
     }
   };
 
+  const handleGetAllPinByCategory = async (category: string) => {
+    try {
+      const response = await getPinsByCategory2(category, user.username);
+      if (!response)
+        throw new Error(
+          "No response from axios getPinsByCategory2 at render-suggested-boards"
+        );
+        setPinByCategory(response)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (user) {
       handleGetAllOtherBoardsByTitle();
     }
-  }, [user]); 
+  }, [user]);
 
   return (
     <div>
@@ -53,16 +68,17 @@ export const RenderSuggestedBoards = () => {
               <div className="board" key={board.name}>
                 <div
                   onClick={() => {
-                    navigate(`/main/boardPage/${board.name}`);
+                    handleGetAllPinByCategory(board.name);
+                    navigate(`/main/boardPage/${board.name}`, { state: {pinsByCategory} });
                   }}
                 >
                   {" "}
                   <p>More ideas for</p>
                   <h2>{board.name}</h2>
-                  <RenderPinImg category={board.name}/>
+                  <RenderPinImg category={board.name} />
                 </div>
               </div>
-            )
+            );
           })
         ) : (
           <p>no boards</p>

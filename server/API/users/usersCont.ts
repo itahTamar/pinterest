@@ -120,8 +120,18 @@ export async function updateUser(req: Request, res: Response) {
                     connection.query(queryUpdateUser, (err2, results2) => {
                         try {
                             if (err2) throw err2;
-                            console.log("results2 at updateUser:", results2)
-                            res.send({ ok: true, results2 })
+                            const userData = {
+                                username: results2[0].username ,
+                                firstName: results2[0].first_name ,
+                                lastName: results2[0].last_name ,
+                                userId: results2[0].user_id,
+                                image: results2[0].photo,
+                                about: results2[0].about,
+                                pronouns: results2[0].pronouns,
+                                website: results2[0].website    
+                            }
+                            console.log("results2 at updateUser:", userData)
+                            res.send({ ok: true, userData })
                         } catch (error) {
                             console.log(error)
                             res.status(500).send({ ok: false, error })

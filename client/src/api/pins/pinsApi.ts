@@ -25,6 +25,8 @@ export const getAllUserSavedPinsByUserId = async (user_id: string) => {
 
 export const getPinById = async (pin_id: string) => {
     try {
+        console.log("at getPinById the pin_id:", pin_id)
+
         const response = await axios.get(`/api/v1/pin/onePin/${pin_id}`);
         const { ok, results } = response.data;
 

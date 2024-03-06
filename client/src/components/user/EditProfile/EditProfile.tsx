@@ -8,7 +8,7 @@ import { UserContext } from "../../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
 export const EditProfile = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [show, setShow] = useState(false);
 
   const [image, setImage] = useState("");
@@ -56,6 +56,7 @@ export const EditProfile = () => {
       console.log("at EditProfile handleSubmitEditProfile the response:",response);
 
       if (response) {
+        setUser(response)
         navigate("/main/userPage");
       }
     } catch (error) {
@@ -87,7 +88,7 @@ export const EditProfile = () => {
               <p>First name</p>
               <input
                 type="text"
-                value={user.firstName}
+                value={firstName}
                 onInput={(ev) =>
                   setFirstName((ev.target as HTMLInputElement).value)
                 }
@@ -97,7 +98,7 @@ export const EditProfile = () => {
               <p>Last name</p>
               <input
                 type="text"
-                value={user.lastName}
+                value={lastName}
                 onInput={(ev) =>
                   setLastName((ev.target as HTMLInputElement).value)
                 }
@@ -109,7 +110,7 @@ export const EditProfile = () => {
             className="About"
             type="text"
             placeholder="Tell your story"
-            value={user.about}
+            value={about}
             onInput={(ev) => setAbout((ev.target as HTMLInputElement).value)}
           />
           <p>Pronouns</p>
@@ -117,7 +118,7 @@ export const EditProfile = () => {
             className="Pronouns"
             type="text"
             placeholder="Add your pronouns"
-            value={user.pronouns}
+            value={pronouns}
             onInput={(ev) => setPronouns((ev.target as HTMLInputElement).value)}
           />
           <p>
@@ -129,14 +130,14 @@ export const EditProfile = () => {
             className="website"
             type="text"
             placeholder="Add a link to drive traffic to your site"
-            value={user.website}
+            value={website}
             onInput={(ev) => setWebsite((ev.target as HTMLInputElement).value)}
           />
           <p>Username</p>
           <input
             className="Pronouns"
             type="text"
-            value={user.username}
+            value={username}
             onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
           />
           <p>www.pinterest.com/${user.username}</p>
