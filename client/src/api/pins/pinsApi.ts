@@ -141,8 +141,12 @@ export const getPinsByCategory2 = async (category: string, username: string) => 
     try {
         const response = await axios.get(`/api/v1/pin/category2/${category}?username=${username}`);
         const { ok, results } = response.data;
-
+console.log("results in getPinsByCategory2:", results)
         if (ok) {
+            if (results.length > 3) {
+                const results3 = [results[0], results[1], results[2]]
+                return results3
+            }
            return results
         } else {
             console.error("Error retrieving Pins:", response.data.error);

@@ -4,12 +4,14 @@ import { getAllUsersBoards } from "../../../../api/boards/boardApi";
 import { UserContext } from "../../../../contexts/userContext";
 import { Board } from "../../../../types/board";
 import "./RenderSuggestedBoards.scss";
+import RenderPinImg from "../../../Pins/RenderPinImg";
 
 //work ok
 export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
+  const [count, setCount] = useState(0)
 
   const navigate = useNavigate();
   
@@ -46,7 +48,8 @@ export const RenderSuggestedBoards = () => {
       {/* render more idea to user boards: */}
       <div className="boards-container">
         {filterBoardList && boardList.length > 0 ? (
-          filterBoardList.map((board) => {
+          filterBoardList.map((board, index) => {
+            if (index < 3) {
             return (
               <div className="board" key={board.name}>
                 <div
@@ -55,12 +58,13 @@ export const RenderSuggestedBoards = () => {
                   }}
                 >
                   {" "}
-                  {/*this route not work. it should move to the user page with suggested pin in that category, for naw it move to board page in that category*/}
                   <p>More ideas for</p>
                   <h2>{board.name}</h2>
+                  <RenderPinImg category={board.name}/>
                 </div>
               </div>
-            );
+            )
+                } return null;
           })
         ) : (
           <p>no boards</p>

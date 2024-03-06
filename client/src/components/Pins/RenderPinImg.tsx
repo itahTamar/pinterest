@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { Pin } from "../../types/pin";
+import { getPinsByCategory2 } from "../../api/pins/pinsApi";
 import { UserContext } from "../../contexts/userContext";
-import { getPinsByCategory } from "../../api/pins/pinsApi";
+import { Pin } from "../../types/pin";
 
 //work ok
 interface PinProp {
@@ -21,7 +21,7 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
         );
       console.log("userId at render-suggested-pin:", user.userId);
       //use axios to get the Pin list by userId from DB
-      const response = await getPinsByCategory(category, user.username);
+      const response = await getPinsByCategory2(category, user.username);
       if (!response)
         throw new Error(
           "No response from axios getPinsByCategory at render suggested pins"
