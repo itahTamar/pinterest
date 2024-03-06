@@ -5,26 +5,22 @@ import SavedPins from "../../components/Pins/SavedPins/SavedPins";
 import RenderUserPageSearchPin from "../../components/Pins/search/RenderUserPageSearchPin";
 import { UserContext } from "../../contexts/userContext";
 import "./userPage.scss";
+import { OtherPinsContext } from "../../contexts/pinsContext";
+import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearchPin";
 
 const UserPage = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);  //true is showing the saved-pins 
-  const [showSearch, setShowSearch] = useState(false)
   const { user } = useContext(UserContext);
+  const { searchedPins } = useContext(OtherPinsContext);
 
   if (!user) throw new Error("At UserPage no user in context");
 
   console.log("at userPage userData:", user);
 
-
   function toggleShowCreate() {
     setShow(false);
   }
-
-  function toggleShow() {
-    setShowSearch(!showSearch);
-  } 
-
 
   function toggleShowSave() {
     setShow(true);
@@ -66,8 +62,8 @@ const UserPage = () => {
       </div>
 
       <div className="userSearch">   {/* here we render the search results of this page*/}
-          { showSearch  ? 
-          <RenderUserPageSearchPin/> : 
+          { searchedPins && searchedPins.length > 0  ? 
+          <RenderOtherSearchPin /> : 
           <div className="">{show ? <SavedPins /> : <CreatedPins />}</div> }
       </div>
       

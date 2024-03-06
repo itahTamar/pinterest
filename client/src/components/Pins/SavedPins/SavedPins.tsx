@@ -19,9 +19,9 @@ const SavedPins = () => {
     try {
       if (!user.userId)
         throw new Error(
-          "at handleGetAllUserSavedPins there is no userId in params"
+          "at handleGetAllUserSavedPins there is no userId in context"
         );
-
+          console.log("at handleGetAllUserSavedPins the user in context:", user)
       //use axios to get the Pin list by userId from DB
       const response = await getAllUserSavedPinsByUserId(user.userId); //get pin_id list of favorite user's pins
       if (!response)
@@ -50,7 +50,7 @@ const SavedPins = () => {
   }, [user]); 
 
   useEffect(() => {
-    console.log("PinsState lime 41:", pinsState);
+    console.log("PinsState line 53:", pinsState);
   }, [pinsState]);
 
   useEffect(() => {
