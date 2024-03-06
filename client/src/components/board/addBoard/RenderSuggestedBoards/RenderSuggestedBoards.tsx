@@ -48,8 +48,7 @@ export const RenderSuggestedBoards = () => {
       {/* render more idea to user boards: */}
       <div className="boards-container">
         {filterBoardList && boardList.length > 0 ? (
-          filterBoardList.map((board, index) => {
-            if (index < 3) {
+          filterBoardList.map((board) => {
             return (
               <div className="board" key={board.name}>
                 <div
@@ -64,7 +63,6 @@ export const RenderSuggestedBoards = () => {
                 </div>
               </div>
             )
-                } return null;
           })
         ) : (
           <p>no boards</p>
