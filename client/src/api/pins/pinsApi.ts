@@ -124,6 +124,7 @@ export const getAllUserCreatedPinsByUsername = async (username: string) => {
     }
 }; //work ok
 
+//get all pin that the user did not create by category 
 export const getPinsByCategory = async (category: string, username: string, pin_id: string) => {
     try {
         const response = await axios.get(`/api/v1/pin/category/${category}?username=${username}&pin_id=${pin_id}`);
@@ -139,16 +140,33 @@ export const getPinsByCategory = async (category: string, username: string, pin_
     }
 }; //work ok
 
+//sent only 3 pins to render
 export const getPinsByCategory2 = async (category: string, username: string) => {
     try {
         const response = await axios.get(`/api/v1/pin/category2/${category}?username=${username}`);
         const { ok, results } = response.data;
-console.log("results in getPinsByCategory2:", results)
+        console.log("results in getPinsByCategory2:", results)
         if (ok) {
             if (results.length > 3) {
                 const results3 = [results[0], results[1], results[2]]
                 return results3
             }
+           return results
+        } else {
+            console.error("Error retrieving Pins:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Error:", (error as Error).message);
+    }
+}; //work ok
+
+//get all the pin in the same category
+export const getPinsByCategory3 = async (category: string, username: string) => {
+    try {
+        const response = await axios.get(`/api/v1/pin/category2/${category}?username=${username}`);
+        const { ok, results } = response.data;
+        console.log("results in getPinsByCategory2:", results)
+        if (ok) {
            return results
         } else {
             console.error("Error retrieving Pins:", response.data.error);

@@ -4,24 +4,21 @@ import {
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation, useParams } from "react-router-dom";
-import RenderSuggestedPin2 from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
-import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
+import { useParams } from "react-router-dom";
+import RenderSuggestedPinByCategoryOnly from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPinByCategoryOnly";
 import "./boardPage.scss";
-import RenderPinImg from "../../components/Pins/RenderPinImg";
-import PinCard from "../../components/Pins/PinCard/PinCard";
-import RenderOthersPins from "../../components/Pins/RenderOthersPins/RenderOthersPins";
 
 const BoardPage = () => {
   const { boardName } = useParams<string>();
-  const location = useLocation()
-  const { pinsByCategory } = location.state; // Access all pin's data from location.stat
+  // const location = useLocation()
+  // const { pinsByCategory } = location.state; // Access all pin's data from location.stat
   console.log("at board page the board name:", boardName);
 
   return (
     <div className="boardPage">
       <div className="boardName">
         <div>
+          <h3>Ideas for your board</h3>
           <h2>{boardName}</h2>
         </div>
         <div>
@@ -43,20 +40,11 @@ const BoardPage = () => {
           {/*only visual boxes */}
         </div>
       </div>
-      
-      <div>
-        {/* {pinsByCategory && pinsByCategory.length>0 ?
-          {pinsByCategory.map((pin) => {
-
-          })} : null
-      }
-        <RenderSuggestedPin category={dataPin.category} pin_id={pin_id} /> */}
-      </div> 
       <div>
         {/* find some ideas for this boars:{" "} */}
         {/* (div box with more pin in that category of other users that he yet saved) */}
         {boardName !== undefined ? (
-          <RenderSuggestedPin2 category={boardName} pin_id={undefined} />
+          <RenderSuggestedPinByCategoryOnly category={boardName} />
         ) : (
           <p>undefined category</p>
         )}

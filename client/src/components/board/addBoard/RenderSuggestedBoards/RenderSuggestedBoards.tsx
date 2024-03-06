@@ -3,18 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { getAllUsersBoards } from "../../../../api/boards/boardApi";
 import { UserContext } from "../../../../contexts/userContext";
 import { Board } from "../../../../types/board";
-import "./RenderSuggestedBoards.scss";
 import RenderPinImg from "../../../Pins/RenderPinImg";
-import { Pin } from "../../../../types/pin";
-import { getPinsByCategory2 } from "../../../../api/pins/pinsApi";
+import "./RenderSuggestedBoards.scss";
 
 //work ok
 export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
-  const [pinsByCategory, setPinByCategory] = useState<Pin[]>([]);
-
   const navigate = useNavigate();
 
   const handleGetAllOtherBoardsByTitle = async () => {
@@ -39,19 +35,6 @@ export const RenderSuggestedBoards = () => {
     }
   };
 
-  const handleGetAllPinByCategory = async (category: string) => {
-    try {
-      const response = await getPinsByCategory2(category, user.username);
-      if (!response)
-        throw new Error(
-          "No response from axios getPinsByCategory2 at render-suggested-boards"
-        );
-        setPinByCategory(response)
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
     if (user) {
       handleGetAllOtherBoardsByTitle();
@@ -68,8 +51,8 @@ export const RenderSuggestedBoards = () => {
               <div className="board" key={board.name}>
                 <div
                   onClick={() => {
-                    handleGetAllPinByCategory(board.name);
-                    navigate(`/main/boardPage/${board.name}`, { state: {pinsByCategory} });
+                    // handleGetAllPinByCategory3(board.name);
+                    navigate(`/main/boardPage/${board.name}`);
                   }}
                 >
                   {" "}

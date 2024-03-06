@@ -199,7 +199,7 @@ export async function getPinById(req: express.Request, res: express.Response) {
   }
 } //work ok
 
-//get the pin that the user did not create
+//get the pin that the user did not create except the pin he click on
 export async function getPinsByCategory(
   req: express.Request,
   res: express.Response
@@ -234,6 +234,7 @@ export async function getPinsByCategory(
   }
 } //work ok
 
+//get all the pins that the user didn't create by category
 export async function getPinsByCategory2(
   req: express.Request,
   res: express.Response
