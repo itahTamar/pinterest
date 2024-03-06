@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleGetUserByCookie } from "../../api/users/userApi";
 import CreatedPins from "../../components/Pins/CreatedPin/CreatedPins";
 import SavedPins from "../../components/Pins/SavedPins/SavedPins";
-import RenderUserPageSearchPin from "../../components/Pins/search/RenderUserPageSearchPin";
+import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearchPin";
+import { OtherPinsContext } from "../../contexts/pinsContext";
 import { UserContext } from "../../contexts/userContext";
 import "./userPage.scss";
-import { OtherPinsContext } from "../../contexts/pinsContext";
-import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearchPin";
-import { handleGetUserByCookie } from "../../api/users/userApi";
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -42,10 +41,9 @@ const UserPage = () => {
   useEffect(() => {
     if (!user) {
       getUser();
-
-      //navigate(/home)
     }
   }, []);
+
   if (!user) {
     return <>Loading...</>;
   } else {
