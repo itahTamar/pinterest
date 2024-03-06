@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsersBoards } from "../../../../api/boards/boardApi";
+import { getPinsByCategory3 } from "../../../../api/pins/pinsApi";
 import { UserContext } from "../../../../contexts/userContext";
 import { Board } from "../../../../types/board";
-import "./RenderSuggestedBoards.scss";
-import RenderPinImg from "../../../Pins/RenderPinImg";
 import { Pin } from "../../../../types/pin";
-import { getPinsByCategory2 } from "../../../../api/pins/pinsApi";
+import RenderPinImg from "../../../Pins/RenderPinImg";
+import "./RenderSuggestedBoards.scss";
 
 //work ok
 export const RenderSuggestedBoards = () => {
@@ -39,18 +39,19 @@ export const RenderSuggestedBoards = () => {
     }
   };
 
-  const handleGetAllPinByCategory = async (category: string) => {
-    try {
-      const response = await getPinsByCategory2(category, user.username);
-      if (!response)
-        throw new Error(
-          "No response from axios getPinsByCategory2 at render-suggested-boards"
-        );
-        setPinByCategory(response)
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleGetAllPinByCategory3 = async (category: string) => {
+  //   try {
+  //     const response = await getPinsByCategory3(category, user.username);
+  //     if (!response)
+  //       throw new Error(
+  //         "No response from axios getPinsByCategory2 at render-suggested-boards"
+  //       );
+  //     console.log("at renderSuggestedBoard->handleGetAllPinByCategory the response:", response)
+  //       setPinByCategory(response) //all the pin in this board category
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   useEffect(() => {
     if (user) {
@@ -68,7 +69,7 @@ export const RenderSuggestedBoards = () => {
               <div className="board" key={board.name}>
                 <div
                   onClick={() => {
-                    handleGetAllPinByCategory(board.name);
+                    // handleGetAllPinByCategory3(board.name);
                     navigate(`/main/boardPage/${board.name}`, { state: {pinsByCategory} });
                   }}
                 >
