@@ -9,6 +9,7 @@ import { Pin } from "../../types/pin";
 import "./pinPage.scss";
 import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
 import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
+import PinDetails from "../../components/Pins/PinDetails/Pindetails";
 
 //rendering the SpecificPin component
 const PinPage = () => {
@@ -58,6 +59,7 @@ const PinPage = () => {
         </div>
         <div>
           <NavbarPin pin={dataPin} />
+          <PinDetails pin={dataPin}/>
           <ChatBox />
         </div>
       </div>
