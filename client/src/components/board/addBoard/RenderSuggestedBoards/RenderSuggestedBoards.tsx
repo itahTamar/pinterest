@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsersBoards } from "../../../../api/boards/boardApi";
-import { getPinsByCategory3 } from "../../../../api/pins/pinsApi";
 import { UserContext } from "../../../../contexts/userContext";
 import { Board } from "../../../../types/board";
-import { Pin } from "../../../../types/pin";
 import RenderPinImg from "../../../Pins/RenderPinImg";
 import "./RenderSuggestedBoards.scss";
 
@@ -13,8 +11,6 @@ export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
-  const [pinsByCategory, setPinByCategory] = useState<Pin[]>([]);
-
   const navigate = useNavigate();
 
   const handleGetAllOtherBoardsByTitle = async () => {
@@ -39,20 +35,6 @@ export const RenderSuggestedBoards = () => {
     }
   };
 
-  // const handleGetAllPinByCategory3 = async (category: string) => {
-  //   try {
-  //     const response = await getPinsByCategory3(category, user.username);
-  //     if (!response)
-  //       throw new Error(
-  //         "No response from axios getPinsByCategory2 at render-suggested-boards"
-  //       );
-  //     console.log("at renderSuggestedBoard->handleGetAllPinByCategory the response:", response)
-  //       setPinByCategory(response) //all the pin in this board category
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   useEffect(() => {
     if (user) {
       handleGetAllOtherBoardsByTitle();
@@ -70,7 +52,7 @@ export const RenderSuggestedBoards = () => {
                 <div
                   onClick={() => {
                     // handleGetAllPinByCategory3(board.name);
-                    navigate(`/main/boardPage/${board.name}`, { state: {pinsByCategory} });
+                    navigate(`/main/boardPage/${board.name}`);
                   }}
                 >
                   {" "}
