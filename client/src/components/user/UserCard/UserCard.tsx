@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { DataAdmin } from "../../../types/user";
 import { deleteUser } from "../../../api/users/userApi";
+import "./UserCard.scss";
 //for admin only
 interface DataProp {
   data: DataAdmin;
@@ -27,17 +28,20 @@ const UserCard: FC<DataProp> = ({ data, onDelete }) => {
       <table>
         <tbody>
           <tr>
-            <th>{data.first_name}</th>
-            <th>{data.last_name}</th>
-            <th>{data.username}</th>
-            <th>
-              <button
-                disabled={isLoading}
-                onClick={handleDeleteUser}
-              >
-                {isLoading ? "Deleting..." : "Delete 🗑"}
-              </button>
-            </th>
+            <div className="user">
+              <div>
+                <div className="divname">
+                  <p>Name: {data.first_name}</p>
+                  <p> {data.last_name}</p>
+                </div>
+                <p>Username: {data.username}</p>
+              </div>
+              <div>
+                <button disabled={isLoading} onClick={handleDeleteUser}>
+                  {isLoading ? "Deleting..." : "🗑"}
+                </button>
+              </div>
+            </div>
           </tr>
         </tbody>
       </table>

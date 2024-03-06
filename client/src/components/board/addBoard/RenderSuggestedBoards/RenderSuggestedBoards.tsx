@@ -11,17 +11,17 @@ export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const navigate = useNavigate();
-  
+
   const handleGetAllOtherBoardsByTitle = async () => {
     try {
       if (!user.userId)
         throw new Error(
           "at handleGetAllUserSavedPins there is no userId in context"
         );
-      console.log("at renderSuggestedBoard the user.useId:", user.useId)
+      console.log("at renderSuggestedBoard the user.useId:", user.useId);
       //use axios to get all other users pin by category
       const response = await getAllUsersBoards(user.userId);
       if (!response)
@@ -41,7 +41,7 @@ export const RenderSuggestedBoards = () => {
     if (user) {
       handleGetAllOtherBoardsByTitle();
     }
-  }, [user]); 
+  }, [user]);
 
   return (
     <div>
@@ -57,12 +57,18 @@ export const RenderSuggestedBoards = () => {
                   }}
                 >
                   {" "}
-                  <p>More ideas for</p>
-                  <h2>{board.name}</h2>
-                  <RenderPinImg category={board.name}/>
+                  <div className="img">
+                    {/* <div>
+                      <RenderPinImg category={board.name} />
+                    </div> */}
+                    <div>
+                      <p>More ideas for</p>
+                      <h2>{board.name}</h2>
+                    </div>
+                  </div>
                 </div>
               </div>
-            )
+            );
           })
         ) : (
           <p>no boards</p>
