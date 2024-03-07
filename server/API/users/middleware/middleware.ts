@@ -5,17 +5,13 @@ const jwt = require('jwt-simple');
 
 export function isAdmin(req, res, next) {
     try {
-
         //take from cookie and decode cookie and check for admin role
-        const token = req.cookies.user;
-        console.log("at isAdmin the token is:", token)
-        
+        const token = req.cookies.user;       
         if(!token) {
             console.error("no token");
             return res.send({ok: false, error: "timeout, please log-in again" })
         }
         const cookie = jwt.decode(token, secret);
-        console.log("at isAdmin the decode cookie:", cookie)
         //decoded cookie
         const {role} = cookie;
         req.role = role;

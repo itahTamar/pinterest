@@ -285,11 +285,10 @@ export async function savePinToUserByUserId(
 
     const testing = `SELECT * FROM user_favorites_pins WHERE user_favorites_pins.user_id = "${user_id}"
       AND user_favorites_pins.pin_id = "${pin_id}";`;
-    connection.query(testing, (err, results1) => {
+    connection.query(testing, (err, results1:Results) => {
         try {
             if (err) throw err;
             console.log("results1:", results1);
-            //@ts-ignore
             if(results1.length == 0){  //meaning the pin yet to be saved
                 const query = `INSERT INTO user_favorites_pins (user_id, pin_id) VALUES (${user_id}, ${pin_id});`;
                 connection.query(query, (err, results) => {
@@ -310,38 +309,6 @@ export async function savePinToUserByUserId(
     console.error(error);
   }
 } //work ok
-
-// export async function findTitleAtUserSavedPinsByUserId(
-//   req: express.Request,
-//   res: express.Response
-// ) {
-//   try {
-//     const { user_id } = req.params;
-//     if (!user_id)
-//       throw new Error("at getAllOtherUsersPins no user id in params");
-
-//     const { text } = req.query;
-//     if (!text) throw new Error("no text at req.query");
-
-//     const query = `SELECT * FROM pins 
-//         JOIN user_favorites_pins
-//         ON pins.pin_id  = user_favorites_pins.pin_id
-//         WHERE user_favorites_pins.user_id = ${user_id}
-//         AND title like "%${text}%";`;
-//     connection.query(query, (err, results) => {
-//       try {
-//         if (err) throw err;
-//         res.send({ ok: true, results });
-//       } catch (error) {
-//         console.log(error);
-//         res.status(500).send({ ok: false, error });
-//       }
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({ ok: false, error });
-//   }
-// } //work ok
 
 export async function findTitleAtOtherUsersPinsByUsername(
   req: express.Request,
