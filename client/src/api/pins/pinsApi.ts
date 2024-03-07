@@ -213,18 +213,3 @@ export const findTitleAtOtherUsersPins = async (username: string, text: string) 
         console.error("Error:", (error as Error).message);
     }
 }; //work ok
-
-// export const findTitleAtUserSavedPinsByUserId = async (user_id: string, text: string) => {
-//     try {
-//         const response = await axios.get(`/api/v1/pin/findSaved/${user_id}/?text=${text}`);
-//         const { ok, results } = response.data;
-
-//         if (ok) {
-//            return results
-//         } else {
-//             console.error("Error retrieving Pins:", response.data.error);
-//         }
-//     } catch (error) {
-//         console.error("Error:", (error as Error).message);
-//     }
-// };
