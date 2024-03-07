@@ -14,18 +14,15 @@ export const RenderUserBoards = () => {
   const handleGetAllUsersBoards = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
-      
       //use axios to get all user boards title from DB by userId
       const response = await getAllUsersBoards(user.userId)
       if (!response) throw new Error("No response from axios getAllUsersBoards at render-user-boards");
-      console.log("At getAllUsersBoards the response is:", response)
 
       setBoardList(response)
       setFilterBoardList(response)
 
     } catch (error) {
-      console.error(error)
-      
+      console.error(error)      
     }
   }
 

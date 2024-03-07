@@ -16,7 +16,6 @@ const UserCard: FC<DataProp> = ({ data, onDelete }) => {
       await deleteUser(data.user_id);
       onDelete(); // Trigger parent component update after successful delete
     } catch (error) {
-      console.error("Error deleting user:", error);
     } finally {
       setIsLoading(false);
     }

@@ -21,12 +21,9 @@ const PinPage = () => {
     const specificPin = async () => {
       if (pin_id == undefined)
         throw new Error("the pin_id in PinPage params is undefined!");
-      console.log("at specificPin the pin_id", pin_id);
       try {
         const data: Pin = await getPinById(pin_id);
         if (!data) throw new Error("no dog data");
-
-        console.log("at specificPin the data:", data);
 
         setDataPin(data);
       } catch (error) {

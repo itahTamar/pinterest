@@ -21,21 +21,15 @@ const SavedPins = () => {
         throw new Error(
           "at handleGetAllUserSavedPins there is no userId in context"
         );
-          console.log("at handleGetAllUserSavedPins the user in context:", user)
       //use axios to get the Pin list by userId from DB
       const response = await getAllUserSavedPinsByUserId(user.userId); //get pin_id list of favorite user's pins
       if (!response)
         throw new Error(
           "No response from axios getAllUserSavedPinsByUserId at SavedPins"
         );
-      console.log(
-        "At SavedPins/getAllUserSavedPinsByUserId the response is:",
-        response
-      ); //got it
 
       //put the list in PinsState and filterPinsState
       const PinList = response;
-      console.log("PinList:", PinList);
       setPins(PinList);
       setFilterPins(PinList);
     } catch (error) {
@@ -48,14 +42,6 @@ const SavedPins = () => {
       handleGetAllUserSavedPins();
     }
   }, [user]); 
-
-  useEffect(() => {
-    console.log("PinsState line 53:", pinsState);
-  }, [pinsState]);
-
-  useEffect(() => {
-    console.log("filterPinsState:", filterPinsState);
-  }, [filterPinsState]);
 
   return (
     <div id="renderSaved" className="renderSaved">

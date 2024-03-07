@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./ChatBox.scss";
-
 interface Message {
   text: string;
   user: string;

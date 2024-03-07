@@ -20,7 +20,7 @@ export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
-  const { searchedPins, setSearchedPins } = useContext(OtherPinsContext);
+  const { setSearchedPins } = useContext(OtherPinsContext);
   const  {user}  = useContext(UserContext);
   
   useEffect(() => {
@@ -35,7 +35,6 @@ export const Navbar = () => {
           user.username,
           text
         );
-        console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
 
         if (!findAtOtherPins)
           throw new Error(
@@ -57,22 +56,15 @@ export const Navbar = () => {
     }
   }, [text]);
 
-  useEffect(() => {
-    console.log(searchedPins);
-  }, [searchedPins]);
-
   const handleIsAdmin = async () => {
     try {
-      console.log("handleIsAdmin click");
       const response = await handleGetAllUsers(); //response = { ok , results }
-      console.log("at handleIsAdmin:", response);
       if (response.ok === false) {
         alert(response.error);
         navigate(`/login`);
       } else {
         if (response.ok) {
           const dataAdmin = response.results;
-          console.log("dataAdmin:", dataAdmin);
           navigate(`/admin`, { state: { dataAdmin } }); // Pass allUsers as state
         } else {
           navigate(`/main/homePage`);

@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 export const EditProfile = () => {
   const { user, setUser } = useContext(UserContext);
   const [show, setShow] = useState(false);
-
   const [image, setImage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -25,10 +24,7 @@ export const EditProfile = () => {
     setShow(!show);
   }
 
-  console.log("handleSubmitEditProfile user:", user);
-  console.log("handleSubmitEditProfile user.userId:", user.userId);
-
-  useEffect(() => {
+   useEffect(() => {
     if (user) {
       setImage(user.photo)
       setFirstName(user.firstName);
@@ -53,7 +49,6 @@ export const EditProfile = () => {
         website,
         username
       );
-      console.log("at EditProfile handleSubmitEditProfile the response:",response);
 
       if (response) {
         setUser(response)

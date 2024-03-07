@@ -28,7 +28,6 @@ export const NavbarPin: FC<pinProp> = ({ pin }) => {
         throw new Error(
           "No response from axios savePinToUserByUserId at NavbarPin"
         );
-      console.log("At savePinToUserByUserId the response is:", response);
     } catch (error) {
       console.error(error);
     }

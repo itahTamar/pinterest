@@ -13,7 +13,6 @@ const Register = () => {
         try {
             ev.preventDefault()
             const data = { email, password }
-            console.log("A handleSubmit register.tsx the data:", data)
             if (!data) throw new Error("register failed - no email or password");
             setShow(true)
         } catch (error) {

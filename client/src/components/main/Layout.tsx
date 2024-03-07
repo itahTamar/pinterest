@@ -12,17 +12,11 @@ const Layout = () => {
   const getData = async () => {
     try {
       const result = await handleGetUserByCookie();
-      console.log("at getData in main the result", result);
 
       if (!result)
         throw new Error("At main handleGetUserByCookie did't get result");
-      console.log(
-        "at getData in main the result.data.results",
-        result.data.results
-      );
 
       const userData = result.data.results;
-      console.log("at getData in main the userData:", userData);
       if (!userData) throw new Error("at gerData in main userData failed");
 
       setUser(userData as User);

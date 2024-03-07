@@ -19,7 +19,6 @@ export const RenderSuggestedBoards = () => {
         throw new Error(
           "at handleGetAllOtherBoardsById there is no userId in context"
         );
-      console.log("at renderSuggestedBoard the user.useId:", user.useId);
       //use axios to get all other users pin by category
       const response = await gelAllOtherBoardsById(user.userId);
       if (!response)

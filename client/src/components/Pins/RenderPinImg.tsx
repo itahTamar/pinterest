@@ -19,14 +19,12 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
         throw new Error(
           "at handleGetPinsByCategory there is no category in params"
         );
-      console.log("userId at render-suggested-pin:", user.userId);
       //use axios to get the Pin list by userId from DB
       const response = await getPinsByCategory2(category, user.username);
       if (!response)
         throw new Error(
           "No response from axios getPinsByCategory at render suggested pins"
         );
-      console.log("At getPinsByCategory the response is:", response);
 
       //put the list in PinsState and filterPinsState
       setPins(response);
@@ -41,14 +39,6 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
       handleGetPinsByCategory();   
     }
   }, [user]); 
-
-  useEffect(() => {
-    console.log("PinsState:", pinsState); //got it
-  }, [pinsState]);
-
-  useEffect(() => {
-    console.log("filterPinsState:", filterPinsState); //got it
-  }, [filterPinsState]);
 
   return (
     <>

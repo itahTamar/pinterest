@@ -7,11 +7,7 @@ interface PinCardProps {
     pin: Pin;
 }
 const SpecificPin: FC<PinCardProps> = ({ pin }) => {
-    if (pin == undefined) throw new Error("pin is undefined at pinCard");
-    console.log("pin:", pin)
-    console.log("pin.pin_id:", pin.pin_id)
-    console.log("pin.description:", pin.description)
-
+    if (pin === undefined) throw new Error("pin is undefined at SpecificPin");
     return (
         <>
             {pin != undefined ?

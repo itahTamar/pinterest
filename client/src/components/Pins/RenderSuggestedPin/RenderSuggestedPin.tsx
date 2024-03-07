@@ -31,7 +31,6 @@ const RenderSuggestedPin: FC<PinProp> = ({ category, pin_id }) => {
         throw new Error(
           "No response from axios getPinsByCategory at render suggested pins"
         );
-      console.log("At getPinsByCategory the response is:", response);
 
       //put the list in PinsState and filterPinsState
       setPins(response);
@@ -46,14 +45,6 @@ const RenderSuggestedPin: FC<PinProp> = ({ category, pin_id }) => {
       handleGetPinsByCategory(pin_id);
     }
   }, [user]); 
-
-  useEffect(() => {
-    console.log("PinsState:", pinsState); //got it
-  }, [pinsState]);
-
-  useEffect(() => {
-    console.log("filterPinsState:", filterPinsState); //got it
-  }, [filterPinsState]);
 
   return (
     <>

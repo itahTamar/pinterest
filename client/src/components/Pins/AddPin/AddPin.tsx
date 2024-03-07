@@ -41,7 +41,6 @@ export const AddPin = () => {
           board,
           user.userId
         );
-        console.log("at AddPin handleSubmit the response:", response);
 
         if (response) {
           navigate("/main/userPage");
