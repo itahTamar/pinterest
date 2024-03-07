@@ -10,7 +10,6 @@ export const EditPin = () => {
   console.log("at handleEditPin at editPin the dataPin is:", dataPin);
   if (!dataPin)
     throw new Error("No dataPin found in location.state at EditPin");
-
   const [title, setTitle] = useState<string>(dataPin.title);
   const [description, setDescription] = useState<string>(dataPin.description);
   const [link, setLink] = useState<string>(dataPin.link);
@@ -31,8 +30,9 @@ export const EditPin = () => {
 
       if (!response)
         throw new Error("No response from axios EditPinById at EditPin"); 
-      console.log("At handleEditPin the response is:", response); 
-      navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`);
+      console.log("At handleEditPin the response[0] is:", response[0]); 
+      const pinUpdateDate = response[0]
+      navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`, {state: {pinUpdateDate}});
     } catch (error) {
       console.error(error);
     }
