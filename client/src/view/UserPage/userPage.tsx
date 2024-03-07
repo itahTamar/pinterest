@@ -84,10 +84,12 @@ const UserPage = () => {
             <button onClick={toggleShowSave}>Saved</button>
           </div>
         </div>
-
-        <div className="userBoards">
-          <RenderUserBoards />
-        </div>
+        
+        {show ? (
+          <div className="userBoards">
+            <RenderUserBoards />
+          </div>
+        ) : null}
 
         <div className="userSearch">
           {" "}
