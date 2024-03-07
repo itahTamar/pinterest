@@ -9,7 +9,7 @@ import { Pin } from "../../types/pin";
 import "./pinPage.scss";
 import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
 import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
-import PinDetails from "../../components/Pins/PinDetails/Pindetails";
+import PinDetails from "../../components/Pins/PinDetails/PinDetails";
 
 //rendering the SpecificPin component
 const PinPage = () => {
