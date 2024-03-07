@@ -10,8 +10,6 @@ import "./boardPage.scss";
 
 const BoardPage = () => {
   const { boardName } = useParams<string>();
-  // const location = useLocation()
-  // const { pinsByCategory } = location.state; // Access all pin's data from location.stat
   console.log("at board page the board name:", boardName);
 
   return (
@@ -42,7 +40,7 @@ const BoardPage = () => {
       </div>
       <div>
         {/* find some ideas for this boars:{" "} */}
-        {/* (div box with more pin in that category of other users that he yet saved) */}
+        {/* (div box with more pin in that category of other users that thw user yet saved) */}
         {boardName !== undefined ? (
           <RenderSuggestedPinByCategoryOnly category={boardName} />
         ) : (
@@ -50,7 +48,7 @@ const BoardPage = () => {
         )}
       </div>
       <div className="buttons">
-        <div>+</div> {/* only visual btn (in the down-middle of the box)*/}
+        <div>+</div> 
         <div>?</div>
       </div>
     </div>

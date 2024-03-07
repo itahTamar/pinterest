@@ -22,7 +22,12 @@ export const login = async (email: string, password: string) => {
 
 export const handleGetUserByCookie = async () => {
     try {
-        return await axios.get("/api/v1/users/getUserByCookie")
+        const response = await axios.get("/api/v1/users/getUserByCookie")
+        if (response.data.ok === false) {
+            console.log(response.data.error)
+            return response.data
+        }
+        return response.data
     } catch (error) {
         console.error(error)
     }

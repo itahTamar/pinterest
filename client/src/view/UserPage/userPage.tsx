@@ -15,8 +15,6 @@ const UserPage = () => {
   const { user, setUser } = useContext(UserContext);
   const { searchedPins } = useContext(OtherPinsContext);
 
-  console.log("at userPage userData:", user);
-
   function toggleShowCreate() {
     setShow(false);
   }
@@ -25,15 +23,12 @@ const UserPage = () => {
     setShow(true);
   }
 
-  useEffect(() => {
-    console.log("show=", show);
-  }, [show]);
-
   const getUser = async () => {
     try {
       const data = await handleGetUserByCookie();
-      //@ts-ignore
-      setUser(data?.results);
+      if (!data) throw new Error("at userPage->getUser no data from DB");
+      const userData = data.results
+      setUser(userData);
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +88,7 @@ const UserPage = () => {
 
         <div className="userSearch">
           {" "}
-          {/* here we render the search results of this page*/}
+          {/* here we render the search results */}
           {searchedPins && searchedPins.length > 0 ? (
             <RenderOtherSearchPin />
           ) : (

@@ -8,10 +8,7 @@ import { decode } from "punycode";
 const saltRounds = 10;
 
 export async function register(req: Request, res: Response) {
-  console.log("10");
   try {
-    console.log("12");
-
     const {
       email,
       password,
@@ -26,17 +23,12 @@ export async function register(req: Request, res: Response) {
       throw new Error(
         "Necessary information is missing at register user server"
       );
-    console.log("16");
 
     const secret = process.env.SECRET;
     if (!secret) throw new Error("no secret");
-    console.log("20");
 
     const hash = await bcrypt.hash(password, saltRounds);
-    console.log("23");
-
     const query = `INSERT INTO users ( email, password, username, first_name, last_name, about, pronouns, website) VALUES ('${email}', '${hash}','${username}','${first_name}','${last_name}','${about}','${pronouns}','${website}');`;
-
     connection.query(query, (err, resultsAdd: Results) => {
       try {
         if (err) throw err;
@@ -158,7 +150,6 @@ export async function deleteUser(req: Request, res: Response) {
     if (!userId) throw new Error("no Id");
 
     const query = `DELETE FROM users WHERE (user_id = ${userId});`;
-
     connection.query(query, (err, results: Results) => {
       try {
         if (err) throw err;

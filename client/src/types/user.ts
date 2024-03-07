@@ -21,14 +21,3 @@ export interface DataAdmin {
   username: string;
   website: string;
 }
-
-// export interface userData {
-//   username: string ,
-//   firstName: string ,
-//   lastName: string ,
-//   userId: number,
-//   image: string,
-//   about: string,
-//   pronouns: string,
-//   website: string    
-// }

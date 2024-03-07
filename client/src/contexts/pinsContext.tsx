@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { FC, ReactNode, createContext, useState } from "react";
 import { Pin } from "../types/pin";
 
 export const OtherPinsContext = createContext<any>(null);
@@ -7,7 +7,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const PinSearchContextProvider = ({ children }: any) => {
+export const PinSearchContextProvider:FC<Props> = ({ children }: any) => {
   const [searchedPins, setSearchedPins] = useState<Pin[]>([]);
 
   return (

@@ -5,7 +5,6 @@ export interface User {
      username: string,
      role: "admin" | " "
  }
-
  export interface Results {
     "fieldCount": number,
     "affectedRows": number,

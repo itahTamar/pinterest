@@ -54,7 +54,6 @@ export async function getOneBoard(req: express.Request, res: express.Response) {
         connection.query(query, (err, results) => {
             try {
                 if (err) throw err
-                console.log("At getOneBoard the results is:", results)
                 res.send({ ok: true, results })
             } catch (error) {
                 console.log(error)
