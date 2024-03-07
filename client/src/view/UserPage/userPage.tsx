@@ -7,7 +7,7 @@ import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearch
 import { OtherPinsContext } from "../../contexts/pinsContext";
 import { UserContext } from "../../contexts/userContext";
 import "./userPage.scss";
-import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
+import { RenderUserBoards } from "../../components/board/RenderUserBoards";
 
 const UserPage = () => {
   const navigate = useNavigate();

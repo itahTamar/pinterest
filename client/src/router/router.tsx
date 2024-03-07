@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { EditPin } from "../components/Pins/EditPin/EditPin";
 import SavedPins from "../components/Pins/SavedPins/SavedPins";
-import BoardCard from "../components/board/addBoard/BoardCard";
+import BoardCard from "../components/board/BoardCard";
 import Layout from "../components/main/Layout";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";
 import Login from "../components/user/login/Login";

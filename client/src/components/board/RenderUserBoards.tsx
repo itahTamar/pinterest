@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAllUsersBoards } from '../../../api/boards/boardApi'
-import { UserContext } from '../../../contexts/userContext'
-import { Board } from '../../../types/board'
-import RenderPinImg from '../../Pins/RenderPinImg'
+import { Board } from '../../types/board';
+import { UserContext } from '../../contexts/userContext';
+import { getAllUsersBoards } from '../../api/boards/boardApi';
+import RenderPinImg from '../Pins/RenderPinImg';
 
 export const RenderUserBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([])
