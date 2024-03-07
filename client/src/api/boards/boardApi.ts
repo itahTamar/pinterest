@@ -13,11 +13,11 @@ export const getAllUsersBoards = async (user_id: string) => {
     } catch (error) {
         console.error("Error:", (error as Error).message);
     }
-};
+}; //work ok
 
-export const gelAllOtherBoardsByTitle = async (title: string) => {
+export const gelAllOtherBoardsById = async (userId: string) => {
     try {
-        const response = await axios.get(`/api/v1/board/gelAllOtherBoardsByTitle/${title}`);
+        const response = await axios.get(`/api/v1/board/getAllOtherUsersBoards/${userId}`);
         const { ok, results } = response.data;
 
         if (ok) {
@@ -30,17 +30,17 @@ export const gelAllOtherBoardsByTitle = async (title: string) => {
     }
 }; 
 
-export const addOneBoard = async (user_id: string, title: string) => {
-    try {
-        const response = await axios.post(`/api/v1/board/${user_id}`, {title});
-        const { ok, results } = response.data;
+// export const addOneBoard = async (user_id: string, title: string) => {
+//     try {
+//         const response = await axios.post(`/api/v1/board/${user_id}`, {title});
+//         const { ok, results } = response.data;
 
-        if (ok) {
-           return results
-        } else {
-            console.error("Error retrieving Pins:", response.data.error);
-        }
-    } catch (error) {
-        console.error("Error:", (error as Error).message);
-    }
-};
+//         if (ok) {
+//            return results
+//         } else {
+//             console.error("Error retrieving Pins:", response.data.error);
+//         }
+//     } catch (error) {
+//         console.error("Error:", (error as Error).message);
+//     }
+// };

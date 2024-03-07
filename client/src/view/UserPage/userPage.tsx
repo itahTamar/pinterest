@@ -7,6 +7,7 @@ import RenderOtherSearchPin from "../../components/Pins/search/RenderOtherSearch
 import { OtherPinsContext } from "../../contexts/pinsContext";
 import { UserContext } from "../../contexts/userContext";
 import "./userPage.scss";
+import { RenderUserBoards } from "../../components/board/addBoard/RenderUserBoards";
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ const UserPage = () => {
     }
   }, []);
 
+  const randomNumber = Math.floor(Math.random() * 100);
+
   if (!user) {
     return <>Loading...</>;
   } else {
@@ -65,7 +68,7 @@ const UserPage = () => {
             />
             <h4>{user.username}</h4>
           </div>
-          <h3>0 following</h3>
+          <h3>{randomNumber} following</h3>
           <div className="profile-btn">
             <button>Share</button>
             <button
@@ -80,6 +83,10 @@ const UserPage = () => {
             <button onClick={toggleShowCreate}>Created</button>
             <button onClick={toggleShowSave}>Saved</button>
           </div>
+        </div>
+
+        <div className="userBoards">
+          <RenderUserBoards />
         </div>
 
         <div className="userSearch">
