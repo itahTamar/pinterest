@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPinById } from "../api/pins/pinsApi";
+import SpecificPin from "../components/Pins/SepecificPin/SpecificPin";
 import ChatBox from "../components/chatBox/ChatBox";
+import { NavbarCreatedPin } from "../components/navbars/NavbarPin/NavbarCreatedPin";
 import { Pin } from "../types/pin";
 import "./PinPage/pinPage.scss";
-import { NavbarCreatedPin } from "../components/navbars/NavbarPin/NavbarCreatedPin";
-import SpecificPin from "../components/Pins/SepecificPin/SpecificPin";
+import PinDetails from "../components/Pins/PinDetails/Pindetails";
 
 //rendering the SpecificPin component
 const PageOfCreatedPin = () => {
@@ -54,13 +55,15 @@ const PageOfCreatedPin = () => {
             <p>Pin not found </p>
           )}
         </div>
-        {dataPin ?
+        {dataPin ? (
           <div>
             <NavbarCreatedPin pin_id={pin_id} dataPin={dataPin} />
+            <PinDetails pin={dataPin}/>
             <ChatBox />
-          </div> :
+          </div>
+        ) : (
           <p>no data pin</p>
-        }
+        )}
       </div>
     </>
   );

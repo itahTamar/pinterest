@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { Board } from '../../../types/board'
-import { UserContext } from '../../../contexts/userContext'
-import { getAllUsersBoards } from '../../../api/boards/boardApi'
-import BoardCard from './BoardCard'
 import { useNavigate } from 'react-router-dom'
-
+import { getAllUsersBoards } from '../../../api/boards/boardApi'
+import { UserContext } from '../../../contexts/userContext'
+import { Board } from '../../../types/board'
+import RenderPinImg from '../../Pins/RenderPinImg'
 
 export const RenderUserBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([])
@@ -31,26 +30,35 @@ export const RenderUserBoards = () => {
   }
 
   useEffect(() => {
-    handleGetAllUsersBoards()
-  }, []) //only run this effect on the initial render
+    if (user){
+      handleGetAllUsersBoards()
+    }
+  }, [user]) 
 
   return (
     <div>
-      {/* render user boards:
-      
+      {/* render user boards:*/}
       <div className="boards-container">
         {filterBoardList && boardList.length > 0 ? (
-          filterBoardList.map((board) => (
-            <div className='board' key={board.board_id}>
-              <button onClick={() => { navigate(`/main/board/${board.board_id}`) }}><BoardCard board={board}/></button>
-            </div>
-          ))
+          filterBoardList.map((board) => {
+            return (
+              <div className="board" key={board.name}>
+                <div onClick={() => {navigate(`/main/boardPage/${board.name}`); }}>
+                  {" "}
+                  <RenderPinImg category={board.name} />
+
+                  <h2>{board.name}</h2>
+                  
+                </div>
+              </div>
+            );
+          })
         ) : (
           <p>no boards</p>
         )}
-      </div> */}
+      </div>
     </div>
   );
-}
+};
 
 
