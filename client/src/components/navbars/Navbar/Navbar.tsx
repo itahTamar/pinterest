@@ -1,16 +1,12 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  findTitleAtOtherUsersPins,
-} from "../../../api/pins/pinsApi";
+import { findTitleAtOtherUsersPins } from "../../../api/pins/pinsApi";
 import { handleGetAllUsers } from "../../../api/users/userApi";
 import { OtherPinsContext } from "../../../contexts/pinsContext";
-import {
-  UserContext,
-} from "../../../contexts/userContext";
+import { UserContext } from "../../../contexts/userContext";
 import { Pin } from "../../../types/pin";
 import { DropDownMenu } from "../../DropDownMenu/DropDownMenu";
 import "./Navbar.scss";
@@ -21,28 +17,30 @@ export const Navbar = () => {
   const [text, setText] = useState("");
   const [key, setKey] = useState(true);
   const { searchedPins, setSearchedPins } = useContext(OtherPinsContext);
-  const  {user}  = useContext(UserContext);
-  
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     const handleSearchPins = async () => {
       try {
         if (!user) throw new Error("at handleSearchPins - no user in context");
         if (!text) {
-          setSearchedPins([])
-          return
+          setSearchedPins([]);
+          return;
         }
         const findAtOtherPins: Pin[] = await findTitleAtOtherUsersPins(
           user.username,
           text
         );
-        console.log("At Navbar->handleSearchPins the findAtOtherPins:", findAtOtherPins) //got it
+        console.log(
+          "At Navbar->handleSearchPins the findAtOtherPins:",
+          findAtOtherPins
+        ); //got it
 
         if (!findAtOtherPins)
           throw new Error(
             "At Navbar->handleSearchPins: no other pins get from DB"
           );
-          setSearchedPins(findAtOtherPins); 
-        
+        setSearchedPins(findAtOtherPins);
       } catch (error) {
         console.error(error);
       }
@@ -53,7 +51,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (!text) {
-    setSearchedPins([])
+      setSearchedPins([]);
     }
   }, [text]);
 
@@ -94,7 +92,6 @@ export const Navbar = () => {
       </div>
       <div>
         <button
-      
           className="HomePageButton"
           onClick={() => {
             navigate(`/main/homePage`);
@@ -121,7 +118,9 @@ export const Navbar = () => {
           placeholder="Search"
           onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
         />
-        <div onClick={() => setKey(!key)}>🔎</div>
+        <div onClick={() => setKey(!key)}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </div>
       </div>
 
       <div>

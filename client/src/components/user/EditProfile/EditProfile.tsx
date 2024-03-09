@@ -127,7 +127,7 @@ export const EditProfile = () => {
           </p>
           <p>Website</p>
           <input
-            className="website"
+            className="Pronouns"
             type="text"
             placeholder="Add a link to drive traffic to your site"
             value={website}

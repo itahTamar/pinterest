@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
 
   &_image {
     .divimg {
@@ -10,12 +9,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      // width: 375px;
-      height: 452px;
+      height: 23rem;
+      width: 20rem;
       background-color: gainsboro;
-      border-radius: 30px;
+      border-radius: 1.5rem;
       margin-bottom: 1vw;
-      font-size: 18px;
+      font-size: 1rem;
       p {
         padding: 0px 60px;
         text-align: center;
@@ -23,11 +22,11 @@
     }
 
     button {
-      width: 375px;
-      border-radius: 30px;
+      width: 20rem;
+      border-radius: 1.5rem;
       background-color: gainsboro;
       margin-top: 1vw;
-      font-size: 18px;
+      font-size: 1rem;
     }
     .DropDownInput {
       position: relative;
@@ -44,7 +43,8 @@
   &_form {
     height: 555px;
     width: 585px;
-    margin-left: 60px;
+    margin-left: 3rem;
+    margin-top: 7rem;
 
     input {
       width: 580px;
@@ -57,17 +57,17 @@
     }
 
     p {
-      font-size: 15px;
+      font-size: 1rem;
     }
 
     .publish {
-      margin-top: 0.8vw;
+      margin-top: 1rem;
       background-color: #e60023;
       border-bottom: #e60023;
       color: white;
       font-size: 20px;
-      padding: 20px;
-      border-radius: 40px;
+      padding: 1rem;
+      border-radius: 2rem;
     }
   }
 }
