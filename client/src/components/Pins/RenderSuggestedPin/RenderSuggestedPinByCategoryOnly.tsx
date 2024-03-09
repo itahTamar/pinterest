@@ -29,7 +29,6 @@ const RenderSuggestedPinByCategoryOnly: FC<PinProp> = ({ category }) => {
         throw new Error(
           "No response from axios getPinsByCategory at render suggested pins"
         );
-      console.log("At getPinsByCategory the response is:", response);
 
       //put the list in PinsState and filterPinsState
       setPins(response);

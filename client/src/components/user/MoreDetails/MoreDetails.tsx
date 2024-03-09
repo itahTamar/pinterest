@@ -18,24 +18,11 @@ const MoreDetails: FC<userDataProp> = ({ email, password }) => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  console.log("At EditProfile the email & password are:", email, password);
-
   const handleSubmitEditProfile = async (
     ev: React.FormEvent<HTMLFormElement>
   ) => {
     try {
       ev.preventDefault();
-      console.log(
-        "At handleSubmitEditProfile the data to send DB:",
-        email,
-        password,
-        firstName,
-        lastName,
-        about,
-        pronouns,
-        website,
-        username
-      );
       if (!email || !password || !firstName || !lastName || !username)
         throw new Error("At EditProfile Necessary information is missing");
 
@@ -49,7 +36,6 @@ const MoreDetails: FC<userDataProp> = ({ email, password }) => {
         pronouns,
         website
       );
-      console.log("At handleSubmitEditProfile data is:", data); //undefine
 
       if (!data) throw new Error("register failed");
       navigate("/login");

@@ -7,7 +7,6 @@ export const EditPin = () => {
 
   const location = useLocation();
   const { dataPin } = location.state; // Access all pin's data from location.stat
-  console.log("at handleEditPin at editPin the dataPin is:", dataPin);
   if (!dataPin)
     throw new Error("No dataPin found in location.state at EditPin");
   const [title, setTitle] = useState<string>(dataPin.title);
@@ -26,11 +25,8 @@ export const EditPin = () => {
         board
       ); //this work - the data in DB change
       
-      console.log("At handleEditPin the response is:", response); //
-
       if (!response)
         throw new Error("No response from axios EditPinById at EditPin"); 
-      console.log("At handleEditPin the response[0] is:", response[0]); 
       const pinUpdateDate = response[0]
       navigate(`/main/PageOfCreatedPin/${dataPin.pin_id}`, {state: {pinUpdateDate}});
     } catch (error) {
@@ -41,7 +37,6 @@ export const EditPin = () => {
   const handleDeletePin = async () => {
     try {
       const { dataPin } = location.state; // Access all pin's data from location.stat
-      console.log("at handleDeletePin at editPin the dataPin is:", dataPin);
       if (!dataPin)
       throw new Error("No dataPin found in location.state at EditPin");
       const response = await deletePin(dataPin.pin_id)
@@ -80,7 +75,7 @@ export const EditPin = () => {
             setLink((ev.target as HTMLInputElement).value);
           }}
         />
-        <p>Board</p> {/*nead to be selection only not input */}
+        <p>Board</p> 
         <input
           type="text"
           placeholder="Add a board"

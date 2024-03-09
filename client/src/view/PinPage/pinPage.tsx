@@ -9,7 +9,7 @@ import { Pin } from "../../types/pin";
 import "./pinPage.scss";
 import SpecificPin from "../../components/Pins/SepecificPin/SpecificPin";
 import RenderSuggestedPin from "../../components/Pins/RenderSuggestedPin/RenderSuggestedPin";
-import PinDetails from "../../components/Pins/PinDetails/Pindetails";
+import PinDetails from "../../components/Pins/PinDetails/PinDetails";
 
 //rendering the SpecificPin component
 const PinPage = () => {
@@ -21,12 +21,9 @@ const PinPage = () => {
     const specificPin = async () => {
       if (pin_id == undefined)
         throw new Error("the pin_id in PinPage params is undefined!");
-      console.log("at specificPin the pin_id", pin_id);
       try {
         const data: Pin = await getPinById(pin_id);
         if (!data) throw new Error("no dog data");
-
-        console.log("at specificPin the data:", data);
 
         setDataPin(data);
       } catch (error) {

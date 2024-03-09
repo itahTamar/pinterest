@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAllUsersBoards } from '../../../api/boards/boardApi'
-import { UserContext } from '../../../contexts/userContext'
-import { Board } from '../../../types/board'
-import RenderPinImg from '../../Pins/RenderPinImg'
+import { Board } from '../../types/board';
+import { UserContext } from '../../contexts/userContext';
+import { getAllUsersBoards } from '../../api/boards/boardApi';
+import RenderPinImg from '../Pins/RenderPinImg';
 
 export const RenderUserBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([])
@@ -14,18 +14,15 @@ export const RenderUserBoards = () => {
   const handleGetAllUsersBoards = async () => {
     try {
       if (!user.userId) throw new Error("at handleGetAllUserSavedPins there is no userId in context");
-      
       //use axios to get all user boards title from DB by userId
       const response = await getAllUsersBoards(user.userId)
       if (!response) throw new Error("No response from axios getAllUsersBoards at render-user-boards");
-      console.log("At getAllUsersBoards the response is:", response)
 
       setBoardList(response)
       setFilterBoardList(response)
 
     } catch (error) {
-      console.error(error)
-      
+      console.error(error)      
     }
   }
 

@@ -9,17 +9,17 @@ const Register = () => {
   const [password, setPassword] = useState<string>("");
   const [show, setShow] = useState(false);
 
-  const handleSubmitRegister = async (ev: React.FormEvent<HTMLFormElement>) => {
-    try {
-      ev.preventDefault();
-      const data = { email, password };
-      console.log("A handleSubmit register.tsx the data:", data);
-      if (!data) throw new Error("register failed - no email or password");
-      setShow(true);
-    } catch (error) {
-      console.error(error);
+    const handleSubmitRegister = async (ev: React.FormEvent<HTMLFormElement>) => {
+        try {
+            ev.preventDefault()
+            const data = { email, password }
+            if (!data) throw new Error("register failed - no email or password");
+            setShow(true)
+        } catch (error) {
+            console.error(error)
+        }
     }
-  };
+  
 
   return (
     <>

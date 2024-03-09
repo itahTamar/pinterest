@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { EditPin } from "../components/Pins/EditPin/EditPin";
 import SavedPins from "../components/Pins/SavedPins/SavedPins";
-import BoardCard from "../components/board/addBoard/BoardCard";
 import Layout from "../components/main/Layout";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";
 import Login from "../components/user/login/Login";
@@ -31,10 +30,6 @@ export const router = createBrowserRouter([
       { path: "editPin/:pin_id", element: <EditPin /> },
       { path: "editProfile", element: <EditProfile /> },
       { path: "boardPage/:boardName", element: <BoardPage /> },
-      {
-        path: "boardCard/:board.name",
-        element: <BoardCard board={undefined} />,
-      },
       { path: "PageOfCreatedPin/:pin_id", element: <PageOfCreatedPin /> },
     ],
   },

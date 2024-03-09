@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { gelAllOtherBoardsById } from "../../../../api/boards/boardApi";
-import { UserContext } from "../../../../contexts/userContext";
-import { Board } from "../../../../types/board";
-import RenderPinImg from "../../../Pins/RenderPinImg";
 import "./RenderSuggestedBoards.scss";
+import { Board } from "../../../types/board";
+import { UserContext } from "../../../contexts/userContext";
+import { gelAllOtherBoardsById } from "../../../api/boards/boardApi";
+import RenderPinImg from "../../Pins/RenderPinImg";
 
 //work ok
 export const RenderSuggestedBoards = () => {
@@ -27,7 +27,6 @@ export const RenderSuggestedBoards = () => {
         throw new Error(
           "at handleGetAllOtherBoardsById there is no userId in context"
         );
-      console.log("at renderSuggestedBoard the user.useId:", user.useId);
       //use axios to get all other users pin by category
       const response = await gelAllOtherBoardsById(user.userId);
       if (!response)

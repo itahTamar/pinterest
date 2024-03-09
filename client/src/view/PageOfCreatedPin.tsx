@@ -8,7 +8,7 @@ import ChatBox from "../components/chatBox/ChatBox";
 import { NavbarCreatedPin } from "../components/navbars/NavbarPin/NavbarCreatedPin";
 import { Pin } from "../types/pin";
 import "./PinPage/pinPage.scss";
-import PinDetails from "../components/Pins/PinDetails/Pindetails";
+import PinDetails from "../components/Pins/PinDetails/PinDetails";
 
 //rendering the SpecificPin component
 const PageOfCreatedPin = () => {
@@ -20,13 +20,9 @@ const PageOfCreatedPin = () => {
     const specificPin = async () => {
       if (pin_id == undefined)
         throw new Error("the pin_id in PinPage params is undefined!");
-      console.log("at specificPin the pin_id", pin_id);
       try {
         const data: Pin = await getPinById(pin_id);
         if (!data) throw new Error("no dog data");
-
-        console.log("at specificPin the data:", data);
-
         setDataPin(data);
       } catch (error) {
         console.error("Error fetching specificPin:", error);

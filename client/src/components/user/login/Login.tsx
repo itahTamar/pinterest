@@ -20,7 +20,6 @@ const Login = () => {
         password
       );
       const data = await login(email, password);
-      console.log("at handleSubmitLogin the data:", data);
       if (!data) {
         window.alert(
           "login failed! check your email or password or please register first"
@@ -29,7 +28,6 @@ const Login = () => {
       }
 
       const userData = data.data.userData;
-      console.log("at handleSubmitLogin the userData:", userData);
       if (!userData) throw new Error("at handleSubmitLogin userData failed");
 
       setUser(userData);

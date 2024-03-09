@@ -7,7 +7,6 @@ import PinCard from "../PinCard/PinCard";
 import "./RenderOthersPins.scss";
 
 //work ok
-
 const RenderOthersPins = () => {
   const [pinsState, setPins] = useState<Pin[]>([]);
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
@@ -27,10 +26,6 @@ const RenderOthersPins = () => {
         throw new Error(
           "No response from axios getAllOtherUsersPinsByUsername at HomePage"
         );
-      console.log(
-        "At getAllOtherUsersPinsByUsername the response is:",
-        response
-      ); //got it
 
       //put the list in PinsState and filterPinsState
       setPins(response);
