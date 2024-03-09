@@ -12,10 +12,9 @@
 
 .popup-inner{
     position: relative;
-    padding-top: 5rem;
-    height: 30vw;
-    width: 25vw;
-    height: 30vw;
+    padding-top: 1.2rem;
+    height: 23rem;
+    width: 20rem;
     background-color: #FFF;
 
     .close {
@@ -23,6 +22,7 @@
         top: 0;
         left: 0;
         font-size: 1vw;
+        padding: 0 0.5rem;
         background-color: white;
       }
 

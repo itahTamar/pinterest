@@ -100,9 +100,9 @@ const RLhomepage = () => {
           <div className="divText4">
           <h2>Sign up to get your ideas</h2>
           </div>
-          <div className="register" id="third">
+          <div className="divRegister">
             <Register />
-          </div>
+           </div>
         </div>
       </div>
     </div>
