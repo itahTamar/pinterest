@@ -85,13 +85,13 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <button onClick={handleIsAdmin}>
+      <div onClick={handleIsAdmin}>
         <img
           className="admin-btn"
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"
           alt="logo"
         />
-      </button>
+      </div>
       <div>
         <button
       
@@ -114,14 +114,14 @@ export const Navbar = () => {
           Create
         </button>
       </div>
-      <div>
+      <div className="divSearch">
         <input
           className="search"
           type="text"
           placeholder="Search"
           onChange={(ev) => setText((ev.target as HTMLInputElement).value)}
         />
-        <button onClick={() => setKey(!key)}>🔎</button>
+        <div onClick={() => setKey(!key)}>🔎</div>
       </div>
 
       <div>

@@ -63,3 +63,12 @@
     height: 2vw;
   }
 }
+
+.divSearch{
+  display: flex;
+  align-items: center;
+
+  div{
+    cursor: pointer;
+  }
+}
