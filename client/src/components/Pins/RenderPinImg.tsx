@@ -43,19 +43,20 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
 
   return (
     <>
-      {filterPinsState && pinsState.length > 0 ? (
-        filterPinsState.map((pin) => {
-          return (
-            <div className="renderImg">
+      <div className="renderImg">
+        {filterPinsState && pinsState.length > 0 ? (
+          filterPinsState.map((pin) => {
+            return (
               <div>
                 <img key={pin.title} src={pin.image} />
               </div>
-            </div>
-          );
-        })
-      ) : (
-        <p>no pin found</p>
-      )}
+              
+            );
+          })
+        ) : (
+          <p>no pin found</p>
+        )}
+      </div>
     </>
   );
 };

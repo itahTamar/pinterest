@@ -47,16 +47,20 @@ export const RenderSuggestedBoards = () => {
         {filterBoardList && boardList.length > 0 ? (
           filterBoardList.map((board) => {
             return (
-              <div className="board" key={board.name}>
+              <div key={board.name}>
                 <div
+                  className="board"
                   onClick={() => {
                     navigate(`/main/boardPage/${board.name}`);
                   }}
                 >
-                  {" "}
-                  <p>More ideas for</p>
-                  <h2>{board.name}</h2>
-                  <RenderPinImg category={board.name} />
+                  <div>
+                    <RenderPinImg category={board.name} />
+                  </div>
+                  <div className="boardHP">
+                    <p>More ideas for</p>
+                    <h2>{board.name}</h2>
+                  </div>
                 </div>
               </div>
             );

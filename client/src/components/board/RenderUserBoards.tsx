@@ -39,7 +39,7 @@ export const RenderUserBoards = () => {
         {filterBoardList && boardList.length > 0 ? (
           filterBoardList.map((board) => {
             return (
-              <div className="board" key={board.name}>
+              <div className="" key={board.name}>
                 <div onClick={() => {navigate(`/main/boardPage/${board.name}`); }}>
                   {" "}
                   <RenderPinImg category={board.name} />

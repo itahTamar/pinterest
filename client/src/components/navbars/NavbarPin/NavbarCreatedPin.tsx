@@ -21,7 +21,7 @@ export const NavbarCreatedPin: FC<pinProp> = ({pin_id, dataPin}) => {
     </div>
     <div className="navbarPin-btns">
         <div>{dataPin.category} <FontAwesomeIcon icon={faCaretDown} /></div>
-        <button onClick={() => { navigate(`/main/editPin/${pin_id}`, {state: {dataPin}}) }}>Edit Pin</button>  {/* Pass all pin's data as state*/}
+        <button className="editpinbtn" onClick={() => { navigate(`/main/editPin/${pin_id}`, {state: {dataPin}}) }}>Edit Pin</button>  {/* Pass all pin's data as state*/}
     </div>
     </div>
   );

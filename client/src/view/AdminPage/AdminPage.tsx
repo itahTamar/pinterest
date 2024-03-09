@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { DataAdmin } from "../types/user";
-import UserCard from "../components/user/UserCard/UserCard";
-import { deleteUser } from "../api/users/userApi";
+import { DataAdmin } from "../../types/user";
+import UserCard from "../../components/user/UserCard/UserCard";
+import { deleteUser } from "../../api/users/userApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import './AdminPage.scss'
+import "./AdminPage.scss";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -24,7 +24,8 @@ const AdminPage = () => {
 
   return (
     <>
-      <div className="homepage"
+      <div
+        className="homepage"
         onClick={() => {
           navigate(`/main/homepage`);
         }}
@@ -33,18 +34,18 @@ const AdminPage = () => {
       </div>
       <h2>admin page</h2>
       <div className="userCards">
-      {users.length > 0 ? (
-        users.map((data: DataAdmin) => (
-          <div key={data.user_id}>
-            <UserCard
-              data={data}
-              onDelete={() => handleDeleteUser(data.user_id)}
-            />
-          </div>
-        ))
-      ) : (
-        <p>No users</p>
-      )}
+        {users.length > 0 ? (
+          users.map((data: DataAdmin) => (
+            <div key={data.user_id}>
+              <UserCard
+                data={data}
+                onDelete={() => handleDeleteUser(data.user_id)}
+              />
+            </div>
+          ))
+        ) : (
+          <p>No users</p>
+        )}
       </div>
     </>
   );

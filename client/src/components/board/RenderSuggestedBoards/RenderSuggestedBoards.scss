@@ -2,17 +2,17 @@
   display: flex;
   justify-content: center;
   position: relative;
-  top: 5rem;
+  top: 4rem;
   .board {
-    padding: 1vw;
-    width: 13vw;
-    background-color: rgb(204, 204, 204);
-    border-radius: 7vw;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 20rem;
+    padding: 1rem;
     margin: 0px 1vw;
+    background-color: rgb(204, 204, 204);
+    border-radius: 1rem;
     cursor: pointer;
-    &:hover {
-      background-color: rgba(204, 204, 204, 0.466);
-    }
 
     p {
       font-weight: 700;
@@ -21,11 +21,11 @@
     h2 {
       font-size: 3vw;
       color: grey;
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background-color: rgba(204, 204, 204, 0.466);
     }
   }
 }
-
-// .img {
-//   display: flex;
-//   align-items: center;
-// }

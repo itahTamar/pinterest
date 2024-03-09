@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { EditPinById, deletePin } from "../../../api/pins/pinsApi";
+import './EditPin.scss'
+import '../AddPin/AddPin.scss'
 //work ok
 export const EditPin = () => {
   const navigate = useNavigate();
@@ -47,9 +49,9 @@ export const EditPin = () => {
     }
   }
   return (
-    <div>
-      <h2>Edit Pin</h2>
-      <form onSubmit={handleEditPin}>
+    <div className="EditPin">
+      <h1>Edit Pin</h1>
+      <form className="AddPin_form" onSubmit={handleEditPin}>
         <p>Title</p>
         <input
           type="text"
@@ -83,10 +85,11 @@ export const EditPin = () => {
             setBoard((ev.target as HTMLInputElement).value);
           }}
         />
-        <button type="reset">Reset</button>
-        <button type="submit">Save</button>
+        <button className="register" type="reset">Reset</button>
+        <button className="login" type="submit">Save</button>
+        <button className="register" onClick={handleDeletePin}>Delete</button>
       </form>
-      <button onClick={handleDeletePin}>Delete</button>
+      
     </div>
   );
 };

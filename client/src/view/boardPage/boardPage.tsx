@@ -1,5 +1,7 @@
 import {
   faEllipsis,
+  faPlus,
+  faQuestion,
   faTableColumns,
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +18,6 @@ const BoardPage = () => {
     <div className="boardPage">
       <div className="boardName">
         <div>
-          <h3>Ideas for your board</h3>
           <h2>{boardName}</h2>
         </div>
         <div>
@@ -48,8 +49,12 @@ const BoardPage = () => {
         )}
       </div>
       <div className="buttons">
-        <div>+</div> 
-        <div>?</div>
+        <div>
+          <FontAwesomeIcon icon={faPlus} />
+        </div>
+        <div>
+          <FontAwesomeIcon icon={faQuestion} />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Pin } from "../../../types/pin";
+import './PinDetails.scss'
 
 //work ok
 interface PinCardProps {
@@ -12,9 +13,9 @@ const PinDetails: FC<PinCardProps> = ({ pin }) => {
     <>
       {pin != undefined ? (
         <div className="container">
-          <div className="">
-            <p>{pin.title}</p>
-            <p>{pin.description}</p>
+          <div >
+            <div><p className="pTitle">{pin.title}</p></div>
+            <div><p className="pDescription">{pin.description}</p></div>
           </div>
         </div>
       ) : (

@@ -5,7 +5,7 @@ import Layout from "../components/main/Layout";
 import { EditProfile } from "../components/user/EditProfile/EditProfile";
 import Login from "../components/user/login/Login";
 import Register from "../components/user/register/Register";
-import AdminPage from "../view/AdminPage";
+import AdminPage from "../view/AdminPage/AdminPage";
 import { CreatePin } from "../view/CreatePinPage/CreatePin";
 import { HomePage } from "../view/HomePage/HomePage";
 import PinPage from "../view/PinPage/pinPage";
