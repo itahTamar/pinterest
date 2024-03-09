@@ -11,9 +11,17 @@ export const RenderSuggestedBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
   const [filterBoardList, setFilterBoardList] = useState<Board[]>([]);
   const { user } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleGetAllOtherBoardsById = async () => {
+
+  const [count, setCount] = useState(0);
+
+  const navigate = useNavigate();
+
+  const handleGetAllOtherBoardsByTitle = async () => {
+
     try {
       if (!user.userId)
         throw new Error(
@@ -33,7 +41,7 @@ export const RenderSuggestedBoards = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }};
 
   useEffect(() => {
     if (user) {
@@ -55,9 +63,20 @@ export const RenderSuggestedBoards = () => {
                   }}
                 >
                   {" "}
+
                   <p>More ideas for</p>
                   <h2>{board.name}</h2>
                   <RenderPinImg category={board.name} />
+
+                  <div className="img">
+                    {/* <div>
+                      <RenderPinImg category={board.name} />
+                    </div> */}
+                    <div>
+                      <p>More ideas for</p>
+                      <h2>{board.name}</h2>
+                    </div>
+                  </div>
                 </div>
               </div>
             );

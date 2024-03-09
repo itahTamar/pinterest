@@ -2,6 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import { getPinsByCategory2 } from "../../api/pins/pinsApi";
 import { UserContext } from "../../contexts/userContext";
 import { Pin } from "../../types/pin";
+import "./RenderPinImg.scss";
 
 //work ok
 interface PinProp {
@@ -12,7 +13,7 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
   const [pinsState, setPins] = useState<Pin[]>([]);
   const [filterPinsState, setFilterPins] = useState<Pin[]>([]);
   const { user } = useContext(UserContext);
- 
+
   const handleGetPinsByCategory = async () => {
     try {
       if (!category)
@@ -38,9 +39,9 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
 
   useEffect(() => {
     if (user) {
-      handleGetPinsByCategory();   
+      handleGetPinsByCategory();
     }
-  }, [user]); 
+  }, [user]);
 
   useEffect(() => {
     console.log("PinsState:", pinsState); //got it
@@ -54,7 +55,13 @@ const RenderPinImg: FC<PinProp> = ({ category }) => {
     <>
       {filterPinsState && pinsState.length > 0 ? (
         filterPinsState.map((pin) => {
-          return <img key={pin.title} src={pin.image} />;
+          return (
+            <div className="renderImg">
+              <div>
+                <img key={pin.title} src={pin.image} />
+              </div>
+            </div>
+          );
         })
       ) : (
         <p>no pin found</p>
