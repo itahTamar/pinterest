@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/users/userApi";
 import { UserContext } from "../../../contexts/userContext";
 import "./login.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 //work ok
 const Login = () => {
@@ -41,16 +43,22 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmitLogin}>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          autoComplete="given-name"
-          placeholder="Email"
-          value={email}
-          onInput={(ev) => setEmail((ev.target as HTMLInputElement).value)}
-        ></input>
-        <label>Password</label>
+        {/* <label>Email</label> */}
+
+        <div className="input_container">
+          <div className="icon_container">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </div>
+          <input
+            type="email"
+            name="email"
+            autoComplete="given-name"
+            placeholder="Email"
+            value={email}
+            onInput={(ev) => setEmail((ev.target as HTMLInputElement).value)}
+          />
+        </div>
+        {/* <label>Password</label> */}
         <input
           type="password"
           name="password"
