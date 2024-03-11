@@ -27,6 +27,7 @@
     margin-bottom: 2vw;
     border-radius: 1vw;
     box-sizing: border-box;
+    width: 300px;
   }
 }
 
@@ -60,6 +61,13 @@
 
   .icon_container {
     position: absolute;
-    right: 0;
+    right: 10px;
+    top: 12px;
+  }
+
+  .icon2_container{
+    position: absolute;
+    right: 10px;
+    top: 12px;
   }
 }

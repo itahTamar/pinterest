@@ -12,11 +12,13 @@
   .divImg {
     display: flex;
     align-items: center;
+    margin-left: 1rem;
   }
 }
 img {
   width: 7vw;
   margin-right: 2vw;
+  padding-top: 5px;
 }
 
 span {
@@ -31,6 +33,7 @@ span {
   border-radius: 2vw;
   height: 2.8vw;
   font-size: 1.2vw;
+  padding-bottom: 2.3rem;
 }
 
 .register {
@@ -39,4 +42,6 @@ span {
   height: 2.8vw;
   font-size: 1.2vw;
   margin: 1.5vw 0.5vw;
+  padding-bottom: 2.3rem;
+
 }

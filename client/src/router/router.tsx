@@ -13,11 +13,13 @@ import RLhomepage from "../view/RLhomepage/RLhomepage";
 import UserPage from "../view/UserPage/userPage";
 import BoardPage from "../view/boardPage/boardPage";
 import PageOfCreatedPin from "../view/PageOfCreatedPin";
+import { RegisterPage } from "../view/RegisterPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RLhomepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path: "/registerPage", element: <RegisterPage /> },
   {
     path: "/main",
     element: <Layout />,

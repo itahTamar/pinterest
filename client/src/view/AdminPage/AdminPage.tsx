@@ -32,7 +32,7 @@ const AdminPage = () => {
       >
         <FontAwesomeIcon icon={faArrowLeft} />
       </div>
-      <h2>admin page</h2>
+      <h2>Admin page</h2>
       <div className="userCards">
         {users.length > 0 ? (
           users.map((data: DataAdmin) => (

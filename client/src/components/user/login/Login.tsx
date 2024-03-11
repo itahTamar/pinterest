@@ -4,7 +4,7 @@ import { login } from "../../../api/users/userApi";
 import { UserContext } from "../../../contexts/userContext";
 import "./login.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 //work ok
 const Login = () => {
@@ -44,7 +44,12 @@ const Login = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmitLogin}>
         {/* <label>Email</label> */}
-
+        <div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/1200px-Pinterest_Logo.svg.png"
+            alt="Pinterest logo"
+          />
+        </div>
         <div className="input_container">
           <div className="icon_container">
             <FontAwesomeIcon icon={faEnvelope} />
@@ -59,14 +64,19 @@ const Login = () => {
           />
         </div>
         {/* <label>Password</label> */}
-        <input
-          type="password"
-          name="password"
-          autoComplete="off"
-          placeholder="Password"
-          value={password}
-          onInput={(ev) => setPassword((ev.target as HTMLInputElement).value)}
-        ></input>
+        <div className="input_container">
+          <div className="icon2_container">
+            <FontAwesomeIcon icon={faLock} />
+          </div>
+          <input
+            type="password"
+            name="password"
+            autoComplete="off"
+            placeholder="Password"
+            value={password}
+            onInput={(ev) => setPassword((ev.target as HTMLInputElement).value)}
+          ></input>
+        </div>
         <button type="submit">Login</button>
       </form>
       <button

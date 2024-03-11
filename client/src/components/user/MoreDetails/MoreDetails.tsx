@@ -46,77 +46,67 @@ const MoreDetails: FC<userDataProp> = ({ email, password }) => {
 
   return (
     <div>
+      <h2>More Details</h2>
       <form className="moreDetailsForm" onSubmit={handleSubmitEditProfile}>
         <div>
-          <div>
-            <label>Photo</label>
-            <input type="text" />
+          <input type="text" placeholder="Photo" />
 
-            <label>*First name</label>
-            <input
-              type="text"
-              name="firstName"
-              autoComplete="given-name"
-              value={firstName}
-              onInput={(ev) =>
-                setFirstName((ev.target as HTMLInputElement).value)
-              }
-            ></input>
+          <input
+            type="text"
+            name="firstName"
+            autoComplete="given-name"
+            placeholder="first name"
+            value={firstName}
+            onInput={(ev) =>
+              setFirstName((ev.target as HTMLInputElement).value)
+            }
+          />
 
-            <label>*Last name</label>
-            <input
-              type="text"
-              name="lastName"
-              autoComplete="given-name"
-              value={lastName}
-              onInput={(ev) =>
-                setLastName((ev.target as HTMLInputElement).value)
-              }
-            ></input>
+          <input
+            type="text"
+            name="lastName"
+            autoComplete="given-name"
+            placeholder="Last name"
+            value={lastName}
+            onInput={(ev) => setLastName((ev.target as HTMLInputElement).value)}
+          />
 
-            <label>About</label>
-            <input
-              type="text"
-              name="about"
-              autoComplete="given-name"
-              value={about}
-              onInput={(ev) => setAbout((ev.target as HTMLInputElement).value)}
-            ></input>
-          </div>
-          <div>
-            <label>Pronouns</label>
-            <input
-              type="text"
-              name="pronouns"
-              autoComplete="given-name"
-              value={pronouns}
-              onInput={(ev) =>
-                setPronouns((ev.target as HTMLInputElement).value)
-              }
-            ></input>
+          <input
+            type="text"
+            name="about"
+            autoComplete="given-name"
+            placeholder="About"
+            value={about}
+            onInput={(ev) => setAbout((ev.target as HTMLInputElement).value)}
+          />
 
-            <label>Website</label>
-            <input
-              type="text"
-              name="website"
-              autoComplete="given-name"
-              value={website}
-              onInput={(ev) =>
-                setWebsite((ev.target as HTMLInputElement).value)
-              }
-            ></input>
+          <input
+            type="text"
+            name="pronouns"
+            autoComplete="given-name"
+            placeholder="Pronouns"
+            value={pronouns}
+            onInput={(ev) => setPronouns((ev.target as HTMLInputElement).value)}
+          />
 
-            <label>*Username</label>
-            <input
-              type="text"
-              name="username"
-              autoComplete="given-name"
-              value={username}
-              onInput={(ev) =>
-                setUsername((ev.target as HTMLInputElement).value)
-              }
-            ></input>
-          </div>
+          <input
+            type="text"
+            name="website"
+            autoComplete="given-name"
+            placeholder="Website"
+            value={website}
+            onInput={(ev) => setWebsite((ev.target as HTMLInputElement).value)}
+          />
+
+          
+          <input
+            type="text"
+            name="username"
+            autoComplete="given-name"
+            placeholder="*Username"
+            value={username}
+            onInput={(ev) => setUsername((ev.target as HTMLInputElement).value)}
+            />
 
           <div>
             <button type="reset">Reset</button>

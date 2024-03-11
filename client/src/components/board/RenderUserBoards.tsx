@@ -4,6 +4,7 @@ import { Board } from "../../types/board";
 import { UserContext } from "../../contexts/userContext";
 import { getAllUsersBoards } from "../../api/boards/boardApi";
 import RenderPinImg from "../Pins/RenderPinImg";
+import './RenderUserBoards.scss'
 
 export const RenderUserBoards = () => {
   const [boardList, setBoardList] = useState<Board[]>([]);
@@ -44,8 +45,8 @@ export const RenderUserBoards = () => {
         {filterBoardList && boardList.length > 0 ? (
           filterBoardList.map((board) => {
             return (
-              <div className="" key={board.name}>
-                <div
+              <div  key={board.name}>
+                <div className="board"
                   onClick={() => {
                     navigate(`/main/boardPage/${board.name}`);
                   }}
