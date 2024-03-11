@@ -5,7 +5,6 @@ export interface User {
      username: string,
      role: "admin" | " "
  }
-
  export interface Results {
     "fieldCount": number,
     "affectedRows": number,
@@ -13,6 +12,6 @@ export interface User {
     "info": string,
     "serverStatus": number,
     "warningsStatus": number,
-    "changedRows": number
-    "length": number
+    "changedRows": number,
+    "length": number,
 }

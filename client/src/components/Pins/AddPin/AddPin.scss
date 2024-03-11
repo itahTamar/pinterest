@@ -1,0 +1,77 @@
+.AddPin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_image {
+    .divimg {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 23rem;
+      width: 20rem;
+      background-color: gainsboro;
+      border-radius: 1.5rem;
+      margin-bottom: 1vw;
+      font-size: 1rem;
+      p {
+        padding: 0px 60px;
+        text-align: center;
+        float: left;
+      }
+    }
+
+    button {
+      width: 20rem;
+      border-radius: 1.5rem;
+      background-color: gainsboro;
+      margin-top: 1vw;
+      font-size: 1rem;
+    }
+    .DropDownInput {
+      position: relative;
+      top: 2rem;
+      width: 10vw;
+      height: 1vw;
+      padding: 15px;
+      border-radius: 1.5vw;
+      background-color: white;
+      border: 1px solid gray;
+    }
+  }
+
+  &_form {
+    height: 555px;
+    width: 585px;
+    margin-left: 3rem;
+    margin-top: 7rem;
+
+    input {
+      width: 580px;
+      height: 48px;
+      border-radius: 15px;
+    }
+
+    #Description {
+      height: 100px;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .publish {
+      margin-top: 1rem;
+      background-color: #e60023;
+      border-bottom: #e60023;
+      color: white;
+      font-size: 20px;
+      padding: 1rem;
+      border-radius: 2rem;
+    }
+  }
+}
+
+
+

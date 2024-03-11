@@ -1,0 +1,51 @@
+.chat-interface {
+  width: 33vw;
+  height: 35vw;
+  
+}
+
+.message-container {
+  height: 28vw;
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-container {
+  float: left;
+
+  padding: 10px;
+
+  h3 {
+    font-size: 1.3vw;
+    font-weight: 600;
+    width: 12vw;
+  }
+
+  input {
+    width: 27vw;
+    height: 2.5vw;
+    margin-top: 0.5vw;
+    border-radius: 1.5vw;
+
+    &::placeholder{
+        font-size: 1vw;
+        padding-left: 1vw;
+    }
+  }
+
+  button {
+    color: white;
+    background-color: #e60023;
+    border-radius: 2vw;
+    padding: 0.5vw 0.8vw;
+    font-size: 1vw;
+  }
+}
+
+.input-field {
+  flex: 1;
+  margin-right: 10px;
+  width: 30vw;
+}

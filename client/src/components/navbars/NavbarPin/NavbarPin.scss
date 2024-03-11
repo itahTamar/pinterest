@@ -1,0 +1,39 @@
+.navbarPin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 33vw;
+
+  &-icons {
+    display: flex;
+    .icon {
+      margin: 0 1vw;
+      font-size: 1.3vw;
+    }
+  }
+
+  &-btns {
+    display: flex;
+    align-items: center;
+    font-size: 1.3vw;
+    div {
+      margin: 0 1vw;
+
+      button {
+        color: white;
+        background-color: #e60023;
+        border-radius: 2vw;
+        padding: 0.5vw 0.8vw;
+        font-size: 1vw;
+      }
+    }
+  }
+}
+
+.editpinbtn{
+  color: white;
+  background-color: #e60023;
+  border-radius: 2vw;
+  padding: 0.5vw 0.8vw;
+  font-size: 1vw;
+}

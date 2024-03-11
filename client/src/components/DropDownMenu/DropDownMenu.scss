@@ -1,0 +1,40 @@
+.DropDownMenu {
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  width: 13rem;
+  padding: 15px;
+  border-radius: 1.5vw;
+  background-color: white;
+  border: 1px solid gray;
+
+  p {
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: rgb(227, 227, 227);
+    border-radius: 1.5rem;
+    margin: 1rem;
+  }
+
+  div {
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover{
+      border: 1px solid gray;
+      padding: 0.5rem;
+      border-radius: 1.5rem;
+    }
+  }
+
+  ::before {
+    position: absolute;
+    top: -0.7rem;
+    right: 1.1rem;
+    width: 28px;
+    height: 28px;
+    transform: rotate(45deg);
+    background-color: white;
+    border: 1px solid gray;
+  }
+}

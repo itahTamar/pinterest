@@ -1,15 +1,19 @@
 import express from "express"
-import { addPin, deletePin,updatePin,getAllPins,findPinByName } from "./pinCtrl"
+import { addPin, deletePin, getPinById, getAllOtherUsersPinsByUsername, getAllUserSavedPinsByUserId, getAllUserCreatedPinsByUsername, getPinsByCategory, savePinToUserByUserId, editPin, findTitleAtOtherUsersPinsByUsername, getPinsByCategory2 } from "./pinCtrl"
 
-const router = express.Router()
-
+const router = express.Router();
 
 router
-    .post("", addPin)
+    .post("/:user_id", addPin)
+    .post("/favorite/:pin_id", savePinToUserByUserId)   
+    .get("/saved/:user_id", getAllUserSavedPinsByUserId) 
+    .get("/others/:username", getAllOtherUsersPinsByUsername)
+    .get("/findOther/:username", findTitleAtOtherUsersPinsByUsername)
+    .get("/category/:category", getPinsByCategory)
+    .get("/category2/:category", getPinsByCategory2)
+    .get("/created/:username", getAllUserCreatedPinsByUsername)
+    .get("/onePin/:pin_id", getPinById)
+    .patch("/:pin_id", editPin)  
     .delete("/:pin_id",deletePin)
-    .put("/:pin_id", updatePin) 
-    .get("", getAllPins) //ALL
-    .get("/filter", findPinByName) 
 
-
-export default router
+export default router;
